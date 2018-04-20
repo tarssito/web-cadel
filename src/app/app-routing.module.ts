@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 //Components
 import { CursoComponent } from './modulos/curso/curso.component';
+import { ManterCursoComponent } from './modulos/curso/acoes/manter-curso/manter-curso.component';
 
 var _basePathCurso = 'curso';
 
@@ -16,6 +17,10 @@ var appRoutes: Routes = [
     {
         path: _basePathCurso,
         component: CursoComponent
+    },
+    {
+        path: _basePathCurso + '/manter',
+        component: ManterCursoComponent
     }
 ];
 

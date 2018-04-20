@@ -1,22 +1,55 @@
-/* Extra small devices (portrait phones, less than 576px) */
-/* No media query since this is the default in Bootstrap */
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
-/* Small devices (landscape phones, 576px and up) */
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+/* HEAD */
+
+#titulo {
+    padding: 15px 10px 15px;
+    background-color: #ecf0f1;
+}
+
+#titulo h1 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* MENU */
+
+#menu {
+    margin-bottom: 50px;
+    background-color: #04a2b3;
+}
+
+#menu .nav a.nav-link {
+    color: #ffffff;
+}
+
+#menu .nav a.nav-link:hover {
+    background-color: #026d79;
+}
+
+/* PAGINA */
+
+.acoes {
+    font-size: 1.5em;
+    text-align: right;
+}
+
 @media (min-width: 576px) {
     
 }
 
-/* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     
 }
 
-/* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     
 }
 
-/* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
 
 }

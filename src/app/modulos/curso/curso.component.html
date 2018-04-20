@@ -1,36 +1,28 @@
 <div class="container-fluid">
-  <div id="titulo-pagina">
-    <h1>Cursos</h1>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 text-right">
-        <button type="button" class="btn btn-primary" (click)="open()">Incluir Curso</button>
+  <div class="row form-group">
+    <div id="titulo-pagina" class="col-sm-6">
+      <h2>Cursos</h2>
+    </div>
+    <div class="col-sm-6 text-right">
+      <a routerLink="manter" class="btn btn-primary">Incluir Curso</a>
     </div>
   </div>
   <div id="resultado">
-    <table class="table">
-      <thead class="thead-dark">
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Ações</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+        <tr *ngFor='let curso of listaCurso'>
+          <td>{{curso.nome}}</td>
+          <td class="acoes">
+            <a [routerLink]="['detalhes/', curso.id]" class="fa fa-info-circle" placement="bottom" ngbTooltip="Detalhes do Curso"></a>
+            <a [routerLink]="['alterar/', curso.id]" class="fa fa-pencil" placement="bottom" ngbTooltip="Alterar"></a>
+            <a [routerLink]="['excluir/', curso.id]" class="fa fa-trash-o" placement="bottom" ngbTooltip="Excluir"></a>
+          </td>
         </tr>
       </tbody>
     </table>

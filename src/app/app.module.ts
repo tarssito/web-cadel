@@ -6,12 +6,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CursoModule } from './modulos/curso/shared/curso.module';
 
 import { AppComponent } from './app.component';
-import { ModalTemplateIncluirComponent } from './comum/modal/modal-template-incluir/modal-template-incluir.component';
+import { TemplateManterComponent } from './comum/templates/template-manter/template-manter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModalTemplateIncluirComponent
+    TemplateManterComponent
   ],
   imports: [
     NgbModule.forRoot(),
