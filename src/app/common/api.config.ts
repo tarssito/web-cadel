@@ -1,0 +1,1 @@
+export const SERVER_URL: String = 'http://localhost:4000/';

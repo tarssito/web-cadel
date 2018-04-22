@@ -1,7 +1,18 @@
 <div id="titulo">
   <h1>CADEL - Sistema de Caderneta Eletrônica</h1>
 </div>
-<div id="menu">
+
+<div id="user" *ngIf="authenticated">
+  <div class="container-fluid">
+    <div class="col-sm-12 text-right">
+      <a id="logout" (click)="logout()">
+        <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sair do Sistema
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="menu" *ngIf="authenticated">
   <div class="container-fluid">
     <ul class="nav">
       <li class="nav-item">

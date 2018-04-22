@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row form-group">
+    <div id="titulo-pagina" class="col-sm-12">
+      <h2>{{title}}</h2>
+    </div>
+  </div>
+  <form (ngSubmit)="onSubmit()" #cursoForm="ngForm">
+    <div class="row form-group">
+      <div class="col-sm-6">
+        <label class="control-label" for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="curso.nome" maxlength="100" required>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-6">
+        <button type="button" class="btn btn-light" (click)="voltar()">Voltar</button>
+      </div>
+      <div class="col-sm-6 text-right">
+        <button type="button" class="btn btn-primary" (click)="cursoForm.reset()">Limpar</button>
+        <button type="submit" class="btn btn-primary">{{labelBotaoSubmit}}</button>
+      </div>
+    </div>
+  </form>
+</div>
