@@ -10,19 +10,16 @@ import { LoginService } from './login/shared/login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  authenticated = false;
+  currentUser = null;
 
   constructor(
     private loginService: LoginService,
     private router: Router
-  ) { }
+  ) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+  }
 
   ngOnInit() {
-    if (localStorage.getItem('currentUser')) {
-      this.authenticated = true;
-      return;
-    }
-    this.authenticated = false;
   }
 
   logout() {
