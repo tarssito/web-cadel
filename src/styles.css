@@ -7,12 +7,12 @@ body {
 
 /* HEAD */
 
-#titulo {
+#main-title {
     background-color: #ecf0f1;
     padding: 15px 10px 15px;
 }
 
-#titulo h1 {
+#main-title h1 {
     font-size: 2rem;
     text-align: center;
 }
@@ -66,6 +66,23 @@ body {
     background-color: #026d79;
 }
 
+/* FILTER */
+
+.filter {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.filter .internal-content {
+    margin-bottom: 30px;
+}
+
+.filter .filter-label {
+    color: #828282;
+    font-size: 13px;
+    font-style: italic;
+}
+
 /* GENERAL */
 
 .acoes {
@@ -79,6 +96,10 @@ body {
 
 .help-block {
     color: #ce1313;
+}
+
+.btn-keep {
+    color: #ffffff !important;
 }
 
 @media (min-width: 576px) {

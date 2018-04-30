@@ -6,11 +6,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 //Login
 import { LoginComponent } from './login/login.component';
-//Curso
-import { CursoComponent } from './modulos/curso/curso.component';
-import { ManterCursoComponent } from './modulos/curso/acoes/manter-curso/manter-curso.component';
+//Course
+import { CourseComponent } from './modulos/course/course.component';
+import { ManterCursoComponent } from './modulos/course/acoes/manter-curso/manter-curso.component';
 
-var _basePathCurso = 'curso';
+var _basePathCourse = 'course';
 var _basePathLogin = 'login';
 
 var appRoutes: Routes = [
@@ -21,12 +21,12 @@ var appRoutes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: _basePathCurso,
-        component: CursoComponent,
+        path: _basePathCourse,
+        component: CourseComponent,
         canActivate: [AuthGuard]
     },
     {
-        path: _basePathCurso + '/manter',
+        path: _basePathCourse + '/keep',
         component: ManterCursoComponent,
         canActivate: [AuthGuard]
     },

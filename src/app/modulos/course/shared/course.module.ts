@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './../../../app-routing.module';
 import { FormsModule } from '@angular/forms';
 
-import { CursoComponent } from './../../../modulos/curso/curso.component';
-import { ManterCursoComponent } from './../../../modulos/curso/acoes/manter-curso/manter-curso.component';
+import { CourseComponent } from './../../../modulos/course/course.component';
+import { ManterCursoComponent } from './../../../modulos/course/acoes/manter-curso/manter-curso.component';
+import { CourseService } from './course.service';
 
 @NgModule({
   declarations: [
-    CursoComponent,
+    CourseComponent,
     ManterCursoComponent
   ],
   imports: [
@@ -16,6 +17,8 @@ import { ManterCursoComponent } from './../../../modulos/curso/acoes/manter-curs
     BrowserModule,
     FormsModule
   ],
-  providers: []
+  providers: [
+    CourseService
+  ]
 })
-export class CursoModule { }
+export class CourseModule { }

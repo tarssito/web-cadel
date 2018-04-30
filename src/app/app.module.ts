@@ -6,7 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 
 //Modules
-import { CursoModule } from './modulos/curso/shared/curso.module';
+import { CourseModule } from './modulos/course/shared/course.module';
 import { LoginModule } from './login/shared/login.module';
 
 //Authentication
@@ -23,7 +23,7 @@ import { AppComponent } from './app.component';
     NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    CursoModule,
+    CourseModule,
     HttpModule,
     LoginModule
   ],

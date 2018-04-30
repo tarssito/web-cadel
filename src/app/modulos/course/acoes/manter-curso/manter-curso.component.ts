@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Curso } from './../../shared/curso.model';
+import { Course } from './../../shared/course.model';
 import { Location } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
 })
 export class ManterCursoComponent implements OnInit {
   title = "Incluir Curso";
-  curso = new Curso();
+  curso = new Course();
   labelBotaoSubmit = "Incluir";
 
   constructor(private location: Location) { }
