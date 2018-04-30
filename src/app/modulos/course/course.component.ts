@@ -25,20 +25,21 @@ export class CourseComponent implements OnInit {
   }
 
   search(): void {
-    this.courseList.push(
-      {
-        id: 1,
-        name: 'Ciências da Computação'
-      },
-      {
-        id: 2,
-        name: 'Engenharia da Computação'
-      },
-      {
-        id: 3,
-        name: 'Sistemas de Informação'
-      }
-    );
+    this.courseList = JSON.parse(localStorage.getItem('courses')) || [];
+    // this.courseList.push(
+    //   {
+    //     id: 1,
+    //     name: 'Ciências da Computação'
+    //   },
+    //   {
+    //     id: 2,
+    //     name: 'Engenharia da Computação'
+    //   },
+    //   {
+    //     id: 3,
+    //     name: 'Sistemas de Informação'
+    //   }
+    // );
   }
 
   goBack(): void {

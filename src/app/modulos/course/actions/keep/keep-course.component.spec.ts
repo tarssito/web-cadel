@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManterCursoComponent } from './manter-curso.component';
+import { KeepCourseComponent } from './keep-course.component';
 
-describe('ManterCursoComponent', () => {
-  let component: ManterCursoComponent;
-  let fixture: ComponentFixture<ManterCursoComponent>;
+describe('KeepCourseComponent', () => {
+  let component: KeepCourseComponent;
+  let fixture: ComponentFixture<KeepCourseComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManterCursoComponent ]
+      declarations: [ KeepCourseComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManterCursoComponent);
+    fixture = TestBed.createComponent(KeepCourseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

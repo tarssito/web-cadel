@@ -5,13 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CourseComponent } from './../../../modulos/course/course.component';
-import { ManterCursoComponent } from './../../../modulos/course/acoes/manter-curso/manter-curso.component';
+import { KeepCourseComponent } from './../../../modulos/course/actions/keep/keep-course.component';
 import { CourseService } from './course.service';
 
 @NgModule({
   declarations: [
     CourseComponent,
-    ManterCursoComponent
+    KeepCourseComponent
   ],
   imports: [
     AppRoutingModule,

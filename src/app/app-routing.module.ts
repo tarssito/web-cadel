@@ -8,7 +8,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { LoginComponent } from './login/login.component';
 //Course
 import { CourseComponent } from './modulos/course/course.component';
-import { ManterCursoComponent } from './modulos/course/acoes/manter-curso/manter-curso.component';
+import { KeepCourseComponent } from './modulos/course/actions/keep/keep-course.component';
 
 var _basePathCourse = 'curso';
 var _basePathLogin = 'login';
@@ -27,7 +27,7 @@ var appRoutes: Routes = [
     },
     {
         path: _basePathCourse + '/manter',
-        component: ManterCursoComponent,
+        component: KeepCourseComponent,
         canActivate: [AuthGuard]
     },
     {
