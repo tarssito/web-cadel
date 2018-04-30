@@ -1,7 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
+//Modules
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpModule } from '@angular/http';
 
 //Modules
 import { CursoModule } from './modulos/curso/shared/curso.module';
@@ -22,6 +24,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     CursoModule,
+    HttpModule,
     LoginModule
   ],
   providers: [

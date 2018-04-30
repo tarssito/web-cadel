@@ -1,8 +1,8 @@
+//Modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './../../app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { MaskModule } from 'soft-angular-mask';
 
 //Services
 import { AlertService } from './../../directives/alert/shared/alert.service';
@@ -19,10 +19,9 @@ import { LoginComponent } from './../login.component';
         LoginComponent
     ],
     imports: [
-        AppRoutingModule,
         BrowserModule,
         FormsModule,
-        HttpModule
+        MaskModule
     ],
     providers: [
         LoginService,
