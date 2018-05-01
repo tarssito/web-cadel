@@ -16,7 +16,8 @@ export class CourseService {
     list() {
     }
 
-    details(id: Number) {
+    detail(id: Number) {
+        return this.http.get('/api/course/' + id);
     }
 
     keep(course: Course) {

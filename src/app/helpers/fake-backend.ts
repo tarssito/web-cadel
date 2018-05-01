@@ -19,7 +19,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             // array in local storage for registered courses
             let courses: any[] = JSON.parse(localStorage.getItem('courses')) || [];
 
-            // create course
+            // create course VERB=POST
             if (request.url.endsWith('/api/course') && request.method === 'POST') {
                 // get new course object from post body
                 let newCourse = request.body;
@@ -37,6 +37,17 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
                 // respond 200 OK
                 return Observable.of(new HttpResponse({ status: 200 }));
+            }
+
+            // get course by id VERB=GET[ID]
+            if (request.url.match(/\/api\/course\/\d+$/) && request.method === 'GET') {
+                // find course by id in courses array
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                let matchedCourses = courses.filter(course => { return course.id === id; });
+                let course = matchedCourses.length ? matchedCourses[0] : null;
+
+                return Observable.of(new HttpResponse({ status: 200, body: course }));
             }
         })
 

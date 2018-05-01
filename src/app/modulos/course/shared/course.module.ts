@@ -6,12 +6,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CourseComponent } from './../../../modulos/course/course.component';
 import { KeepCourseComponent } from './../../../modulos/course/actions/keep/keep-course.component';
+import { DetailCourseComponent } from './../../../modulos/course/actions/detail/detail-course.component';
 import { CourseService } from './course.service';
 
 @NgModule({
   declarations: [
     CourseComponent,
-    KeepCourseComponent
+    KeepCourseComponent,
+    DetailCourseComponent
   ],
   imports: [
     AppRoutingModule,

@@ -40,7 +40,7 @@
       <tbody>
         <tr *ngFor='let course of courseList'>
           <td>{{course.name}}</td>
-          <td class="acoes">
+          <td class="actions">
             <a [routerLink]="['detalhes/', course.id]" class="fa fa-info-circle" placement="bottom" ngbTooltip="Detalhes do Curso"></a>
             <a [routerLink]="['manter/', course.id]" class="fa fa-pencil" placement="bottom" ngbTooltip="Alterar"></a>
             <a [routerLink]="['excluir/', course.id]" class="fa fa-trash-o" placement="bottom" ngbTooltip="Excluir"></a>
