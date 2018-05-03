@@ -49,6 +49,29 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
                 return Observable.of(new HttpResponse({ status: 200, body: course }));
             }
+
+            // delete course
+            if (request.url.match(/\/api\/course\/\d+$/) && request.method === 'DELETE') {
+                // check for fake auth token in header and return course if valid, this security is implemented server side in a real application
+                // find course by id in courses array
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                for (let i = 0; i < courses.length; i++) {
+                    let course = courses[i];
+                    if (course.id === id) {
+                        // delete course
+                        courses.splice(i, 1);
+                        localStorage.setItem('courses', JSON.stringify(courses));
+                        break;
+                    }
+                }
+
+                // respond 200 OK
+                return Observable.of(new HttpResponse({ status: 200 }));
+            }
+
+            // pass through any requests not handled above
+            return next.handle(request);
         })
 
             // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)

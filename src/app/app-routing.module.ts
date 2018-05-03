@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 //Login
 import { LoginComponent } from './login/login.component';
+//Root Component
+import { AppComponent } from './app.component';
 //Course
 import { CourseComponent } from './modulos/course/course.component';
 import { KeepCourseComponent } from './modulos/course/actions/keep/keep-course.component';
@@ -32,7 +34,17 @@ var appRoutes: Routes = [
         canActivate: [AuthGuard]
     },
     {
+        path: _basePathCourse + '/manter/:id',
+        component: KeepCourseComponent,
+        canActivate: [AuthGuard]
+    },
+    {
         path: _basePathCourse + '/detalhes/:id',
+        component: DetailCourseComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathCourse + '/excluir/:id',
         component: DetailCourseComponent,
         canActivate: [AuthGuard]
     },
