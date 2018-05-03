@@ -50,7 +50,7 @@ export class KeepCourseComponent implements OnInit {
       });
   }
 
-  voltar() {
+  goBack() {
     this.location.back();
   }
 

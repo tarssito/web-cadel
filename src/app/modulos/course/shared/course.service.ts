@@ -25,5 +25,6 @@ export class CourseService {
     }
 
     delete(id: Number) {
+        return this.http.delete('/api/course/' + id);
     }
 }

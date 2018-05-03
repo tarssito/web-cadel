@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router, UrlSegment, UrlSegmentGroup, UrlTree, PRIMARY_OUTLET } from '@angular/router';
 
+import { SysMessages } from './../../../../common/mensagens/messages';
 import { CourseService } from './../../shared/course.service';
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
 import { Course } from './../../shared/course.model';
@@ -26,7 +27,7 @@ export class DetailCourseComponent implements OnInit {
     const urlSegmentGroup: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
     const urlSegment: UrlSegment[] = urlSegmentGroup.segments;
 
-    if(!!urlSegment.find(_urlSegment => _urlSegment.path === 'excluir')) {
+    if (urlSegment.find(_urlSegment => _urlSegment.path === 'excluir')) {
       this.title = "Excluir Curso";
       this.excluir = true;
     }
@@ -45,7 +46,18 @@ export class DetailCourseComponent implements OnInit {
     });
   }
 
-  voltar() {
+  delete() {
+    this.courseService.delete(this.course.id)
+      .subscribe(
+      data => {
+        this.alertService.success(SysMessages.get(3), ['/curso']);
+      },
+      error => {
+        this.alertService.error(error);
+      });
+  }
+
+  goBack() {
     this.location.back();
   }
 }
