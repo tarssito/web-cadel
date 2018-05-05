@@ -9,6 +9,9 @@ export class SysMessages {
         }, {
             id: 3,
             description: "Exclusão realizada com sucesso."
+        }, {
+            id: 4,
+            description: "Campo(s) obrigatório(s) não preenchido(s)."
         }
     ];
 

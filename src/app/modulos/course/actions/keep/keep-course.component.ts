@@ -17,6 +17,9 @@ export class KeepCourseComponent implements OnInit {
   title = "Incluir Curso";
   labelBtn = "Incluir";
 
+  ngOnInit() {
+  }
+
   constructor(
     private location: Location,
     private router: Router,
@@ -36,18 +39,23 @@ export class KeepCourseComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  private valid() {
+    return this.course.name;
   }
 
   onSubmit() {
-    this.courseService.keep(this.course)
-      .subscribe(
-      data => {
-        this.alertService.success(SysMessages.get(1), ['/curso']);
-      },
-      error => {
-        this.alertService.error(error);
-      });
+    if (this.valid()) {
+      this.courseService.keep(this.course)
+        .subscribe(
+        data => {
+          this.alertService.success(SysMessages.get(1), ['/curso']);
+        },
+        error => {
+          this.alertService.error(error);
+        });
+    } else {
+      this.alertService.error(SysMessages.get(4));
+    }
   }
 
   goBack() {

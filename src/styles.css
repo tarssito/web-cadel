@@ -118,6 +118,15 @@ body {
     color: #ffffff !important;
 }
 
+.ng-invalid:not(form),
+.ng-invalid:not(form):focus {
+    border: 1px solid #ce1313;
+}
+
+.subtitles {
+    font-size: 12px;
+}
+
 @media (min-width: 576px) {
     
 }

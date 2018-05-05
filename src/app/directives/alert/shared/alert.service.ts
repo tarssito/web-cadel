@@ -17,7 +17,7 @@ export class AlertService {
         });
     }
 
-    success(message: string, redirectUrl, timeToRedirect = 2000) {
+    success(message: string, redirectUrl, timeToRedirect: Number = 1000) {
         this.subject.next({ type: 'success', text: message });
         setTimeout(() => {
             this.router.navigate(redirectUrl);

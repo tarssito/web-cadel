@@ -7,8 +7,13 @@
   <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
     <div class="row form-group">
       <div class="col-sm-6">
-        <label class="control-label" for="nome">Nome</label>
+        <label class="control-label" for="nome">Nome*</label>
         <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="course.name" maxlength="100" required>
+      </div>
+    </div>
+    <div class="form-group clearfix" class="required-filter row form-group">
+      <div class="col-sm-12 subtitles">
+        <em>* Campo Obrigatório</em>
       </div>
     </div>
     <div class="row form-group">
