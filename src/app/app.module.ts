@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 //Modules
-import { CourseModule } from './modulos/course/shared/course.module';
+import { CourseModule } from './modules/course/shared/course.module';
 import { LoginModule } from './login/shared/login.module';
 
 import { AlertComponent } from './directives/alert/alert.component';

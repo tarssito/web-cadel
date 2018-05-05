@@ -9,9 +9,9 @@ import { LoginComponent } from './login/login.component';
 //Root Component
 import { AppComponent } from './app.component';
 //Course
-import { CourseComponent } from './modulos/course/course.component';
-import { KeepCourseComponent } from './modulos/course/actions/keep/keep-course.component';
-import { DetailCourseComponent } from './modulos/course/actions/detail/detail-course.component';
+import { CourseComponent } from './modules/course/course.component';
+import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
+import { DetailCourseComponent } from './modules/course/actions/detail/detail-course.component';
 
 var _basePathCourse = 'curso';
 var _basePathLogin = 'login';
