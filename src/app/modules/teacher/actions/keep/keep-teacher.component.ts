@@ -5,15 +5,15 @@ import { SysMessages } from './../../../../common/mensagens/messages';
 import { Utils } from './../../../../helpers/utils/utils';
 
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
-import { StudentService } from './../../shared/student.service';
-import { Student } from './../../shared/student.model';
+import { TeacherService } from './../../shared/teacher.service';
+import { Teacher } from './../../shared/teacher.model';
 
 @Component({
-  selector: 'app-keep-student',
-  templateUrl: './keep-student.component.html'
+  selector: 'app-keep-teacher',
+  templateUrl: './keep-teacher.component.html'
 })
-export class KeepStudentComponent {
-  student: Student;
+export class KeepTeacherComponent {
+  teacher: Teacher;
   genderList: any[];
   title: String;
   labelBtn: String;
@@ -24,12 +24,12 @@ export class KeepStudentComponent {
     private location: Location,
     private router: Router,
     private activateRoute: ActivatedRoute,
-    private studentService: StudentService,
+    private teacherService: TeacherService,
     private alertService: AlertService
   ) {
     //init
-    this.student = new Student();
-    this.title = "Incluir Aluno";
+    this.teacher = new Teacher();
+    this.title = "Incluir Professor";
     this.labelBtn = "Incluir";
     this.successCode = 1;
     this.detail();
@@ -38,35 +38,37 @@ export class KeepStudentComponent {
 
   private detail() {
     this.activateRoute.params.subscribe(params => {
-      this.studentService.detail(params['id']).subscribe(student => {
-        this.student = <Student>student;
+      if (params['id']) {
+        // this.studentService.detail(params['id']).subscribe(student => {
+        //   this.student = <Student>student;
 
-        if (this.student.id) {
-          this.title = "Alterar Aluno";
-          this.labelBtn = "Alterar";
-          this.successCode = 2;
-        }
-      });
+        //   if (this.student.id) {
+        //     this.title = "Alterar Aluno";
+        //     this.labelBtn = "Alterar";
+        //     this.successCode = 2;
+        //   }
+        // });
+      }
     });
   }
 
   private valid() {
-    if (!this.student.nome || !this.student.matricula || !this.student.cpf) {
+    if (!this.teacher.nome || !this.teacher.matricula || !this.teacher.cpf || !this.teacher.email || !this.teacher.sexo) {
       this.alertService.error(SysMessages.get(4));
       return false;
     }
 
-    if (Number(this.student.matricula) == 0) {
+    if (Number(this.teacher.matricula) == 0) {
       this.alertService.error(SysMessages.get(9));
       return false;
     }
 
-    if (!Utils.validateCpf(this.student.cpf)) {
+    if (!Utils.validateCpf(this.teacher.cpf)) {
       this.alertService.error(SysMessages.get(6));
       return false;
     }
 
-    if (!Utils.validateEmail(this.student.email)) {
+    if (!Utils.validateEmail(this.teacher.email)) {
       this.alertService.error(SysMessages.get(5));
       return false;
     }
@@ -88,10 +90,10 @@ export class KeepStudentComponent {
 
   onSubmit() {
     if (this.valid()) {
-      this.studentService.keep(this.student)
+      this.teacherService.keep(this.teacher)
         .subscribe(
         data => {
-          this.alertService.success(SysMessages.get(this.successCode), ['/aluno']);
+          this.alertService.success(SysMessages.get(this.successCode), ['/professor']);
         },
         error => {
           this.alertService.error(error);

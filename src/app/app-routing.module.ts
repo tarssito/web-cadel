@@ -18,6 +18,7 @@ import { KeepStudentComponent } from './modules/student/actions/keep/keep-studen
 import { DetailStudentComponent } from './modules/student/actions/detail/detail-student.component';
 //Teacher
 import { TeacherComponent } from './modules/teacher/teacher.component';
+import { KeepTeacherComponent } from './modules/teacher/actions/keep/keep-teacher.component';
 
 var _basePathCourse = 'curso';
 var _basePathStudent = 'aluno';
@@ -84,6 +85,11 @@ var appRoutes: Routes = [
     {
         path: _basePathTeacher,
         component: TeacherComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathTeacher + '/manter',
+        component: KeepTeacherComponent,
         canActivate: [AuthGuard]
     },
     {

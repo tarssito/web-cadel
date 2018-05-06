@@ -16,4 +16,8 @@ export class TeacherService {
   list() {
   }
 
+  keep(teacher: Teacher) {
+    return this.http.post('/api/teacher', teacher);
+  }
+
 }

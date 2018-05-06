@@ -114,6 +114,21 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return Observable.of(new HttpResponse({ status: 200 }));
             }
 
+            // ########################## STUDENT ##########################
+            let teachers: any[] = JSON.parse(localStorage.getItem('teachers')) || [];
+
+            // create student VERB=POST
+            if (request.url.endsWith('/api/teacher') && request.method === 'POST') {
+                let newTeacher = request.body;
+
+                newTeacher.id = teachers.length + 1;
+                teachers.push(newTeacher);
+                localStorage.setItem('teachers', JSON.stringify(teachers));
+
+                // respond 200 OK
+                return Observable.of(new HttpResponse({ status: 200 }));
+            }
+
             // pass through any requests not handled above
             return next.handle(request);
         })
