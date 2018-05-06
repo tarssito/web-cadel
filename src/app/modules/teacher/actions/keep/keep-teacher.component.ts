@@ -39,15 +39,15 @@ export class KeepTeacherComponent {
   private detail() {
     this.activateRoute.params.subscribe(params => {
       if (params['id']) {
-        // this.studentService.detail(params['id']).subscribe(student => {
-        //   this.student = <Student>student;
+        this.teacherService.detail(params['id']).subscribe(teacher => {
+          this.teacher = <Teacher>teacher;
 
-        //   if (this.student.id) {
-        //     this.title = "Alterar Aluno";
-        //     this.labelBtn = "Alterar";
-        //     this.successCode = 2;
-        //   }
-        // });
+          if (this.teacher.id) {
+            this.title = "Alterar Professor";
+            this.labelBtn = "Alterar";
+            this.successCode = 2;
+          }
+        });
       }
     });
   }

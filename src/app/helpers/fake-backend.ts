@@ -114,19 +114,29 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return Observable.of(new HttpResponse({ status: 200 }));
             }
 
-            // ########################## STUDENT ##########################
-            let teachers: any[] = JSON.parse(localStorage.getItem('teachers')) || [];
+            // ########################## TEACHER ##########################
+            let teachers: any[] = JSON.parse(localStorage.getItem('professores')) || [];
 
-            // create student VERB=POST
+            // create teacher VERB=POST
             if (request.url.endsWith('/api/teacher') && request.method === 'POST') {
                 let newTeacher = request.body;
 
                 newTeacher.id = teachers.length + 1;
                 teachers.push(newTeacher);
-                localStorage.setItem('teachers', JSON.stringify(teachers));
+                localStorage.setItem('professores', JSON.stringify(teachers));
 
                 // respond 200 OK
                 return Observable.of(new HttpResponse({ status: 200 }));
+            }
+
+            // get teacher by id VERB=GET[ID]
+            if (request.url.match(/\/api\/teacher\/\d+$/) && request.method === 'GET') {
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                let matchedTeachers = teachers.filter(std => { return std.id === id; });
+                let student = matchedTeachers.length ? matchedTeachers[0] : null;
+
+                return Observable.of(new HttpResponse({ status: 200, body: student }));
             }
 
             // pass through any requests not handled above
