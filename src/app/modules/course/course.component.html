@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row form-group">
+        <div id="page-title" class="col-sm-6">
+            <h2>Cursos</h2>
+        </div>
+        <div class="col-sm-6 text-right">
+            <a routerLink="manter" class="btn btn-primary btn-keep">Incluir Curso</a>
+        </div>
+    </div>
+
+    <form class="filter" (ngSubmit)="search()" #courseForm="ngForm">
+        <div class="internal-content">
+            <span class="filter-label row form-group col-md-12">Filtro(s) de Pesquisa</span>
+            <div class="row form-group">
+                <div class="col-sm-6">
+                    <label class="control-label" for="name">Nome</label>
+                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="filter.name" maxlength="100">
+                </div>
+            </div>
+        </div>
+        <div class="filter-buttons row">
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-light" (click)="goBack()">Voltar</button>
+            </div>
+            <div class="col-sm-6 text-right">
+                <button type="button" class="btn btn-primary" (click)="courseForm.reset()">Limpar</button>
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="result-table" *ngIf="courseList.length > 0">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let course of courseList'>
+                    <td>{{course.name}}</td>
+                    <td class="actions">
+                        <a [routerLink]="['detalhes/', course.id]" class="fa fa-info-circle" placement="bottom" ngbTooltip="Detalhes do Curso"></a>
+                        <a [routerLink]="['manter/', course.id]" class="fas fa-edit" placement="bottom" ngbTooltip="Alterar"></a>
+                        <a [routerLink]="['excluir/', course.id]" class="fa fa-trash" placement="bottom" ngbTooltip="Excluir"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
