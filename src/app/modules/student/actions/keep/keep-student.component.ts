@@ -17,7 +17,9 @@ export class KeepStudentComponent {
   genderList: any[];
   title: String;
   labelBtn: String;
+  successCode: Number;
 
+  //dependency injection
   constructor(
     private location: Location,
     private router: Router,
@@ -29,6 +31,7 @@ export class KeepStudentComponent {
     this.student = new Student();
     this.title = "Incluir Aluno";
     this.labelBtn = "Incluir";
+    this.successCode = 1;
     this.detail();
     this.loadGenderList();
   }
@@ -41,6 +44,7 @@ export class KeepStudentComponent {
         if (this.student.id) {
           this.title = "Alterar Aluno";
           this.labelBtn = "Alterar";
+          this.successCode = 2;
         }
       });
     });
@@ -86,7 +90,7 @@ export class KeepStudentComponent {
       this.studentService.keep(this.student)
         .subscribe(
         data => {
-          this.alertService.success(SysMessages.get(1), ['/aluno']);
+          this.alertService.success(SysMessages.get(this.successCode), ['/aluno']);
         },
         error => {
           this.alertService.error(error);

@@ -9,9 +9,9 @@ import { CourseService } from './shared/course.service';
     selector: 'app-course',
     templateUrl: './course.component.html'
 })
-export class CourseComponent implements OnInit {
-    filter: Course = new Course();
-    courseList: Course[] = [];
+export class CourseComponent {
+    filter: Course;
+    courseList: Course[];
 
     //dependency injection
     constructor(
@@ -19,9 +19,10 @@ export class CourseComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private location: Location
-    ) { }
-
-    ngOnInit() {
+    ) {
+        this.filter = new Course();
+        this.courseList = [];
+        this.search();
     }
 
     search(): void {

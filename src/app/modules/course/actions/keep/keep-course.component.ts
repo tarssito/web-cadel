@@ -12,13 +12,11 @@ import { Course } from './../../shared/course.model';
     selector: 'app-keep-course',
     templateUrl: './keep-course.component.html'
 })
-export class KeepCourseComponent implements OnInit {
-    course = new Course();
-    title = "Incluir Curso";
-    labelBtn = "Incluir";
-
-    ngOnInit() {
-    }
+export class KeepCourseComponent {
+    course: Course;
+    title: String;
+    labelBtn: String;
+    successCode: Number;
 
     constructor(
         private location: Location,
@@ -27,6 +25,15 @@ export class KeepCourseComponent implements OnInit {
         private courseService: CourseService,
         private alertService: AlertService
     ) {
+        //init
+        this.course = new Course();
+        this.title = "Incluir Aluno";
+        this.labelBtn = "Incluir";
+        this.successCode = 1;
+        this.detail();
+    }
+
+    private detail() {
         this.activateRoute.params.subscribe(params => {
             this.courseService.detail(params['id']).subscribe(course => {
                 this.course = <Course>course;
@@ -34,13 +41,18 @@ export class KeepCourseComponent implements OnInit {
                 if (this.course.id) {
                     this.title = "Alterar Curso";
                     this.labelBtn = "Alterar";
+                    this.successCode = 2;
                 }
             });
         });
     }
 
     private valid() {
-        return this.course.name;
+        if (!this.course.name) {
+            this.alertService.error(SysMessages.get(4));
+            return false;
+        }
+        return true;
     }
 
     onSubmit() {
@@ -48,7 +60,7 @@ export class KeepCourseComponent implements OnInit {
             this.courseService.keep(this.course)
                 .subscribe(
                 data => {
-                    this.alertService.success(SysMessages.get(1), ['/curso']);
+                    this.alertService.success(SysMessages.get(this.successCode), ['/curso']);
                 },
                 error => {
                     this.alertService.error(error);

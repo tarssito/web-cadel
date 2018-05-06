@@ -9,7 +9,7 @@ import { StudentService } from './shared/student.service';
   selector: 'app-student',
   templateUrl: './student.component.html'
 })
-export class StudentComponent implements OnInit {
+export class StudentComponent {
   filter: Student;
   studentList: Student[];
 
@@ -20,11 +20,10 @@ export class StudentComponent implements OnInit {
     private router: Router,
     private location: Location
   ) {
+    //init;
     this.filter = new Student();
     this.studentList = [];
-  }
-
-  ngOnInit() {
+    this.search();
   }
 
   search(): void {
