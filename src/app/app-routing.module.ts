@@ -12,8 +12,11 @@ import { AppComponent } from './app.component';
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
 import { DetailCourseComponent } from './modules/course/actions/detail/detail-course.component';
+//Student
+import { StudentComponent } from './modules/student/student.component';
 
 var _basePathCourse = 'curso';
+var _basePathStudent = 'aluno';
 var _basePathLogin = 'login';
 
 var appRoutes: Routes = [
@@ -46,6 +49,11 @@ var appRoutes: Routes = [
     {
         path: _basePathCourse + '/excluir/:id',
         component: DetailCourseComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathStudent,
+        component: StudentComponent,
         canActivate: [AuthGuard]
     },
     {

@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 //Modules
 import { CourseModule } from './modules/course/shared/course.module';
 import { LoginModule } from './login/shared/login.module';
+import { StudentModule } from './modules/student/shared/student.module';
 
 import { AlertComponent } from './directives/alert/alert.component';
 // used to create fake backend - remove
@@ -29,10 +30,11 @@ import { AppComponent } from './app.component';
     NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    CourseModule,
     HttpModule,
     HttpClientModule,
-    LoginModule
+    LoginModule,
+    CourseModule,
+    StudentModule
   ],
   providers: [
     AuthGuard,
