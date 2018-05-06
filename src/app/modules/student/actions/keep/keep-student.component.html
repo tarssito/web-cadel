@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="row form-group">
+    <div id="page-title" class="col-sm-12">
+      <h2>{{title}}</h2>
+    </div>
+  </div>
+  <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+    <!-- row 1 -->
+    <div class="row form-group">
+      <div class="col-sm-2">
+        <label class="control-label" for="registration">Matrícula*</label>
+        <input mask-number [mask]="'9999999999'" [reqMin]="'1'" type="text" class="form-control" id="registration" name="registration"
+          [(ngModel)]="student.matricula" maxlength="10" required>
+      </div>
+      <div class="col-sm-3">
+        <label class="control-label" for="documento">CPF*</label>
+        <input mask-number [mask]="'999.999.999-99'" [maskkOutput]="true" type="text" class="form-control" id="document" name="document"
+          [(ngModel)]="student.cpf" maxlength="14" required>
+      </div>
+      <div class="col-sm-6">
+        <label class="control-label" for="name">Nome*</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="student.nome" maxlength="100" required>
+      </div>
+    </div>
+    <!-- row 2 -->
+    <div class="row form-group">
+      <div class="col-sm-4">
+        <label class="control-label" for="email">E-mail</label>
+        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="student.email" maxlength="100">
+      </div>
+      <div class="col-sm-3">
+        <label class="control-label" for="gender">Gênero*</label>
+        <div>
+          <div class="radio-inline" *ngFor="let gender of genderList">
+            <input type="radio" id="{{gender.id}}" name="gender" [(ngModel)]="student.sexo" [value]="gender.id" required>
+            <label for="{{gender.id}}">{{gender.description}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group clearfix" class="required-filter row form-group">
+      <div class="col-sm-12 subtitles">
+        <em>* Campo Obrigatório</em>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-6">
+        <button type="button" class="btn btn-light" (click)="goBack()">Voltar</button>
+      </div>
+      <div class="col-sm-6 text-right">
+        <button type="button" class="btn btn-primary" (click)="studentForm.reset()">Limpar</button>
+        <button type="submit" class="btn btn-primary">{{labelBtn}}</button>
+      </div>
+    </div>
+  </form>
+</div>

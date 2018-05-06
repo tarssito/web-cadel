@@ -1,8 +1,8 @@
 export class Student {
     id: Number;
-    registration: String;
-    name: String;
-    document: Number;
-    mail: String;
+    matricula: String;
+    nome: String;
+    cpf: Number;
+    email: String;
     sexo: String;
 }

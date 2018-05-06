@@ -16,6 +16,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // wrap in delayed observable to simulate server api call
         return Observable.of(null).mergeMap(() => {
+
+            // ########################## COURSE ##########################
             // array in local storage for registered courses
             let courses: any[] = JSON.parse(localStorage.getItem('courses')) || [];
 
@@ -68,6 +70,31 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
                 // respond 200 OK
                 return Observable.of(new HttpResponse({ status: 200 }));
+            }
+
+            // ########################## STUDENT ##########################
+            let students: any[] = JSON.parse(localStorage.getItem('students')) || [];
+
+            // create student VERB=POST
+            if (request.url.endsWith('/api/student') && request.method === 'POST') {
+                let newStudent = request.body;
+
+                newStudent.id = students.length + 1;
+                students.push(newStudent);
+                localStorage.setItem('students', JSON.stringify(students));
+
+                // respond 200 OK
+                return Observable.of(new HttpResponse({ status: 200 }));
+            }
+
+            // get student by id VERB=GET[ID]
+            if (request.url.match(/\/api\/student\/\d+$/) && request.method === 'GET') {
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                let matchedStudents = students.filter(std => { return std.id === id; });
+                let student = matchedStudents.length ? matchedStudents[0] : null;
+
+                return Observable.of(new HttpResponse({ status: 200, body: student }));
             }
 
             // pass through any requests not handled above

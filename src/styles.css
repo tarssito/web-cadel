@@ -122,18 +122,15 @@ body {
     font-size: 12px;
 }
 
-@media (min-width: 576px) {
-    
+.radio-inline {
+    float: left;
+    margin: .5rem;
 }
 
-@media (min-width: 768px) {
-    
+.radio-inline:last-child {
+    margin-right: 0;
 }
-
-@media (min-width: 992px) {
-    
-}
-
-@media (min-width: 1200px) {
-
+  
+.radio-inline label {
+    font-weight: normal;
 }
