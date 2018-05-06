@@ -12,6 +12,21 @@ export class SysMessages {
         }, {
             id: 4,
             description: "Campo(s) obrigatório(s) não preenchido(s)."
+        }, {
+            id: 5,
+            description: "E-mail inválido."
+        }, {
+            id: 6,
+            description: "CPF inválido."
+        }, {
+            id: 7,
+            description: "A pesquisa não retornou registro(s)."
+        }, {
+            id: 8,
+            description: "Registro já cadastrado."
+        }, {
+            id: 9,
+            description: "O número de matrícula deve ser maior que zero."
         }
     ];
 

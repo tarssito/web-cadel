@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SysMessages } from './../../../../common/mensagens/messages';
+import { Utils } from './../../../../helpers/utils/utils';
 
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
 import { StudentService } from './../../shared/student.service';
@@ -48,6 +49,21 @@ export class KeepStudentComponent {
   private valid() {
     if (!this.student.nome || !this.student.matricula || !this.student.cpf) {
       this.alertService.error(SysMessages.get(4));
+      return false;
+    }
+
+    if (Number(this.student.matricula) == 0) {
+      this.alertService.error(SysMessages.get(9));
+      return false;
+    }
+
+    if (!Utils.validateEmail(this.student.email)) {
+      this.alertService.error(SysMessages.get(5));
+      return false;
+    }
+
+    if (!Utils.validateCpf(this.student.cpf)) {
+      this.alertService.error(SysMessages.get(6));
       return false;
     }
     return true;
