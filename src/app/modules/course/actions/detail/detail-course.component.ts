@@ -11,11 +11,12 @@ import { Course } from './../../shared/course.model';
     selector: 'app-detail-course',
     templateUrl: './detail-course.component.html'
 })
-export class DetailCourseComponent implements OnInit {
-    course = new Course();
-    title = "Detalhes do Curso";
-    excluir = false;
+export class DetailCourseComponent {
+    course: Course;
+    title: String;
+    excluir: Boolean;
 
+    //dependency injection
     constructor(
         private location: Location,
         private router: Router,
@@ -23,7 +24,15 @@ export class DetailCourseComponent implements OnInit {
         private courseService: CourseService,
         private alertService: AlertService
     ) {
-        const tree: UrlTree = router.parseUrl(this.router.url);
+        //init
+        this.course = new Course();
+        this.title = "Detalhes do Curso";
+        this.excluir = false;
+        this.detail();
+    }
+
+    private detail() {
+        const tree: UrlTree = this.router.parseUrl(this.router.url);
         const urlSegmentGroup: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
         const urlSegment: UrlSegment[] = urlSegmentGroup.segments;
 
@@ -31,14 +40,7 @@ export class DetailCourseComponent implements OnInit {
             this.title = "Excluir Curso";
             this.excluir = true;
         }
-        this.activateRoute.params.subscribe(params => {
-            this.courseService.detail(params['id']).subscribe(course => {
-                this.course = <Course>course;
-            });
-        });
-    }
 
-    ngOnInit() {
         this.activateRoute.params.subscribe(params => {
             this.courseService.detail(params['id']).subscribe(course => {
                 this.course = <Course>course;
