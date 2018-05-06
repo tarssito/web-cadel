@@ -24,4 +24,7 @@ export class TeacherService {
     return this.http.post('/api/teacher', teacher);
   }
 
+  delete(id: Number) {
+    return this.http.delete('/api/teacher/' + id);
+  }
 }

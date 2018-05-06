@@ -38,15 +38,17 @@ export class KeepStudentComponent {
 
   private detail() {
     this.activateRoute.params.subscribe(params => {
-      this.studentService.detail(params['id']).subscribe(student => {
-        this.student = <Student>student;
+      if (params['id']) {
+        this.studentService.detail(params['id']).subscribe(student => {
+          this.student = <Student>student;
 
-        if (this.student.id) {
-          this.title = "Alterar Aluno";
-          this.labelBtn = "Alterar";
-          this.successCode = 2;
-        }
-      });
+          if (this.student.id) {
+            this.title = "Alterar Aluno";
+            this.labelBtn = "Alterar";
+            this.successCode = 2;
+          }
+        });
+      }
     });
   }
 

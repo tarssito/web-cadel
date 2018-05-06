@@ -8,6 +8,7 @@ import { MaskModule } from 'soft-angular-mask';
 import { TeacherComponent } from './../teacher.component';
 import { TeacherService } from './teacher.service';
 import { KeepTeacherComponent } from './../actions/keep/keep-teacher.component';
+import { DetailTeacherComponent } from './../actions/detail/detail-teacher.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { KeepTeacherComponent } from './../actions/keep/keep-teacher.component';
   ],
   declarations: [
     TeacherComponent,
-    KeepTeacherComponent
+    KeepTeacherComponent,
+    DetailTeacherComponent
   ],
   providers: [
     TeacherService

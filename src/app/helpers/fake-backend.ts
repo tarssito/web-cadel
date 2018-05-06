@@ -139,6 +139,26 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return Observable.of(new HttpResponse({ status: 200, body: student }));
             }
 
+            if (request.url.match(/\/api\/teacher\/\d+$/) && request.method === 'DELETE') {
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                for (let i = 0; i < teachers.length; i++) {
+                    let student = teachers[i];
+                    if (student.id === id) {
+                        // delete student
+                        teachers.splice(i, 1);
+                        localStorage.setItem('professores', JSON.stringify(teachers));
+                        break;
+                    }
+                }
+
+                // respond 200 OK
+                return Observable.of(new HttpResponse({ status: 200 }));
+            }
+
+
+
+
             // pass through any requests not handled above
             return next.handle(request);
         })

@@ -35,15 +35,17 @@ export class KeepCourseComponent {
 
     private detail() {
         this.activateRoute.params.subscribe(params => {
-            this.courseService.detail(params['id']).subscribe(course => {
-                this.course = <Course>course;
+            if (params['id']) {
+                this.courseService.detail(params['id']).subscribe(course => {
+                    this.course = <Course>course;
 
-                if (this.course.id) {
-                    this.title = "Alterar Curso";
-                    this.labelBtn = "Alterar";
-                    this.successCode = 2;
-                }
-            });
+                    if (this.course.id) {
+                        this.title = "Alterar Curso";
+                        this.labelBtn = "Alterar";
+                        this.successCode = 2;
+                    }
+                });
+            }
         });
     }
 

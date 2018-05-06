@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row form-group">
+    <div id="page-title" class="col-sm-12">
+      <h2>{{title}}</h2>
+    </div>
+  </div>
+  <div class="details form-group">
+    <!-- row 1 -->
+    <div class="row form-group">
+      <div class="col-sm-2">
+        <label class="control-label bold">Matrícula: </label>
+        <span>{{teacher.matricula}}</span>
+      </div>
+      <div class="col-sm-3">
+        <label class="control-label bold">CPF: </label>
+        <span>{{teacher.cpf}}</span>
+      </div>
+      <div class="col-sm-5">
+        <label class="control-label bold">Nome: </label>
+        <span>{{teacher.nome}}</span>
+      </div>
+      <div class="col-sm-2">
+        <label class="control-label bold">Gênero: </label>
+        <span>{{teacher.sexo == 'M' ? 'Masculino' : 'Feminino'}}</span>
+      </div>
+    </div>
+    <!-- row 2 -->
+    <div class="row form-group">
+      <div class="col-sm-5">
+        <label class="control-label bold">E-mail: </label>
+        <span>{{teacher.email}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-light" (click)="goBack()">Voltar</button>
+    </div>
+    <div class="col-sm-6 text-right">
+      <button *ngIf="excluir" type="submit" class="btn btn-primary" (click)="delete()">Excluir</button>
+    </div>
+  </div>
+</div>

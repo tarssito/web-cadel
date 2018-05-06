@@ -28,10 +28,12 @@ export class DetailCourseComponent {
         this.course = new Course();
         this.title = "Detalhes do Curso";
         this.excluir = false;
+        this.checkAction();
         this.detail();
     }
 
-    private detail() {
+    /* Check if action is to delete or detail */
+    private checkAction() {
         const tree: UrlTree = this.router.parseUrl(this.router.url);
         const urlSegmentGroup: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
         const urlSegment: UrlSegment[] = urlSegmentGroup.segments;
@@ -40,7 +42,9 @@ export class DetailCourseComponent {
             this.title = "Excluir Curso";
             this.excluir = true;
         }
+    }
 
+    private detail() {
         this.activateRoute.params.subscribe(params => {
             this.courseService.detail(params['id']).subscribe(course => {
                 this.course = <Course>course;
