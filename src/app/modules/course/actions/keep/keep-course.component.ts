@@ -50,7 +50,7 @@ export class KeepCourseComponent {
     }
 
     private valid() {
-        if (!this.course.name) {
+        if (!this.course.nome) {
             this.alertService.error(SysMessages.get(4));
             return false;
         }

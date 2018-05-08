@@ -27,9 +27,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 let newCourse = request.body;
 
                 // validation
-                let duplicateUser = courses.filter(_course => { return _course.name === newCourse.name; }).length;
+                let duplicateUser = courses.filter(_course => { return _course.nome === newCourse.nome; }).length;
                 if (duplicateUser) {
-                    return Observable.throw('O curso "' + newCourse.name + '" já foi cadastrado.');
+                    return Observable.throw('O curso "' + newCourse.nome + '" já foi cadastrado.');
                 }
 
                 // save new course
