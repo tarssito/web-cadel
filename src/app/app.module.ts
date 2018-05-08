@@ -21,6 +21,10 @@ import { AppComponent } from './app.component';
 import { AlertComponent } from './directives/alert/alert.component';
 import { AlertService } from './directives/alert/shared/alert.service';
 
+//Loading
+import { LoadingComponent } from './directives/loading/loading.component';
+import { LoadingService } from './directives/loading/shared/loading.service';
+
 //Login
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/shared/login.service';
@@ -46,6 +50,7 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     AppComponent,
     LoginComponent,
     AlertComponent,
+    LoadingComponent,
     CourseComponent,
     KeepCourseComponent,
     DetailCourseComponent,
@@ -69,6 +74,7 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
   providers: [
     AuthGuard,
     AlertService,
+    LoadingService,
     LoginService,
     CourseService,
     StudentService,
