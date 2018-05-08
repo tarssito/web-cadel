@@ -34,9 +34,9 @@ export class DetailCourseComponent {
 
     /* Check if action is to delete or detail */
     private checkAction() {
-        const tree: UrlTree = this.router.parseUrl(this.router.url);
-        const urlSegmentGroup: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
-        const urlSegment: UrlSegment[] = urlSegmentGroup.segments;
+        var tree: UrlTree = this.router.parseUrl(this.router.url);
+        var urlSegmentGroup: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+        var urlSegment: UrlSegment[] = urlSegmentGroup.segments;
 
         if (urlSegment.find(_urlSegment => _urlSegment.path === 'excluir')) {
             this.title = "Excluir Curso";
@@ -45,10 +45,9 @@ export class DetailCourseComponent {
     }
 
     private detail() {
-        this.activateRoute.params.subscribe(params => {
-            this.courseService.detail(params['id']).subscribe(course => {
-                this.course = <Course>course;
-            });
+        var _id = this.activateRoute.snapshot.params['id'];
+        this.courseService.detail(_id).subscribe(course => {
+            this.course = <Course>course;
         });
     }
 

@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   logout() {
     // this.loading = true;
     this.loginService.logout();
-    this.router.navigate(['/login']);
+    window.location.href = '/login';
   }
 
 }
