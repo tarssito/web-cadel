@@ -16,62 +16,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // wrap in delayed observable to simulate server api call
         return Observable.of(null).mergeMap(() => {
-
-            // ########################## COURSE ##########################
-            // array in local storage for registered courses
-            let courses: any[] = JSON.parse(localStorage.getItem('courses')) || [];
-
-            // create course VERB=POST
-            if (request.url.endsWith('/api/course') && request.method === 'POST') {
-                // get new course object from post body
-                let newCourse = request.body;
-
-                // validation
-                let duplicateUser = courses.filter(_course => { return _course.nome === newCourse.nome; }).length;
-                if (duplicateUser) {
-                    return Observable.throw('O curso "' + newCourse.nome + '" já foi cadastrado.');
-                }
-
-                // save new course
-                newCourse.id = courses.length + 1;
-                courses.push(newCourse);
-                localStorage.setItem('courses', JSON.stringify(courses));
-
-                // respond 200 OK
-                return Observable.of(new HttpResponse({ status: 200 }));
-            }
-
-            // get course by id VERB=GET[ID]
-            if (request.url.match(/\/api\/course\/\d+$/) && request.method === 'GET') {
-                // find course by id in courses array
-                let urlParts = request.url.split('/');
-                let id = parseInt(urlParts[urlParts.length - 1]);
-                let matchedCourses = courses.filter(course => { return course.id === id; });
-                let course = matchedCourses.length ? matchedCourses[0] : null;
-
-                return Observable.of(new HttpResponse({ status: 200, body: course }));
-            }
-
-            // delete course
-            if (request.url.match(/\/api\/course\/\d+$/) && request.method === 'DELETE') {
-                // check for fake auth token in header and return course if valid, this security is implemented server side in a real application
-                // find course by id in courses array
-                let urlParts = request.url.split('/');
-                let id = parseInt(urlParts[urlParts.length - 1]);
-                for (let i = 0; i < courses.length; i++) {
-                    let course = courses[i];
-                    if (course.id === id) {
-                        // delete course
-                        courses.splice(i, 1);
-                        localStorage.setItem('courses', JSON.stringify(courses));
-                        break;
-                    }
-                }
-
-                // respond 200 OK
-                return Observable.of(new HttpResponse({ status: 200 }));
-            }
-
             // ########################## STUDENT ##########################
             let students: any[] = JSON.parse(localStorage.getItem('students')) || [];
 

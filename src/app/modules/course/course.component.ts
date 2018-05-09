@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { SysMessages } from './../../common/mensagens/messages';
 
 import { AlertService } from './../../directives/alert/shared/alert.service';
+import { LoadingService } from './../../directives/loading/shared/loading.service';
+
 import { Course } from './shared/course.model';
 import { CourseService } from './shared/course.service';
 
@@ -21,7 +23,8 @@ export class CourseComponent {
         private route: ActivatedRoute,
         private router: Router,
         private location: Location,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private loadingService: LoadingService
     ) {
         this.filter = new Course();
         this.courseList = [];
@@ -29,12 +32,14 @@ export class CourseComponent {
     }
 
     search(): void {
+        this.loadingService.loading(true);
         this.courseService.list(this.filter)
             .subscribe(data => {
                 this.courseList = <Course[]>data;
                 if (this.courseList.length == 0) {
                     this.alertService.error(SysMessages.get(7));
                 }
+                this.loadingService.loading(false);
             }, error => {
                 this.alertService.error(error);
             });

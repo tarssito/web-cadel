@@ -66,7 +66,8 @@ export class KeepCourseComponent {
                     this.alertService.success(SysMessages.get(this.successCode), ['/curso']);
                 },
                 error => {
-                    this.alertService.error(error);
+                    console.log(error);
+                    // this.alertService.error();
                 });
         } else {
             this.alertService.error(SysMessages.get(4));
