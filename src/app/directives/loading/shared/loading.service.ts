@@ -5,13 +5,22 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class LoadingService {
-    public loading: boolean;
+    private subject: Subject<any>;
 
     constructor(private router: Router) {
+        this.subject = new Subject<any>();
     }
 
-    loader(isLoading: boolean) {
-        return isLoading;
+    loading(isLoading: boolean) {
+        this.subject.next();
+        if (isLoading) {
+            this.subject.next({ loading: isLoading });
+            return;
+        }
+    }
+
+    loaderObservable(): Observable<any> {
+        return this.subject.asObservable();
     }
 
 }

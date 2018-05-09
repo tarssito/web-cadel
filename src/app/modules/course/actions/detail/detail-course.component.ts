@@ -48,13 +48,13 @@ export class DetailCourseComponent {
 
     private detail() {
         var _id = this.activateRoute.snapshot.params['id'];
-        // this.loadingservice.loader(true);
+        this.loadingservice.loading(true);
         this.courseService.detail(_id).subscribe(course => {
             this.course = <Course>course;
+            this.loadingservice.loading(false);
         }, err => {
             this.alertService.error(err);
         });
-        // this.loadingservice.loader(false);
     }
 
     delete() {

@@ -137,13 +137,13 @@ body {
 
 .loading {
     position: fixed;
-    background: #fff url('assets/images/loading.gif') no-repeat;
-    width: 70px;
-    height: 70px;
+    background: #fff url('assets/images/loading.gif') center 10px no-repeat;
+    width: 200px;
+    height: 120px;
     top: 50%;
     left: 50%;
-    margin-left: -35px;
-    margin-top: -35px;
+    margin-left: -100px;
+    margin-top: -60px;
     border-radius: 5px;
     z-index: 3;
 }
@@ -164,4 +164,14 @@ body {
 .loading img {
     display: block;
     margin: 0 auto;
+}
+
+.loading:after {
+    content: 'Por favor, aguarde...';
+    position: absolute;
+    width: 140px;
+    margin-left: -70px;
+    left: 50%;
+    bottom: 5px;
+    color: #026d79;
 }
