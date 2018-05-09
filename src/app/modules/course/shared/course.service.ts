@@ -9,11 +9,12 @@ import { Course } from './course.model';
 
 @Injectable()
 export class CourseService {
-    private url = SERVER_URL + 'course';
+    private url = SERVER_URL + 'cursos';
 
     constructor(private http: HttpClient) { }
 
-    list() {
+    list(filter: Course) {
+        return this.http.get(this.url).map((response: Response) => response);
     }
 
     detail(id: Number) {
