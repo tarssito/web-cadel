@@ -67,7 +67,6 @@ export class KeepCourseComponent {
                 },
                 error => {
                     console.log(error);
-                    // this.alertService.error();
                 });
         } else {
             this.alertService.error(SysMessages.get(4));

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, UrlSegment, UrlSegmentGroup, UrlTree, PRIMARY_O
 import { SysMessages } from './../../../../common/mensagens/messages';
 import { StudentService } from './../../shared/student.service';
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
+import { LoadingService } from './../../../../directives/loading/shared/loading.service';
 import { Student } from './../../shared/student.model';
 
 @Component({
@@ -22,7 +23,8 @@ export class DetailStudentComponent {
     private router: Router,
     private activateRoute: ActivatedRoute,
     private studentService: StudentService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private loadingservice: LoadingService
   ) {
     //init
     this.student = new Student();
@@ -45,17 +47,22 @@ export class DetailStudentComponent {
   }
 
   private detail() {
-    this.activateRoute.params.subscribe(params => {
-      this.studentService.detail(params['id']).subscribe(student => {
-        this.student = <Student>student;
-      });
+    var _id = this.activateRoute.snapshot.params['id'];
+    this.loadingservice.loading(true);
+    this.studentService.detail(_id).subscribe(student => {
+      this.student = <Student>student;
+      this.loadingservice.loading(false);
+    }, err => {
+      this.alertService.error(err);
     });
   }
 
   delete() {
+    this.loadingservice.loading(true);
     this.studentService.delete(this.student.id)
       .subscribe(
       data => {
+        this.loadingservice.loading(false);
         this.alertService.success(SysMessages.get(3), ['/aluno']);
       },
       error => {

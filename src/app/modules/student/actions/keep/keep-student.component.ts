@@ -5,6 +5,7 @@ import { SysMessages } from './../../../../common/mensagens/messages';
 import { Utils } from './../../../../helpers/utils/utils';
 
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
+import { LoadingService } from './../../../../directives/loading/shared/loading.service';
 import { StudentService } from './../../shared/student.service';
 import { Student } from './../../shared/student.model';
 
@@ -25,7 +26,8 @@ export class KeepStudentComponent {
     private router: Router,
     private activateRoute: ActivatedRoute,
     private studentService: StudentService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private loadingService: LoadingService
   ) {
     //init
     this.student = new Student();
@@ -37,19 +39,23 @@ export class KeepStudentComponent {
   }
 
   private detail() {
-    this.activateRoute.params.subscribe(params => {
-      if (params['id']) {
-        this.studentService.detail(params['id']).subscribe(student => {
-          this.student = <Student>student;
+    var _id = this.activateRoute.snapshot.params['id'];
+    if (_id) {
+      this.loadingService.loading(true);
+      this.title = "Alterar Aluno";
+      this.labelBtn = "Alterar";
+      this.successCode = 2;
 
-          if (this.student.id) {
-            this.title = "Alterar Aluno";
-            this.labelBtn = "Alterar";
-            this.successCode = 2;
-          }
-        });
-      }
-    });
+      this.studentService.detail(_id).subscribe(student => {
+        this.student = <Student>student;
+        this.loadingService.loading(false);
+        if (!this.student) {
+          this.router.navigate(['/aluno']);
+        }
+      }, error => {
+        console.log(error);
+      });
+    }
   }
 
   private valid() {
@@ -90,13 +96,15 @@ export class KeepStudentComponent {
 
   onSubmit() {
     if (this.valid()) {
+      this.loadingService.loading(true);
       this.studentService.keep(this.student)
         .subscribe(
         data => {
           this.alertService.success(SysMessages.get(this.successCode), ['/aluno']);
+          this.loadingService.loading(false);
         },
         error => {
-          this.alertService.error(error);
+          console.log(error);
         });
     }
   }

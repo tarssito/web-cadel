@@ -24,7 +24,7 @@ export class DetailCourseComponent {
         private activateRoute: ActivatedRoute,
         private courseService: CourseService,
         private alertService: AlertService,
-        private loadingservice: LoadingService
+        private loadingService: LoadingService
     ) {
         //init
         this.course = new Course();
@@ -48,10 +48,10 @@ export class DetailCourseComponent {
 
     private detail() {
         var _id = this.activateRoute.snapshot.params['id'];
-        this.loadingservice.loading(true);
+        this.loadingService.loading(true);
         this.courseService.detail(_id).subscribe(course => {
             this.course = <Course>course;
-            this.loadingservice.loading(false);
+            this.loadingService.loading(false);
         }, err => {
             this.alertService.error(err);
         });
