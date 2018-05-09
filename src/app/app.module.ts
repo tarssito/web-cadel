@@ -5,15 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MaskModule } from 'soft-angular-mask';
 
-//Modules
-import { CourseModule } from './modules/course/shared/course.module';
-import { LoginModule } from './login/shared/login.module';
-import { StudentModule } from './modules/student/shared/student.module';
-import { TeacherModule } from './modules/teacher/shared/teacher.module';
-
-import { AlertComponent } from './directives/alert/alert.component';
-// used to create fake backend - remove
+// used to create fake backend - [remove]
 import { fakeBackendProvider } from './helpers/fake-backend';
 
 //Authentication
@@ -22,25 +17,69 @@ import { AuthGuard } from './guard/auth.guard';
 //Root Component
 import { AppComponent } from './app.component';
 
+//Alert
+import { AlertComponent } from './directives/alert/alert.component';
+import { AlertService } from './directives/alert/shared/alert.service';
+
+//Loading
+import { LoadingComponent } from './directives/loading/loading.component';
+import { LoadingService } from './directives/loading/shared/loading.service';
+
+//Login
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/shared/login.service';
+
+//Course
+import { CourseComponent } from './modules/course/course.component';
+import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
+import { DetailCourseComponent } from './modules/course/actions/detail/detail-course.component';
+import { CourseService } from './modules/course/shared/course.service';
+//Student
+import { StudentComponent } from './modules/student/student.component';
+import { KeepStudentComponent } from './modules/student/actions/keep/keep-student.component';
+import { DetailStudentComponent } from './modules/student/actions/detail/detail-student.component';
+import { StudentService } from './modules/student/shared/student.service';
+//Teacher
+import { TeacherComponent } from './modules/teacher/teacher.component';
+import { KeepTeacherComponent } from './modules/teacher/actions/keep/keep-teacher.component';
+import { DetailTeacherComponent } from './modules/teacher/actions/detail/detail-teacher.component';
+import { TeacherService } from './modules/teacher/shared/teacher.service';
+
 @NgModule({
   declarations: [
     AppComponent,
-    AlertComponent
+    LoginComponent,
+    AlertComponent,
+    LoadingComponent,
+    CourseComponent,
+    KeepCourseComponent,
+    DetailCourseComponent,
+    StudentComponent,
+    KeepStudentComponent,
+    DetailStudentComponent,
+    TeacherComponent,
+    KeepTeacherComponent,
+    DetailTeacherComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpModule,
+    HttpModule,
     HttpClientModule,
-    LoginModule,
-    CourseModule,
-    StudentModule,
-    TeacherModule
+    FormsModule,
+    MaskModule
   ],
   providers: [
     AuthGuard,
-    fakeBackendProvider //remove
+    AlertService,
+    LoadingService,
+    LoginService,
+    CourseService,
+    StudentService,
+    TeacherService,
+    fakeBackendProvider //[remove]
   ],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, UrlSegment, UrlSegmentGroup, UrlTree, PRIMARY_O
 import { SysMessages } from './../../../../common/mensagens/messages';
 import { CourseService } from './../../shared/course.service';
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
+import { LoadingService } from './../../../../directives/loading/shared/loading.service';
 import { Course } from './../../shared/course.model';
 
 @Component({
@@ -22,7 +23,8 @@ export class DetailCourseComponent {
         private router: Router,
         private activateRoute: ActivatedRoute,
         private courseService: CourseService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private loadingservice: LoadingService
     ) {
         //init
         this.course = new Course();
@@ -34,9 +36,9 @@ export class DetailCourseComponent {
 
     /* Check if action is to delete or detail */
     private checkAction() {
-        const tree: UrlTree = this.router.parseUrl(this.router.url);
-        const urlSegmentGroup: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
-        const urlSegment: UrlSegment[] = urlSegmentGroup.segments;
+        var tree: UrlTree = this.router.parseUrl(this.router.url);
+        var urlSegmentGroup: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+        var urlSegment: UrlSegment[] = urlSegmentGroup.segments;
 
         if (urlSegment.find(_urlSegment => _urlSegment.path === 'excluir')) {
             this.title = "Excluir Curso";
@@ -45,11 +47,14 @@ export class DetailCourseComponent {
     }
 
     private detail() {
-        this.activateRoute.params.subscribe(params => {
-            this.courseService.detail(params['id']).subscribe(course => {
-                this.course = <Course>course;
-            });
+        var _id = this.activateRoute.snapshot.params['id'];
+        // this.loadingservice.loader(true);
+        this.courseService.detail(_id).subscribe(course => {
+            this.course = <Course>course;
+        }, err => {
+            this.alertService.error(err);
         });
+        // this.loadingservice.loader(false);
     }
 
     delete() {

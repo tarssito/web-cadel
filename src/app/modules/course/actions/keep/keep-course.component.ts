@@ -7,7 +7,6 @@ import { AlertService } from './../../../../directives/alert/shared/alert.servic
 import { CourseService } from './../../shared/course.service';
 import { Course } from './../../shared/course.model';
 
-
 @Component({
     selector: 'app-keep-course',
     templateUrl: './keep-course.component.html'
@@ -34,19 +33,21 @@ export class KeepCourseComponent {
     }
 
     private detail() {
-        this.activateRoute.params.subscribe(params => {
-            if (params['id']) {
-                this.courseService.detail(params['id']).subscribe(course => {
-                    this.course = <Course>course;
+        var _id = this.activateRoute.snapshot.params['id'];
+        if (_id) {
+            this.title = "Alterar Curso";
+            this.labelBtn = "Alterar";
+            this.successCode = 2;
 
-                    if (this.course.id) {
-                        this.title = "Alterar Curso";
-                        this.labelBtn = "Alterar";
-                        this.successCode = 2;
-                    }
-                });
-            }
-        });
+            this.courseService.detail(_id).subscribe(course => {
+                this.course = <Course>course;
+                if (!this.course) {
+                    this.router.navigate(['/curso']);
+                }
+            }, error => {
+                this.alertService.error(error);
+            });
+        }
     }
 
     private valid() {
