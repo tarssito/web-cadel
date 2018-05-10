@@ -21,7 +21,8 @@ import { AppComponent } from './app.component';
 import { AlertComponent } from './directives/alert/alert.component';
 import { AlertService } from './directives/alert/shared/alert.service';
 
-//modal
+//Modal
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './directives/modal/modal.component';
 import { ModalService } from './directives/modal/shared/modal.service';
 
@@ -77,6 +78,7 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     MaskModule
   ],
   providers: [
+    NgbActiveModal,
     AuthGuard,
     AlertService,
     LoadingService,
@@ -87,6 +89,11 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     TeacherService,
     fakeBackendProvider //[remove]
   ],
-  bootstrap: [AppComponent]
+  entryComponents: [
+    ModalComponent
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
