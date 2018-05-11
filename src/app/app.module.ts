@@ -24,7 +24,6 @@ import { AlertService } from './directives/alert/shared/alert.service';
 //Modal
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './directives/modal/modal.component';
-import { ModalService } from './directives/modal/shared/modal.service';
 
 //Loading
 import { LoadingComponent } from './directives/loading/loading.component';
@@ -82,7 +81,6 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     AuthGuard,
     AlertService,
     LoadingService,
-    ModalService,
     LoginService,
     CourseService,
     StudentService,

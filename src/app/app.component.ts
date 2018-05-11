@@ -9,8 +9,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   currentUser = null;
@@ -23,16 +22,11 @@ export class AppComponent {
     private activeModal: NgbActiveModal
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
-    this.modalInstance = new ModalComponent(this.modalService, this.activeModal);
+    this.modalInstance = new ModalComponent(this.modalService, this.activeModal, this.loginService);
   }
 
   logout() {
     this.modalInstance.open();
-  }
-  
-  exit() {
-    this.loginService.logout();
-    window.location.href = '/login';
   }
 
 }

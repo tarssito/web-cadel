@@ -1,35 +1,30 @@
 import { Component } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginService } from './../../login/shared/login.service';
 
 @Component({
     selector: 'modal',
-    template: `
-            <div class="modal-header">
-            <h4 class="modal-title">{{title}}</h4>
-            <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            <p>{{content}}</p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancelar</button>
-            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Confirm click')">Sim</button>
-            </div>
-        `
+    templateUrl: './modal.component.html'
 })
 export class ModalComponent {
     closeResult: string;
+    private modalRef: any;
 
     constructor(
         private modalService: NgbModal,
-        public activeModal: NgbActiveModal
+        public activeModal: NgbActiveModal,
+        private loginService: LoginService
     ) { }
 
     open() {
-        const modalRef = this.modalService.open(ModalComponent);
-        modalRef.componentInstance.title = 'Confirmação';
-        modalRef.componentInstance.content = 'Deseja realmente sair do sistema?';
+        this.modalRef = this.modalService.open(ModalComponent);
+        this.modalRef.componentInstance.title = 'Confirmação';
+        this.modalRef.componentInstance.content = 'Deseja realmente sair do sistema?';
     }
+
+    confirm() {
+        this.loginService.logout();
+        window.location.href = '/login';
+    }
+
 }
