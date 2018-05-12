@@ -1,33 +1,37 @@
-<div id="main-title">
-  <h1>CADEL - Sistema de Caderneta Eletrônica</h1>
-</div>
-
-<div id="user" *ngIf="currentUser">
-  <div class="container-fluid">
-    <div class="col-sm-12 text-right">
-      <a id="logout" (click)="logout()">
-        <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sair do Sistema
-      </a>
-    </div>
+<div id="main-title" class="row col-sm-12">
+  <div class="col-sm-4">
+    <img src="./assets/images/logo_unifacs.png" alt="UNIFACS">
   </div>
+  <div class="row col-sm-4 navbar-collapse text-center">
+    <h1>CADEL - Sistema de Caderneta Eletrônica</h1>
+  </div>
+  <div class="col-sm-4"></div>
 </div>
 
 <div id="menu" *ngIf="currentUser">
-  <div class="container-fluid">
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/">Página Inicial</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/curso">Manter Curso</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/aluno">Manter Aluno</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/professor">Manter Professor</a>
-      </li>
-    </ul>
+  <div class="row container-fluid navbar-collapse">
+    <div class="col-sm-11">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Página Inicial</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/curso">Manter Curso</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/aluno">Manter Aluno</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/professor">Manter Professor</a>
+        </li>
+      </ul>
+    </div>
+    <div id="user" class="col-sm-1 text-center clear-padding-left clear-padding-right dropdown">
+      <i class="fas fa-user"></i>
+      <!-- <a id="logout" (click)="logout()">
+          <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sair do Sistema
+        </a> -->
+    </div>
   </div>
 </div>
 <div class="container-fluid">

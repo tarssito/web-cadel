@@ -7,42 +7,50 @@ body {
 /* HEAD */
 
 #main-title {
-    background-color: #ecf0f1;
-    padding: 15px 10px 15px;
+    background-color: #fff;
+    padding: 0 15px;
 }
 
 #main-title h1 {
-    font-size: 2rem;
+    font-size: 15px;
     text-align: center;
+    margin: 0;
+    width: 100%;
 }
 
-/* USER BAR */
-
-#user {
-    background-color: #026d79;
-    color: #ffffff;
-    font-size: 12px;
-    padding: 5px 0;
-}
-
-#user #logout:hover {
-    cursor: pointer;
-    text-decoration: underline;
+#main-title img {
+    width: 220px;
 }
 
 /* MENU */
 
 #menu {
-    background-color: #04a2b3;
+    border-top: 1px #eeeeee solid;
+    border-bottom: 1px #eeeeee solid;
+    background-color: #ffffff;
     margin-bottom: 50px;
 }
 
 #menu .nav a.nav-link {
-    color: #ffffff;
+    height: 60px;
+    line-height: 60px;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0 15px;
+    color: #000;
 }
 
-#menu .nav a.nav-link:hover {
-    background-color: #026d79;
+#menu .nav a.nav-link:hover,
+#user:hover {
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+
+#user {
+    font-size: 25px;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 15px;
 }
 
 /* LOGIN */
@@ -85,6 +93,14 @@ body {
 }
 
 /* GENERAL */
+
+.clear-padding-left {
+    padding-left: 0 !important;
+}
+
+.clear-padding-right {
+    padding-right: 0 !important;
+}
 
 .result-table {
     background-color: #fff;
@@ -133,6 +149,25 @@ body {
   
 .radio-inline label {
     font-weight: normal;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle,
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:visited {
+    background-color: #6c5ce7;
+    border-color: #6c5ce7;
+}
+
+.btn.focus,
+.btn:focus,
+.btn-primary.focus,
+.btn-primary:focus {
+    box-shadow: none;
 }
 
 .loading {
