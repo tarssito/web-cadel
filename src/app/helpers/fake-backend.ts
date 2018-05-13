@@ -100,7 +100,46 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return Observable.of(new HttpResponse({ status: 200 }));
             }
 
+            // ########################## SUBJECT ##########################
+            let subjects: any[] = JSON.parse(localStorage.getItem('disciplinas')) || [];
 
+            // create subject VERB=POST
+            if (request.url.endsWith('/api/subject') && request.method === 'POST') {
+                let newSubject = request.body;
+
+                newSubject.id = subjects.length + 1;
+                subjects.push(newSubject);
+                localStorage.setItem('disciplinas', JSON.stringify(subjects));
+
+                // respond 200 OK
+                return Observable.of(new HttpResponse({ status: 200 }));
+            }
+
+            // get subject by id VERB=GET[ID]
+            if (request.url.match(/\/api\/subject\/\d+$/) && request.method === 'GET') {
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                let matchedSubject = subjects.filter(std => { return std.id === id; });
+                let student = matchedSubject.length ? matchedSubject[0] : null;
+
+                return Observable.of(new HttpResponse({ status: 200, body: student }));
+            }
+
+            if (request.url.match(/\/api\/subject\/\d+$/) && request.method === 'DELETE') {
+                let urlParts = request.url.split('/');
+                let id = parseInt(urlParts[urlParts.length - 1]);
+                for (let i = 0; i < subjects.length; i++) {
+                    let student = subjects[i];
+                    if (student.id === id) {
+                        subjects.splice(i, 1);
+                        localStorage.setItem('disciplinas', JSON.stringify(subjects));
+                        break;
+                    }
+                }
+
+                // respond 200 OK
+                return Observable.of(new HttpResponse({ status: 200 }));
+            }
 
 
             // pass through any requests not handled above

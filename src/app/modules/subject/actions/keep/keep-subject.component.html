@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row form-group">
+    <div id="page-title" class="col-sm-12">
+      <h2>{{title}}</h2>
+    </div>
+  </div>
+  <form (ngSubmit)="onSubmit()" #subjectForm="ngForm">
+    <!-- row 1 -->
+    <div class="row form-group">
+      <div class="col-sm-2">
+        <label class="control-label" for="classLoad">Carga Horária</label>
+        <input mask-number [mask]="'999'" [reqMin]="'1'" type="text" class="form-control" id="classLoad" name="classLoad" [(ngModel)]="subject.cargaHoraria"
+          maxlength="3" required>
+      </div>
+      <div class="col-sm-6">
+        <label class="control-label" for="name">Nome</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="subject.nome" maxlength="100" required>
+      </div>
+    </div>
+    <div class="form-group clearfix" class="required-filter row form-group">
+      <div class="col-sm-12 subtitles">
+        <em>* Campo Obrigatório</em>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-6">
+        <button type="button" class="btn btn-light" (click)="goBack()">Voltar</button>
+      </div>
+      <div class="col-sm-6 text-right">
+        <button type="button" class="btn btn-primary" (click)="subjectForm.reset()">Limpar</button>
+        <button type="submit" class="btn btn-primary">{{labelBtn}}</button>
+      </div>
+    </div>
+  </form>
+</div>

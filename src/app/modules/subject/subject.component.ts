@@ -32,7 +32,9 @@ export class SubjectComponent {
   }
 
   search(): void {
+    this.loadingService.loading(true);
     this.subjectList = JSON.parse(localStorage.getItem('disciplinas')) || [];
+    this.loadingService.loading(false);
   }
 
   goBack(): void {
