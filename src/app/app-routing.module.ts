@@ -8,6 +8,8 @@ import { AuthGuard } from './guard/auth.guard';
 import { LoginComponent } from './login/login.component';
 //Root Component
 import { AppComponent } from './app.component';
+//Attendance
+import { AttendanceComponent } from './modules/attendance/attendance.component';
 //Course
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
@@ -21,6 +23,7 @@ import { TeacherComponent } from './modules/teacher/teacher.component';
 import { KeepTeacherComponent } from './modules/teacher/actions/keep/keep-teacher.component';
 import { DetailTeacherComponent } from './modules/teacher/actions/detail/detail-teacher.component';
 
+var _basePathAttendance = 'chamada';
 var _basePathCourse = 'curso';
 var _basePathStudent = 'aluno';
 var _basePathTeacher = 'professor';
@@ -106,6 +109,11 @@ var appRoutes: Routes = [
     {
         path: _basePathTeacher + '/excluir/:id',
         component: DetailTeacherComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathAttendance,
+        component: AttendanceComponent,
         canActivate: [AuthGuard]
     },
     {

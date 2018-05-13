@@ -33,6 +33,9 @@ import { LoadingService } from './directives/loading/shared/loading.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/shared/login.service';
 
+//Attendance
+import { AttendanceComponent } from './modules/attendance/attendance.component';
+
 //Course
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
@@ -64,7 +67,8 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     DetailStudentComponent,
     TeacherComponent,
     KeepTeacherComponent,
-    DetailTeacherComponent
+    DetailTeacherComponent,
+    AttendanceComponent
   ],
   imports: [
     NgbModule.forRoot(),

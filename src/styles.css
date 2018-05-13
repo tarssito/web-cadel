@@ -175,3 +175,30 @@ body {
     bottom: 5px;
     color: #026d79;
 }
+
+#attendance-opt {
+    padding: 0;
+    list-style: none;
+}
+
+#attendance-opt li {
+    float: left;
+}
+
+.list-group {
+    font-size: 13px;
+    max-height: 179px;
+    overflow: auto;
+}
+
+.list-group li:nth-child(2n) {
+    background-color: #e6e6e6;
+}
+
+.class {
+    font-size: 14px;
+}
+
+.class label {
+    font-weight: bold;
+}
