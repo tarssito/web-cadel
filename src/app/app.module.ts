@@ -46,6 +46,9 @@ import { StudentComponent } from './modules/student/student.component';
 import { KeepStudentComponent } from './modules/student/actions/keep/keep-student.component';
 import { DetailStudentComponent } from './modules/student/actions/detail/detail-student.component';
 import { StudentService } from './modules/student/shared/student.service';
+//Subject
+import { SubjectComponent } from './modules/subject/subject.component';
+import { SubjectService } from './modules/subject/shared/subject.service';
 //Teacher
 import { TeacherComponent } from './modules/teacher/teacher.component';
 import { KeepTeacherComponent } from './modules/teacher/actions/keep/keep-teacher.component';
@@ -68,7 +71,8 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     TeacherComponent,
     KeepTeacherComponent,
     DetailTeacherComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    SubjectComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -89,6 +93,7 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     CourseService,
     StudentService,
     TeacherService,
+    SubjectService,
     fakeBackendProvider //[remove]
   ],
   entryComponents: [

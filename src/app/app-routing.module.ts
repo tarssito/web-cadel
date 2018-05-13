@@ -18,6 +18,8 @@ import { DetailCourseComponent } from './modules/course/actions/detail/detail-co
 import { StudentComponent } from './modules/student/student.component';
 import { KeepStudentComponent } from './modules/student/actions/keep/keep-student.component';
 import { DetailStudentComponent } from './modules/student/actions/detail/detail-student.component';
+//Subject
+import { SubjectComponent } from './modules/subject/subject.component';
 //Teacher
 import { TeacherComponent } from './modules/teacher/teacher.component';
 import { KeepTeacherComponent } from './modules/teacher/actions/keep/keep-teacher.component';
@@ -26,6 +28,7 @@ import { DetailTeacherComponent } from './modules/teacher/actions/detail/detail-
 var _basePathAttendance = 'chamada';
 var _basePathCourse = 'curso';
 var _basePathStudent = 'aluno';
+var _basePathSubject = 'disciplina';
 var _basePathTeacher = 'professor';
 var _basePathLogin = 'login';
 
@@ -114,6 +117,11 @@ var appRoutes: Routes = [
     {
         path: _basePathAttendance,
         component: AttendanceComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathSubject,
+        component: SubjectComponent,
         canActivate: [AuthGuard]
     },
     {
