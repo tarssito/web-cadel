@@ -9,16 +9,17 @@
       <div class="col-sm-12">
         <ul id="attendance-opt">
           <li>
-            <button type="button" (ngClick)="open();">Abrir Aula</button>
+            <button [disabled]="state.id != 'P'" class="btn btn-secondary" type="button" (click)="open();">Abrir Aula</button>
           </li>
           <li>
-            <button type="button" (ngClick)="close();">Fechar Aula</button>
+            <button [disabled]="state.id != 'A'" class="btn btn-secondary" type="button" (click)="register();">Registrar Aula</button>
+
           </li>
           <li>
-            <button type="button" (ngClick)="register();">Registrar Aula</button>
+            <button [disabled]="state.id != 'R'" class="btn btn-secondary" type="button" (click)="close();">Fechar Aula</button>
           </li>
           <li>
-            <button type="button" (ngClick)="save();">Salvar</button>
+            <button [disabled]="state.id != 'F'" class="btn btn-secondary" type="button" (click)="save();">Salvar</button>
           </li>
         </ul>
       </div>
@@ -49,21 +50,87 @@
           </li>
         </ul>
       </div>
-      <div class="col-sm-3"></div>
-      <div class="col-sm-3">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-4">
         <label>
           <b>Aula</b>
         </label>
         <div class="class">
           <div class="form-group">
             <label>Status: </label>
-            <span style="color: green; font-weight: bold;">ABERTA</span>
+            <span [ngStyle]="{ 'color': state.color }" style="font-weight: bold">{{state.value}}</span>
           </div>
           <div class="form-group">
             <label>Horário: </label>
             <span>19:00 a 20:15</span>
           </div>
+          <div class="form-group">
+            <label>Professor: </label>
+            <span>André Luiz Lima da Costa</span>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-12">
+        <i class="fas fa-exclamation-triangle" style="color: #ffb200;"></i>
+        <span>
+          <b>ATENÇÃO! Marque apenas os alunos que receberão falta. Ao concluir a chamada, não esqueça de registrar e fechar
+            a aula.</b>
+        </span>
+      </div>
+    </div>
+    <!-- Students -->
+    <div class="row form-group">
+      <div class="col-sm-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Aluno</th>
+              <th scope="col">Matrícula</th>
+              <th scope="col">Turma</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1"></label>
+                </div>
+              </td>
+              <td>Zé</td>
+              <td>042123912</td>
+              <td>[NR001]</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck2">
+                  <label class="custom-control-label" for="customCheck2"></label>
+                </div>
+              </td>
+              <td>Bola</td>
+              <td>042123913</td>
+              <td>[NR001]</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck3">
+                  <label class="custom-control-label" for="customCheck3"></label>
+                </div>
+              </td>
+              <td>Waguinho</td>
+              <td>042123914</td>
+              <td>[NR001]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-12 text-right">
+        <em>Total de Alunos: 3</em>
       </div>
     </div>
   </form>
