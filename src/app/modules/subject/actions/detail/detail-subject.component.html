@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row form-group">
+    <div id="page-title" class="col-sm-12">
+      <h2>{{title}}</h2>
+    </div>
+  </div>
+  <div class="details form-group">
+    <!-- row 1 -->
+    <div class="row form-group">
+      <div class="col-sm-2">
+        <label class="control-label bold">Carga Horária: </label>
+        <span>{{subject.cargaHoraria}}</span>
+      </div>
+      <div class="col-sm-5">
+        <label class="control-label bold">Nome: </label>
+        <span>{{subject.nome}}</span>
+      </div>
+    </div>
+  </div>
+  <!-- Buttons -->
+  <div class="row form-group">
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-light" (click)="goBack()">Voltar</button>
+    </div>
+    <div class="col-sm-6 text-right">
+      <button *ngIf="excluir" type="submit" class="btn btn-primary" (click)="delete()">Excluir</button>
+    </div>
+  </div>
+</div>

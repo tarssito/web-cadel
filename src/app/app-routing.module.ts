@@ -21,6 +21,7 @@ import { DetailStudentComponent } from './modules/student/actions/detail/detail-
 //Subject
 import { SubjectComponent } from './modules/subject/subject.component';
 import { KeepSubjectComponent } from './modules/subject/actions/keep/keep-subject.component';
+import { DetailSubjectComponent } from './modules/subject/actions/detail/detail-subject.component';
 //Teacher
 import { TeacherComponent } from './modules/teacher/teacher.component';
 import { KeepTeacherComponent } from './modules/teacher/actions/keep/keep-teacher.component';
@@ -133,6 +134,16 @@ var appRoutes: Routes = [
     {
         path: _basePathSubject + '/manter/:id',
         component: KeepSubjectComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathSubject + '/detalhes/:id',
+        component: DetailSubjectComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathSubject + '/excluir/:id',
+        component: DetailSubjectComponent,
         canActivate: [AuthGuard]
     },
     {

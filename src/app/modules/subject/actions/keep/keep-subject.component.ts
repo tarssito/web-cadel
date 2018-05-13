@@ -49,7 +49,7 @@ export class KeepSubjectComponent {
           this.router.navigate(['/disciplina']);
         }
       }, error => {
-        this.alertService.error(error);
+        console.log(error);
       });
     }
   }
