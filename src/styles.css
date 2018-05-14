@@ -210,3 +210,50 @@ body {
     bottom: 5px;
     color: #026d79;
 }
+
+#attendance-opt {
+    padding: 0;
+    list-style: none;
+}
+
+#attendance-opt li {
+    margin-right: 1px;
+    float: left;
+}
+
+#attendance-opt li:last-child {
+    margin-right: 0px;
+}
+
+.list-group {
+    font-size: 13px;
+    max-height: 179px;
+    overflow: auto;
+}
+
+.list-group li:nth-child(2n) {
+    background-color: #e6e6e6;
+}
+
+.class {
+    font-size: 14px;
+    border: 1px #e1e1e1 solid;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.class label {
+    font-weight: bold;
+}
+
+.class .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #ff2828;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    background-color: #ff2828;
+}

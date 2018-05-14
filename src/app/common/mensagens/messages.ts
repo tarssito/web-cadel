@@ -27,7 +27,10 @@ export class SysMessages {
         }, {
             id: 9,
             description: "O número de matrícula deve ser maior que zero."
-        }
+        }, {
+            id: 10,
+            description: "A carga horária deve ser maior que zero."
+        } 
     ];
 
     public static get(id: Number): string {

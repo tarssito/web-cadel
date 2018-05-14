@@ -33,6 +33,9 @@ import { LoadingService } from './directives/loading/shared/loading.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/shared/login.service';
 
+//Attendance
+import { AttendanceComponent } from './modules/attendance/attendance.component';
+
 //Course
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
@@ -43,6 +46,11 @@ import { StudentComponent } from './modules/student/student.component';
 import { KeepStudentComponent } from './modules/student/actions/keep/keep-student.component';
 import { DetailStudentComponent } from './modules/student/actions/detail/detail-student.component';
 import { StudentService } from './modules/student/shared/student.service';
+//Subject
+import { SubjectComponent } from './modules/subject/subject.component';
+import { KeepSubjectComponent } from './modules/subject/actions/keep/keep-subject.component';
+import { DetailSubjectComponent } from './modules/subject/actions/detail/detail-subject.component';
+import { SubjectService } from './modules/subject/shared/subject.service';
 //Teacher
 import { TeacherComponent } from './modules/teacher/teacher.component';
 import { KeepTeacherComponent } from './modules/teacher/actions/keep/keep-teacher.component';
@@ -64,7 +72,11 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     DetailStudentComponent,
     TeacherComponent,
     KeepTeacherComponent,
-    DetailTeacherComponent
+    DetailTeacherComponent,
+    AttendanceComponent,
+    SubjectComponent,
+    KeepSubjectComponent,
+    DetailSubjectComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -85,6 +97,7 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     CourseService,
     StudentService,
     TeacherService,
+    SubjectService,
     fakeBackendProvider //[remove]
   ],
   entryComponents: [
