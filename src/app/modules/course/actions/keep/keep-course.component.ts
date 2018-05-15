@@ -26,7 +26,7 @@ export class KeepCourseComponent {
     ) {
         //init
         this.course = new Course();
-        this.title = "Incluir Aluno";
+        this.title = "Incluir Curso";
         this.labelBtn = "Incluir";
         this.successCode = 1;
         this.detail();

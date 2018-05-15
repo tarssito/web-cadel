@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
 //Attendance
 import { AttendanceComponent } from './modules/attendance/attendance.component';
+//Class
+import { ClassComponent } from './modules/class/class.component';
 //Course
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
@@ -34,6 +36,7 @@ var _basePathCourse = 'curso';
 var _basePathStudent = 'aluno';
 var _basePathSubject = 'disciplina';
 var _basePathTeacher = 'professor';
+var _basePathClass = 'turma';
 var _basePathLogin = 'login';
 
 var appRoutes: Routes = [
@@ -151,6 +154,11 @@ var appRoutes: Routes = [
     {
         path: _basePathSubject + '/excluir/:id',
         component: DetailSubjectComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathClass,
+        component: ClassComponent,
         canActivate: [AuthGuard]
     },
     {

@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="row form-group">
+    <div id="page-title" class="col-sm-6">
+      <h2>Pesquisar Turmas</h2>
+    </div>
+    <div class="col-sm-6 text-right">
+      <a routerLink="manter" class="btn btn-primary btn-keep">Incluir Turma</a>
+    </div>
+  </div>
+
+  <form class="filter" (ngSubmit)="search()" #teacherForm="ngForm">
+    <div class="internal-content">
+      <span class="filter-label row form-group col-md-12">Filtro(s) de Pesquisa</span>
+      <div class="row form-group">
+        <div class="col-sm-2">
+          <label class="control-label" for="initials">Sigla</label>
+          <input type="text" class="form-control" id="initials" name="initials" [(ngModel)]="filter.sigla" maxlength="4">
+        </div>
+        <div class="col-sm-2">
+          <label class="control-label" for="period">Semestre</label>
+          <select id="period" name="period" class="form-control">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+            <label class="control-label" for="age">Ano</label>
+            <select id="age" name="age" class="form-control">
+              <option value="2018">2018</option>
+            </select>
+          </div>
+      </div>
+    </div>
+    <div class="filter-buttons row">
+      <div class="col-sm-6">
+        <button type="button" class="btn btn-light" (click)="goBack()">Voltar</button>
+      </div>
+      <div class="col-sm-6 text-right">
+        <button type="button" class="btn btn-primary" (click)="teacherForm.reset()">Limpar</button>
+        <button type="submit" class="btn btn-primary">Pesquisar</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="result-table" *ngIf="teacherList.length > 0">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Matrícula</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let teacher of teacherList'>
+          <td>{{teacher.matricula}}</td>
+          <td>{{teacher.nome}}</td>
+          <td class="actions">
+            <a [routerLink]="['detalhes/', teacher.id]" class="fa fa-info-circle" placement="bottom" ngbTooltip="Detalhes do Professor"></a>
+            <a [routerLink]="['manter/', teacher.id]" class="fas fa-edit" placement="bottom" ngbTooltip="Alterar"></a>
+            <a [routerLink]="['excluir/', teacher.id]" class="fa fa-trash" placement="bottom" ngbTooltip="Excluir"></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>7

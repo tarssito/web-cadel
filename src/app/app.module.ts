@@ -59,6 +59,7 @@ import { TeacherComponent } from './modules/teacher/teacher.component';
 import { KeepTeacherComponent } from './modules/teacher/actions/keep/keep-teacher.component';
 import { DetailTeacherComponent } from './modules/teacher/actions/detail/detail-teacher.component';
 import { TeacherService } from './modules/teacher/shared/teacher.service';
+import { ClassComponent } from './modules/class/class.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     SubjectComponent,
     KeepSubjectComponent,
     DetailSubjectComponent,
-    DashboardComponent
+    DashboardComponent,
+    ClassComponent
   ],
   imports: [
     NgbModule.forRoot(),

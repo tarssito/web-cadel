@@ -16,6 +16,7 @@ export class KeepSubjectComponent {
   subject: Subject;
   title: String;
   labelBtn: String;
+  courseList: any;
   successCode: Number;
 
   constructor(
@@ -28,6 +29,8 @@ export class KeepSubjectComponent {
   ) {
     //init
     this.subject = new Subject();
+    console.log(JSON.stringify(this.subject.course));
+    this.courseList = [];
     this.title = "Incluir Disciplina";
     this.labelBtn = "Incluir";
     this.successCode = 1;
