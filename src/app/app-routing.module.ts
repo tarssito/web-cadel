@@ -14,6 +14,8 @@ import { AttendanceComponent } from './modules/attendance/attendance.component';
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
 import { DetailCourseComponent } from './modules/course/actions/detail/detail-course.component';
+//Dashboard
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
 //Student
 import { StudentComponent } from './modules/student/student.component';
 import { KeepStudentComponent } from './modules/student/actions/keep/keep-student.component';
@@ -39,6 +41,11 @@ var appRoutes: Routes = [
         path: '',
         redirectTo: '/',
         pathMatch: 'full',
+        canActivate: [AuthGuard]
+    },
+    {
+        path: '',
+        component: DashboardComponent,
         canActivate: [AuthGuard]
     },
     {

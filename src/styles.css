@@ -257,3 +257,7 @@ body {
 .custom-control-input:checked~.custom-control-label::before {
     background-color: #ff2828;
 }
+
+#main-container {
+    margin-bottom: 50px;
+}
