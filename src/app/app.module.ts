@@ -35,7 +35,9 @@ import { LoginService } from './login/shared/login.service';
 
 //Attendance
 import { AttendanceComponent } from './modules/attendance/attendance.component';
-
+//Class
+import { ClassComponent } from './modules/class/class.component';
+import { KeepClassComponent } from './modules/class/actions/keep/keep-class.component';
 //Course
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
@@ -59,7 +61,6 @@ import { TeacherComponent } from './modules/teacher/teacher.component';
 import { KeepTeacherComponent } from './modules/teacher/actions/keep/keep-teacher.component';
 import { DetailTeacherComponent } from './modules/teacher/actions/detail/detail-teacher.component';
 import { TeacherService } from './modules/teacher/shared/teacher.service';
-import { ClassComponent } from './modules/class/class.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { ClassComponent } from './modules/class/class.component';
     KeepSubjectComponent,
     DetailSubjectComponent,
     DashboardComponent,
-    ClassComponent
+    ClassComponent,
+    KeepClassComponent
   ],
   imports: [
     NgbModule.forRoot(),

@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AttendanceComponent } from './modules/attendance/attendance.component';
 //Class
 import { ClassComponent } from './modules/class/class.component';
+import { KeepClassComponent } from './modules/class/actions/keep/keep-class.component';
 //Course
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
@@ -159,6 +160,16 @@ var appRoutes: Routes = [
     {
         path: _basePathClass,
         component: ClassComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathClass + '/manter',
+        component: KeepClassComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathClass + '/manter/:id',
+        component: KeepClassComponent,
         canActivate: [AuthGuard]
     },
     {
