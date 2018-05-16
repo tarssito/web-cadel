@@ -7,6 +7,12 @@
   <form (ngSubmit)="onSubmit()" #classroomForm="ngForm">
     <!-- row 1 -->
     <div class="row form-group">
+      <div class="col-sm-3">
+        <label class="control-label" for="initials">Dia da Semana</label>
+        <select id="course" name="course" class="form-control">
+          <option value="">Selecione o Dia da Semana...</option>
+        </select>
+      </div>
       <div class="col-sm-2">
         <label class="control-label" for="initials">Hora Inicio</label>
         <input type="text" class="form-control" id="initials" name="initials" maxlength="4">
@@ -27,15 +33,15 @@
           <option value="2018">2018</option>
         </select>
       </div>
-      <div class="col-sm-4">
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-3">
         <label class="control-label" for="course">Curso</label>
         <select id="course" name="course" class="form-control">
           <option value="">Selecione o Curso...</option>
           <option value="12">Sistemas de Informação</option>
         </select>
       </div>
-    </div>
-    <div class="row form-group">
       <div class="col-sm-3">
         <label class="control-label" for="course">Disciplina</label>
         <select id="course" name="course" class="form-control">
@@ -50,7 +56,9 @@
           <option value="12">André</option>
         </select>
       </div>
-      <div class="col-sm-6">
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-9">
         <label class="control-label" for="course">Turma(s)</label>
         <dual-list [source]="source" [(destination)]="confirmed"></dual-list>
       </div>
