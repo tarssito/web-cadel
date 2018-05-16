@@ -11,6 +11,9 @@ import { MaskModule } from 'soft-angular-mask';
 // used to create fake backend - [remove]
 import { fakeBackendProvider } from './helpers/fake-backend';
 
+//DualList
+import { AngularDualListBoxModule } from 'angular-dual-listbox';
+
 //Authentication
 import { AuthGuard } from './guard/auth.guard';
 
@@ -38,6 +41,9 @@ import { AttendanceComponent } from './modules/attendance/attendance.component';
 //Class
 import { ClassComponent } from './modules/class/class.component';
 import { KeepClassComponent } from './modules/class/actions/keep/keep-class.component';
+//Classroom
+import { ClassroomComponent } from './modules/classroom/classroom.component';
+import { KeepClassroomComponent } from './modules/classroom/actions/keep/keep-classroom.component';
 //Course
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
@@ -84,7 +90,9 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     DetailSubjectComponent,
     DashboardComponent,
     ClassComponent,
-    KeepClassComponent
+    KeepClassComponent,
+    ClassroomComponent,
+    KeepClassroomComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -94,7 +102,8 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     HttpModule,
     HttpClientModule,
     FormsModule,
-    MaskModule
+    MaskModule,
+    AngularDualListBoxModule
   ],
   providers: [
     NgbActiveModal,

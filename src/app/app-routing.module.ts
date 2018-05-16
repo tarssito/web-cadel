@@ -13,6 +13,9 @@ import { AttendanceComponent } from './modules/attendance/attendance.component';
 //Class
 import { ClassComponent } from './modules/class/class.component';
 import { KeepClassComponent } from './modules/class/actions/keep/keep-class.component';
+//Classroom
+import { ClassroomComponent } from './modules/classroom/classroom.component';
+import { KeepClassroomComponent } from './modules/classroom/actions/keep/keep-classroom.component';
 //Course
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
@@ -38,6 +41,7 @@ var _basePathStudent = 'aluno';
 var _basePathSubject = 'disciplina';
 var _basePathTeacher = 'professor';
 var _basePathClass = 'turma';
+var _basePathClassroom = 'classe';
 var _basePathLogin = 'login';
 
 var appRoutes: Routes = [
@@ -170,6 +174,21 @@ var appRoutes: Routes = [
     {
         path: _basePathClass + '/manter/:id',
         component: KeepClassComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathClassroom,
+        component: ClassroomComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathClassroom + '/manter',
+        component: KeepClassroomComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathClassroom + '/manter/id',
+        component: KeepClassroomComponent,
         canActivate: [AuthGuard]
     },
     {
