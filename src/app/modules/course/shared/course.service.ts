@@ -14,7 +14,7 @@ export class CourseService {
     private requestOptions: any;
 
     constructor(private http: HttpClient) {
-        this.url = SERVER_URL + 'cursos';
+        this.url = SERVER_URL + 'cursos/';
         this.requestOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8'})
         };
@@ -25,18 +25,18 @@ export class CourseService {
     }
 
     detail(id: Number) {
-        return this.http.get('/api/course/' + id);
+        return this.http.get(this.url + id);
     }
 
     keep(course: Course) {
         if (course.id) {
-            return this.http.put(this.url, JSON.stringify(course), this.requestOptions);
+            return this.http.put(this.url + course.id, JSON.stringify(course), this.requestOptions);
         }
         return this.http.post(this.url, JSON.stringify(course), this.requestOptions);
     }
 
     delete(id: Number) {
-        return this.http.delete('/api/course/' + id);
+        return this.http.delete(this.url + id);
     }
 
     private handleError(error: Response) {
