@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MaskModule } from 'soft-angular-mask';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
 // used to create fake backend - [remove]
 import { fakeBackendProvider } from './helpers/fake-backend';
@@ -103,7 +104,8 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     HttpClientModule,
     FormsModule,
     MaskModule,
-    AngularDualListBoxModule
+    AngularDualListBoxModule,
+    Ng2AutoCompleteModule
   ],
   providers: [
     NgbActiveModal,

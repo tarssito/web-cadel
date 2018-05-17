@@ -39,6 +39,46 @@
         </select>
       </div>
     </div>
+    <!-- row 2 -->
+    <div class="row form-group">
+      <div class="col-sm-12">
+        <div class="row form-group">
+          <div class="col-sm-6">
+            <h5>Vincular Aluno(s)</h5>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-sm-6">
+          <input auto-complete id="model5" name="model5" placeholder="Start typing a hero name (min. 2 chars) ... for example: Hulk"
+            [(ngModel)]="selectedStudent" [source]="findStudents" path-to-data="data.results" [list-formatter]="renderStudent"
+            min-chars="2" />
+        </div>
+        <div class="col-sm-6">
+          <a routerLink="vincular" class="btn btn-primary btn-keep">Vincular Aluno</a>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th style="width: 20%;" scope="col">Matrícula</th>
+              <th style="width: 60%;" scope="col">Nome</th>
+              <th style="width: 20%;" scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let student of studentList'>
+              <td>{{student.matricula}}</td>
+              <td>{{student.nome}}</td>
+              <td class="actions">
+                <a class="fas fa-unlink" placement="bottom" ngbTooltip="Desvincular"></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="form-group clearfix" class="required-filter row form-group">
       <div class="col-sm-12 subtitles">
         <em>* Campo Obrigatório</em>
