@@ -65,8 +65,9 @@ export class DetailStudentComponent {
         this.loadingservice.loading(false);
         this.alertService.success(SysMessages.get(3), ['/aluno']);
       },
-      error => {
-        this.alertService.error(error);
+      data => {
+        this.loadingservice.loading(false);
+        this.alertService.error(data.error.msg);
       });
   }
 

@@ -103,8 +103,8 @@ export class KeepStudentComponent {
           this.alertService.success(SysMessages.get(this.successCode), ['/aluno']);
           this.loadingService.loading(false);
         },
-        error => {
-          console.log(error);
+        data => {
+          this.alertService.error(SysMessages.get(data.error.msg));
         });
     }
   }

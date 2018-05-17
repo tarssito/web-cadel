@@ -38,9 +38,4 @@ export class CourseService {
     delete(id: Number) {
         return this.http.delete(this.url + id);
     }
-
-    private handleError(error: Response) {
-        console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
-    }
 }

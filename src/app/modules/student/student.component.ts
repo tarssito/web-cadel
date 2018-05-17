@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { SysMessages } from './../../common/mensagens/messages';
+
+import { AlertService } from './../../directives/alert/shared/alert.service';
+import { LoadingService } from './../../directives/loading/shared/loading.service';
 
 import { Student } from './shared/student.model';
 import { StudentService } from './shared/student.service';
@@ -18,7 +22,9 @@ export class StudentComponent {
     private studentService: StudentService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private alertService: AlertService,
+    private loadingService: LoadingService
   ) {
     //init;
     this.filter = new Student();
@@ -27,7 +33,17 @@ export class StudentComponent {
   }
 
   search(): void {
-    this.studentList = JSON.parse(localStorage.getItem('students')) || [];
+    this.loadingService.loading(true);
+    this.studentService.list(this.filter)
+      .subscribe(data => {
+        this.studentList = <Student[]>data;
+        if (this.studentList.length == 0) {
+          this.alertService.error(SysMessages.get(7));
+        }
+        this.loadingService.loading(false);
+      }, error => {
+        this.alertService.error(error);
+      });
   }
 
   goBack(): void {

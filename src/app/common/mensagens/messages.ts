@@ -30,6 +30,9 @@ export class SysMessages {
         }, {
             id: 10,
             description: "A carga horária deve ser maior que zero."
+        }, {
+            id: 11,
+            description: "Não é possível excluir, existem dados vinculados a este registro."
         } 
     ];
 
