@@ -8,18 +8,17 @@
     <!-- row 1 -->
     <div class="row form-group">
       <div class="col-sm-2">
-        <label class="control-label" for="classLoad">Carga Horária</label>
+        <label class="control-label" for="classLoad">Carga Horária*</label>
         <input mask-number [mask]="'999'" [reqMin]="'1'" type="text" class="form-control" id="classLoad" name="classLoad" [(ngModel)]="subject.cargaHoraria"
           maxlength="3" required>
       </div>
       <div class="col-sm-6">
-        <label class="control-label" for="name">Nome</label>
+        <label class="control-label" for="name">Nome*</label>
         <input type="text" class="form-control" id="name" name="name" [(ngModel)]="subject.nome" maxlength="100" required>
       </div>
       <div class="col-sm-3">
-        <label class="control-label" for="course">Curso</label>
-        <select id="course" name="course" class="form-control">
-          <option value="">Selecione o Curso...</option>
+        <label class="control-label" for="course">Curso*</label>
+        <select id="course" name="course" class="form-control" [(ngModel)]="subject.curso.id" required>
           <option *ngFor='let course of courseList' [value]="course.id">{{course.nome}}</option>
         </select>
       </div>

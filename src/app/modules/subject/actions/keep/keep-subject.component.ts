@@ -7,6 +7,7 @@ import { LoadingService } from './../../../../directives/loading/shared/loading.
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
 import { SubjectService } from './../../shared/subject.service';
 import { Subject } from './../../shared/subject.model';
+import { Course } from './../../../course/shared/course.model';
 
 @Component({
   selector: 'app-keep-subject',
@@ -16,7 +17,7 @@ export class KeepSubjectComponent {
   subject: Subject;
   title: String;
   labelBtn: String;
-  courseList: any;
+  courseList: Course[];
   successCode: Number;
 
   constructor(
@@ -29,8 +30,8 @@ export class KeepSubjectComponent {
   ) {
     //init
     this.subject = new Subject();
-    console.log(JSON.stringify(this.subject.course));
     this.courseList = [];
+    this.loadCourses();
     this.title = "Incluir Disciplina";
     this.labelBtn = "Incluir";
     this.successCode = 1;
@@ -58,7 +59,7 @@ export class KeepSubjectComponent {
   }
 
   private valid() {
-    if (!this.subject.nome || !this.subject.cargaHoraria) {
+    if (!this.subject.nome || !this.subject.cargaHoraria || !this.subject.curso.id) {
       this.alertService.error(SysMessages.get(4));
       return false;
     }
@@ -69,6 +70,15 @@ export class KeepSubjectComponent {
     }
 
     return true;
+  }
+
+  private loadCourses(): void {
+    for(let i = 0; i < 10; i++) {
+      let _course = new Course();
+      _course.id = i + 1;
+      _course.nome = 'Curso ' + _course.id;
+      this.courseList.push(_course);
+    }
   }
 
   onSubmit() {
