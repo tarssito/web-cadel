@@ -44,10 +44,11 @@ export class KeepSubjectComponent {
       this.title = "Alterar Disciplina";
       this.labelBtn = "Alterar";
       this.successCode = 2;
-
       this.loadingService.loading(true);
-      this.subjectService.detail(_id).subscribe(course => {
-        this.subject = <Subject>course;
+      this.subjectService.detail(_id).subscribe(subject => {
+        this.subject = <Subject>subject;
+        this.subject.curso.id = 1;
+        this.subject.curso.nome = 'Curso 1';
         this.loadingService.loading(false);
         if (!this.subject) {
           this.router.navigate(['/disciplina']);
