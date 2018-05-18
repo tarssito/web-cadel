@@ -37,9 +37,6 @@ export class StudentComponent {
     this.studentService.list(this.filter)
       .subscribe(data => {
         this.studentList = <Student[]>data;
-        if (this.studentList.length == 0) {
-          this.alertService.error(SysMessages.get(7));
-        }
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);

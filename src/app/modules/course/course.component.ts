@@ -36,9 +36,6 @@ export class CourseComponent {
         this.courseService.list(this.filter)
             .subscribe(data => {
                 this.courseList = <Course[]>data;
-                if (this.courseList.length == 0) {
-                    this.alertService.error(SysMessages.get(7));
-                }
                 this.loadingService.loading(false);
             }, error => {
                 this.alertService.error(error);
