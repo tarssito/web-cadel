@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SysMessages } from './../../../../common/mensagens/messages';
-
+import { LoadingService } from './../../../../directives/loading/shared/loading.service';
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
 import { CourseService } from './../../shared/course.service';
 import { Course } from './../../shared/course.model';
@@ -22,7 +22,8 @@ export class KeepCourseComponent {
         private router: Router,
         private activateRoute: ActivatedRoute,
         private courseService: CourseService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private loadingService: LoadingService
     ) {
         //init
         this.course = new Course();
@@ -39,8 +40,10 @@ export class KeepCourseComponent {
             this.labelBtn = "Alterar";
             this.successCode = 2;
 
+            this.loadingService.loading(true);
             this.courseService.detail(_id).subscribe(course => {
                 this.course = <Course>course;
+                this.loadingService.loading(false);
                 if (!this.course) {
                     this.router.navigate(['/curso']);
                 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router, UrlSegment, UrlSegmentGroup, UrlTree, PRIMARY_OUTLET } from '@angular/router';
-
+import { LoadingService } from './../../../../directives/loading/shared/loading.service';
 import { SysMessages } from './../../../../common/mensagens/messages';
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
 import { TeacherService } from './../../shared/teacher.service';
@@ -22,7 +22,8 @@ export class DetailTeacherComponent {
     private router: Router,
     private activateRoute: ActivatedRoute,
     private teacherService: TeacherService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private loadingService: LoadingService
   ) {
     //init
     this.teacher = new Teacher();
@@ -39,16 +40,19 @@ export class DetailTeacherComponent {
     const urlSegment: UrlSegment[] = urlSegmentGroup.segments;
 
     if (urlSegment.find(_urlSegment => _urlSegment.path === 'excluir')) {
-      this.title = "Excluir Aluno";
+      this.title = "Excluir Professor";
       this.excluir = true;
     }
   }
 
   private detail() {
-    this.activateRoute.params.subscribe(params => {
-      this.teacherService.detail(params['id']).subscribe(teacher => {
+    var _id = this.activateRoute.snapshot.params['id'];
+    this.loadingService.loading(true);
+      this.teacherService.detail(_id).subscribe(teacher => {
         this.teacher = <Teacher>teacher;
-      });
+        this.loadingService.loading(false);
+      }, err => {
+        this.alertService.error(err);
     });
   }
 

@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SysMessages } from './../../../../common/mensagens/messages';
 import { Utils } from './../../../../helpers/utils/utils';
-
+import { LoadingService } from './../../../../directives/loading/shared/loading.service';
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
 import { TeacherService } from './../../shared/teacher.service';
 import { Teacher } from './../../shared/teacher.model';
@@ -25,7 +25,8 @@ export class KeepTeacherComponent {
     private router: Router,
     private activateRoute: ActivatedRoute,
     private teacherService: TeacherService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private loadingService: LoadingService
   ) {
     //init
     this.teacher = new Teacher();
@@ -37,19 +38,23 @@ export class KeepTeacherComponent {
   }
 
   private detail() {
-    this.activateRoute.params.subscribe(params => {
-      if (params['id']) {
-        this.teacherService.detail(params['id']).subscribe(teacher => {
-          this.teacher = <Teacher>teacher;
+    var _id = this.activateRoute.snapshot.params['id'];
+    if (_id) {
+        this.title = "Alterar Professor";
+        this.labelBtn = "Alterar";
+        this.successCode = 2;
 
-          if (this.teacher.id) {
-            this.title = "Alterar Professor";
-            this.labelBtn = "Alterar";
-            this.successCode = 2;
-          }
+        this.loadingService.loading(true);
+        this.teacherService.detail(_id).subscribe(teacher => {
+            this.teacher = <Teacher>teacher;
+            this.loadingService.loading(false);
+            if (!this.teacher) {
+                this.router.navigate(['/professor']);
+            }
+        }, error => {
+            this.alertService.error(error);
         });
-      }
-    });
+    }
   }
 
   private valid() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-
+import { LoadingService } from './../../directives/loading/shared/loading.service';
 import { Teacher } from './shared/teacher.model';
 import { TeacherService } from './shared/teacher.service';
 
@@ -18,7 +18,8 @@ export class TeacherComponent {
     private teacherService: TeacherService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private loadingService: LoadingService
   ) {
     //init;
     this.filter = new Teacher();
@@ -27,7 +28,11 @@ export class TeacherComponent {
   }
 
   search(): void {
-    this.teacherList = JSON.parse(localStorage.getItem('professores')) || [];
+    this.loadingService.loading(true);
+    setTimeout(() => {
+      this.teacherList = JSON.parse(localStorage.getItem('professores')) || [];
+      this.loadingService.loading(false);
+    }, 1000);
   }
 
   goBack(): void {
