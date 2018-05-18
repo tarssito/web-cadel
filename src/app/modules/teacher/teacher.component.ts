@@ -4,14 +4,17 @@ import { Location } from '@angular/common';
 import { LoadingService } from './../../directives/loading/shared/loading.service';
 import { Teacher } from './shared/teacher.model';
 import { TeacherService } from './shared/teacher.service';
+import { PAGINATION } from './../../common/pagination.config';
 
 @Component({
   selector: 'app-teacher',
   templateUrl: './teacher.component.html'
 })
 export class TeacherComponent {
+  p: number = 1;
   filter: Teacher;
   teacherList: Teacher[];
+  PAGINATION: Object;
 
   //dependency injection
   constructor(
@@ -24,15 +27,23 @@ export class TeacherComponent {
     //init;
     this.filter = new Teacher();
     this.teacherList = [];
+    this.PAGINATION = PAGINATION;
     this.search();
   }
 
   search(): void {
     this.loadingService.loading(true);
     setTimeout(() => {
-      this.teacherList = JSON.parse(localStorage.getItem('professores')) || [];
+      for (let i = 0; i < 102; i++) {
+        let _teacher = new Teacher();
+        _teacher.id = i + 1;
+        _teacher.nome = 'Professor ' + (i + 1);
+        _teacher.matricula = '04215100' + (i + 1);
+        this.teacherList.push(_teacher);
+      }
+      // this.teacherList = JSON.parse(localStorage.getItem('professores')) || [];
       this.loadingService.loading(false);
-    }, 1000);
+    }, 500);
   }
 
   goBack(): void {
