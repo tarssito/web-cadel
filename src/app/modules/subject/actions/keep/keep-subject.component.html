@@ -20,8 +20,8 @@
     <div class="row form-group">
       <div class="col-sm-8">
         <label class="control-label" for="course">Curso(s)*</label>
-        <ng2-dual-list-box [data]="courseList" valueField="id" textField="nome" (onItemsMoved)="onItemsMoved($event)" availableFilterPlaceholder="Filtrar..."
-          selectedFilterPlaceholder="Filtrar..."></ng2-dual-list-box>
+        <dual-list [source]="courseList" [(destination)]="selectedList" key="id" display="nome"
+        [format]="{ add: 'Adicionar', remove: 'Remover', all: 'Marcar Todos', none: 'Desmarcar Todos', direction: 'left-to-right', draggable: true, locale: undefined }"></dual-list>
       </div>
     </div>
     <div class="form-group clearfix" class="required-filter row form-group">

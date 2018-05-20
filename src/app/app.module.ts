@@ -14,7 +14,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { fakeBackendProvider } from './helpers/fake-backend';
 
 //DualList
-import { DualListBoxModule } from 'ng2-dual-list-box';
+import { AngularDualListBoxModule } from 'angular-dual-listbox'
 
 //Authentication
 import { AuthGuard } from './guard/auth.guard';
@@ -106,7 +106,7 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     HttpClientModule,
     FormsModule,
     MaskModule,
-    DualListBoxModule.forRoot(),
+    AngularDualListBoxModule,
     Ng2AutoCompleteModule,
     NgxPaginationModule
   ],
