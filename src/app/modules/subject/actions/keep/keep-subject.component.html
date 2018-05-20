@@ -16,11 +16,12 @@
         <label class="control-label" for="name">Nome*</label>
         <input type="text" class="form-control" id="name" name="name" [(ngModel)]="subject.nome" maxlength="100" required>
       </div>
-      <div class="col-sm-3">
-        <label class="control-label" for="course">Curso*</label>
-        <select id="course" name="course" class="form-control" [(ngModel)]="subject.curso.id" required>
-          <option *ngFor='let course of courseList' [value]="course.id">{{course.nome}}</option>
-        </select>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-8">
+        <label class="control-label" for="course">Curso(s)*</label>
+        <ng2-dual-list-box [data]="courseList" valueField="id" textField="nome" (onItemsMoved)="onItemsMoved($event)" availableFilterPlaceholder="Filtrar..."
+          selectedFilterPlaceholder="Filtrar..."></ng2-dual-list-box>
       </div>
     </div>
     <div class="form-group clearfix" class="required-filter row form-group">

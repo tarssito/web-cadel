@@ -359,3 +359,7 @@ body {
 .w-100 {
     width: 100%;    
 }
+
+.text-center.vertical-spacing-5 {
+    display: none;
+}

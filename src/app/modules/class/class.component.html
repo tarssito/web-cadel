@@ -54,7 +54,6 @@
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
-          <th scope="col">Id</th>
           <th scope="col">Sigla</th>
           <th scope="col">Semestre</th>
           <th scope="col">Ações</th>
@@ -65,7 +64,6 @@
           <td class="text-center" colspan="3">A pesquisa não retornou registro(s).</td>
         </tr>
         <tr *ngFor='let class of classList'>
-          <td>{{class.id}}</td>
           <td>{{class.sigla}}</td>
           <td>{{class.ano}}.{{class.semestre}}</td>
           <td class="actions">

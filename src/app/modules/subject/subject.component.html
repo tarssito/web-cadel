@@ -46,7 +46,6 @@
         <tr>
           <th class="w-15" scope="col">Carga Horária</th>
           <th class="w-35" scope="col">Nome</th>
-          <th class="w-35" scope="col">Course</th>
           <th class="w-15" scope="col">Ações</th>
         </tr>
       </thead>
@@ -57,7 +56,6 @@
         <tr *ngFor='let subject of subjectList'>
           <td>{{subject.cargaHoraria + 'h'}}</td>
           <td>{{subject.nome}}</td>
-          <td>{{subject.curso}}</td>
           <td class="actions">
             <a [routerLink]="['detalhes/', subject.id]" class="fa fa-info-circle" placement="bottom" ngbTooltip="Detalhes da Disciplina"></a>
             <a [routerLink]="['manter/', subject.id]" class="fas fa-edit" placement="bottom" ngbTooltip="Alterar"></a>
