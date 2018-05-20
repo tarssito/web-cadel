@@ -8,54 +8,48 @@
     <!-- row 1 -->
     <div class="row form-group">
       <div class="col-sm-2">
-        <label class="control-label" for="initials">Sigla</label>
-        <input type="text" class="form-control" id="initials" name="initials" maxlength="4">
+        <label class="control-label" for="initials">Sigla*</label>
+        <input type="text" class="form-control" id="initials" name="initials" maxlength="4" [(ngModel)]="class.sigla" required>
       </div>
       <div class="col-sm-2">
-        <label class="control-label" for="period">Semestre</label>
-        <select id="period" name="period" class="form-control">
-          <option value=""></option>
-          <option value="1">1</option>
-          <option value="2">2</option>
+        <label class="control-label" for="period">Semestre*</label>
+        <select id="period" name="period" class="form-control" [(ngModel)]="class.semestre" required>
+          <option *ngFor='let period of periodList' [value]="period.id">{{period.label}}</option>
         </select>
       </div>
       <div class="col-sm-2">
-        <label class="control-label" for="age">Ano</label>
-        <select id="age" name="age" class="form-control">
-          <option value="2018">2018</option>
+        <label class="control-label" for="age">Ano*</label>
+        <select id="age" name="age" class="form-control" [(ngModel)]="class.ano">
+          <option *ngFor='let age of ageList' [value]="age.id">{{age.label}}</option>
         </select>
       </div>
       <div class="col-sm-3">
-        <label class="control-label" for="course">Curso</label>
-        <select id="course" name="course" class="form-control">
-          <option value="">Selecione o Curso...</option>
-          <option value="12">Sistemas de Informação</option>
+        <label class="control-label" for="course">Curso*</label>
+        <select id="course" name="course" class="form-control" [(ngModel)]="class.curso.id" (change)="onChangeCourse();" required>
+          <option *ngFor='let course of courseList' [value]="course.id">{{course.nome}}</option>
         </select>
       </div>
       <div class="col-sm-3">
-        <label class="control-label" for="course">Disciplina</label>
-        <select id="course" name="course" class="form-control">
-          <option value="">Selecione o Disciplina...</option>
+        <label class="control-label" for="subject">Disciplina*</label>
+        <select id="subject" name="subject" class="form-control" [(ngModel)]="class.disciplina.id" [(disabled)]="!class.curso.id"
+          required>
+          <option *ngFor='let subject of subjectList' [value]="subject.id">{{subject.nome}}</option>
         </select>
       </div>
     </div>
     <!-- row 2 -->
     <div class="row form-group">
       <div class="col-sm-12">
-        <div class="row form-group">
-          <div class="col-sm-6">
-            <h5>Vincular Aluno(s)</h5>
-          </div>
-        </div>
+        <h5>Vincular Aluno(s)</h5>
       </div>
-      <div class="row form-group">
-        <div class="col-sm-6">
-          <input auto-complete id="model5" name="model5" placeholder="Start typing a hero name (min. 2 chars) ... for example: Hulk"
+      <div class="row form-group col-sm-12">
+        <div class="col-sm-4">
+          <input auto-complete id="autocompleteSt" name="autocompleteSt" class="form-control" placeholder="Comece digitando a matrícula do aluno..."
             [(ngModel)]="selectedStudent" [source]="findStudents" path-to-data="data.results" [list-formatter]="renderStudent"
             min-chars="2" />
         </div>
-        <div class="col-sm-6">
-          <a routerLink="vincular" class="btn btn-primary btn-keep">Vincular Aluno</a>
+        <div class="col-sm-2">
+          <button type="button" (click)="linkStudent();" class="btn btn-primary" [(disabled)]="!selectedStudent">Vincular Aluno</button>
         </div>
       </div>
       <div class="col-sm-12">
