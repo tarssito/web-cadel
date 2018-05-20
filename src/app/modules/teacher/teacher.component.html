@@ -46,7 +46,7 @@
         <tr *ngIf="teacherList.length === 0">
           <td class="text-center" colspan="3">A pesquisa não retornou registro(s).</td>
         </tr>
-        <tr *ngFor='let teacher of teacherList | paginate: { itemsPerPage: PAGINATION.itemsPerPage, currentPage: p }'>
+        <tr *ngFor='let teacher of teacherList'>
           <td>{{teacher.matricula}}</td>
           <td>{{teacher.nome}}</td>
           <td class="actions">
