@@ -43,6 +43,7 @@ import { AttendanceComponent } from './modules/attendance/attendance.component';
 //Class
 import { ClassComponent } from './modules/class/class.component';
 import { KeepClassComponent } from './modules/class/actions/keep/keep-class.component';
+import { ClassService } from './modules/class/shared/class.service';
 //Classroom
 import { ClassroomComponent } from './modules/classroom/classroom.component';
 import { KeepClassroomComponent } from './modules/classroom/actions/keep/keep-classroom.component';
@@ -115,6 +116,7 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     AlertService,
     LoadingService,
     LoginService,
+    ClassService,
     CourseService,
     StudentService,
     TeacherService,

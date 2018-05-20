@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AlertService } from './../../directives/alert/shared/alert.service';
 import { LoadingService } from './../../directives/loading/shared/loading.service';
 import { Teacher } from './shared/teacher.model';
 import { TeacherService } from './shared/teacher.service';
@@ -11,10 +12,8 @@ import { PAGINATION } from './../../common/pagination.config';
   templateUrl: './teacher.component.html'
 })
 export class TeacherComponent {
-  p: number = 1;
   filter: Teacher;
   teacherList: Teacher[];
-  PAGINATION: Object;
 
   //dependency injection
   constructor(
@@ -22,31 +21,27 @@ export class TeacherComponent {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
+    private alertService: AlertService,
     private loadingService: LoadingService
   ) {
     //init;
     this.filter = new Teacher();
     this.teacherList = [];
-    this.PAGINATION = PAGINATION;
     this.search();
   }
 
   search(): void {
     this.loadingService.loading(true);
-    setTimeout(() => {
-      for (let i = 0; i < 102; i++) {
-        let _teacher = new Teacher();
-        _teacher.id = i + 1;
-        _teacher.nome = 'Professor ' + (i + 1);
-        _teacher.matricula = '04215100' + (i + 1);
-        this.teacherList.push(_teacher);
-      }
-      // this.teacherList = JSON.parse(localStorage.getItem('professores')) || [];
-      this.loadingService.loading(false);
-    }, 500);
+    this.teacherService.list(this.filter)
+        .subscribe(data => {
+            this.teacherList = <Teacher[]>data;
+            this.loadingService.loading(false);
+        }, error => {
+            this.alertService.error(error);
+        });
   }
 
   goBack(): void {
-    this.location.back();
+      this.location.back();
   }
 }
