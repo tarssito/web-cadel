@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SysMessages } from './../../../../common/mensagens/messages';
-
+import { CourseService } from './../../../course/shared/course.service';
 import { LoadingService } from './../../../../directives/loading/shared/loading.service';
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
 import { SubjectService } from './../../shared/subject.service';
@@ -26,7 +26,8 @@ export class KeepSubjectComponent {
     private activateRoute: ActivatedRoute,
     private subjectService: SubjectService,
     private alertService: AlertService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private courseService: CourseService
   ) {
     //init
     this.subject = new Subject();
@@ -48,7 +49,7 @@ export class KeepSubjectComponent {
       this.subjectService.detail(_id).subscribe(subject => {
         this.subject = <Subject>subject;
         this.subject.curso.id = 1;
-        this.subject.curso.nome = 'Curso 1';
+        this.subject.curso.nome = 'Curso MOCK';
         this.loadingService.loading(false);
         if (!this.subject) {
           this.router.navigate(['/disciplina']);
@@ -74,12 +75,14 @@ export class KeepSubjectComponent {
   }
 
   private loadCourses(): void {
-    for(let i = 0; i < 10; i++) {
-      let _course = new Course();
-      _course.id = i + 1;
-      _course.nome = 'Curso ' + _course.id;
-      this.courseList.push(_course);
-    }
+    this.loadingService.loading(true);
+    this.courseService.list(new Course())
+      .subscribe(data => {
+        this.courseList = <Course[]>data;
+        this.loadingService.loading(false);
+      }, error => {
+        this.alertService.error(error);
+      });
   }
 
   onSubmit() {
