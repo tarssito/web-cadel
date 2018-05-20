@@ -30,6 +30,9 @@ import { AlertService } from './directives/alert/shared/alert.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './directives/modal/modal.component';
 
+//Moment
+import { MomentModule } from 'ngx-moment';
+
 //Loading
 import { LoadingComponent } from './directives/loading/loading.component';
 import { LoadingService } from './directives/loading/shared/loading.service';
@@ -108,7 +111,8 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     MaskModule,
     AngularDualListBoxModule,
     Ng2AutoCompleteModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MomentModule
   ],
   providers: [
     NgbActiveModal,
