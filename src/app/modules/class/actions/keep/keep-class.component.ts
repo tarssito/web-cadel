@@ -18,6 +18,7 @@ import { ClassService } from './../../shared/class.service';
 
 import { Student } from './../../../student/shared/student.model';
 import { StudentService } from './../../../student/shared/student.service';
+import { SERVER_URL } from './../../../../common/api.config';
 
 @Component({
   selector: 'app-keep-class',
@@ -27,13 +28,14 @@ export class KeepClassComponent {
   currentYear: number;
   labelBtn: String;
   title: String;
-  mySource: any;
   selectedStudent: any;
   class: Class;
   courseList: Course[];
   subjectList: Subject[];
+  studentList: Student[];
   periodList: any[];
   ageList: any[];
+  studentSource: string;
 
   constructor(
     private _sanitizer: DomSanitizer,
@@ -48,6 +50,7 @@ export class KeepClassComponent {
     private studentService: StudentService
   ) {
     //init
+    this.studentSource = SERVER_URL + 'alunos?matricula=:keyword';
     this.currentYear = new Date().getFullYear();
     this.class = new Class();
     this.courseList = [];
@@ -61,16 +64,6 @@ export class KeepClassComponent {
     this.loadPeriod();
     this.loadAge();
     // this.detail();
-
-    this.mySource = [{
-      id: 1,
-      nome: "Fulano",
-      matricula: "02932093"
-    }, {
-      id: 2,
-      nome: "Ciclano",
-      matricula: "02932094"
-    }];
   }
 
   private loadCourses(): void {
@@ -89,6 +82,17 @@ export class KeepClassComponent {
     this.subjectService.list(new Subject())
       .subscribe(data => {
         this.subjectList = <Subject[]>data;
+        this.loadingService.loading(false);
+      }, error => {
+        this.alertService.error(error);
+      });
+  }
+
+  private loadStudent(): void {
+    this.loadingService.loading(true);
+    this.studentService.list(new Student())
+      .subscribe(data => {
+        this.studentList = <Student[]>data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
@@ -114,9 +118,8 @@ export class KeepClassComponent {
     }
   }
 
-
   public findStudents() {
-    return { data: { results: [] } };
+    return this.loadStudent;
   }
 
   public renderStudent(data: any): SafeHtml {
