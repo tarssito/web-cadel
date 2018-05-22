@@ -32,10 +32,14 @@ export class KeepClassComponent {
   class: Class;
   courseList: Course[];
   subjectList: Subject[];
-  studentList: Student[];
   periodList: any[];
   ageList: any[];
+  shiftList: any[];
   studentSource: string;
+  successCode: Number;
+  googleGeoCode: string = 'https://maps.googleapis.com/maps/api/geocode/json?address=:my_own_keyword';
+  model4: Object = new Object();
+  model3: Object = new Object();
 
   constructor(
     private _sanitizer: DomSanitizer,
@@ -55,15 +59,70 @@ export class KeepClassComponent {
     this.class = new Class();
     this.courseList = [];
     this.subjectList = [];
+    this.subjectList = [];
     this.periodList = [];
     this.ageList = [];
+    this.shiftList = [];
     this.title = "Incluir Turma";
     this.labelBtn = "Incluir";
-    // this.successCode = 1;
+    this.successCode = 1;
     this.loadCourses();
     this.loadPeriod();
     this.loadAge();
-    // this.detail();
+    this.loadShift();
+    this.detail();
+    //mock
+    this.class.alunos.push(<Student>new Object({ "id": 9, "nome": "Danilo Reis", "cpf": "15035268582", "matricula": "042151021", "email": "danilo@hotmail.com", "sexo": "M" }));
+    this.class.alunos.push(<Student>new Object({ "id": 3, "nome": "Ian Ítalo", "cpf": "03035268582", "matricula": "042151011", "email": "ian@hotmail.com", "sexo": "M" }));
+    this.class.alunos.push(<Student>new Object({ "id": 5, "nome": "Gabriel Rebouças", "cpf": "03035268587", "matricula": "042151016", "email": "gabriel@hotmail.com", "sexo": "M" }));
+  }
+
+  private valid() {
+    if (!this.class.sigla || !this.class.semestre || !this.class.ano
+      || !this.class.curso.id || !this.class.disciplina.id || !this.class.turno) {
+      this.alertService.error(SysMessages.get(4));
+      return false;
+    }
+
+    if (this.class.alunos.length === 0) {
+      this.alertService.error(SysMessages.get(12));
+      return false;
+    }
+
+    return true;
+  }
+
+  onSubmit() {
+    if (this.valid()) {
+      this.classService.keep(this.class)
+        .subscribe(
+        data => {
+          this.alertService.success(SysMessages.get(this.successCode), ['/turma']);
+        },
+        error => {
+          console.log(error);
+        });
+    }
+  }
+
+  private detail() {
+    var _id = this.activateRoute.snapshot.params['id'];
+    if (_id) {
+      this.title = "Alterar Curso";
+      this.labelBtn = "Alterar";
+      this.successCode = 2;
+
+      this.loadingService.loading(true);
+      this.classService.detail(_id).subscribe(_class => {
+        this.class = <Class>_class;
+        this.loadingService.loading(false);
+        if (!this.class) {
+          this.router.navigate(['/turma']);
+        }
+      }, error => {
+        this.alertService.error(error);
+      });
+    }
   }
 
   private loadCourses(): void {
@@ -88,23 +147,17 @@ export class KeepClassComponent {
       });
   }
 
-  private loadStudent(): void {
-    this.loadingService.loading(true);
-    this.studentService.list(new Student())
-      .subscribe(data => {
-        this.studentList = <Student[]>data;
-        this.loadingService.loading(false);
-      }, error => {
-        this.alertService.error(error);
-      });
-  }
-
   onChangeCourse() {
     this.class.disciplina = new Subject();
     this.subjectList = [];
     if (this.class.curso.id) {
       this.loadSubject();
     }
+  }
+
+  unlinkStudent(id: number): void {
+    let _index = this.class.alunos.findIndex(student => { return student.id === id });
+    this.class.alunos.splice(_index, 1);
   }
 
   private loadPeriod(): void {
@@ -118,8 +171,15 @@ export class KeepClassComponent {
     }
   }
 
-  public findStudents() {
-    return this.loadStudent;
+  private loadShift(): void {
+    this.shiftList.push({ id: 'M', label: 'Matutino' });
+    this.shiftList.push({ id: 'V', label: 'Vespertino' });
+    this.shiftList.push({ id: 'N', label: 'Noturno' });
+  }
+
+  public formatted_address(data: any): SafeHtml {
+    const html = `<b style='float:left;width:100%'>${data}</b>`;
+    return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 
   public renderStudent(data: any): SafeHtml {

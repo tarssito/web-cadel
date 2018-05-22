@@ -33,6 +33,9 @@ export class SysMessages {
         }, {
             id: 11,
             description: "Não é possível excluir, existem dados vinculados a este registro."
+        }, {
+            id: 12,
+            description: "É necessário incluir no mínimo 1 (um) aluno na turma."
         } 
     ];
 

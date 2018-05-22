@@ -9,7 +9,7 @@
     <div class="row form-group">
       <div class="col-sm-2">
         <label class="control-label" for="initials">Sigla*</label>
-        <input type="text" class="form-control" id="initials" name="initials" maxlength="4" [(ngModel)]="class.sigla" required>
+        <input type="text" class="form-control" id="initials" name="initials" maxlength="5" [(ngModel)]="class.sigla" required>
       </div>
       <div class="col-sm-2">
         <label class="control-label" for="period">Semestre*</label>
@@ -23,36 +23,67 @@
           <option *ngFor='let age of ageList' [value]="age.id">{{age.label}}</option>
         </select>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <label class="control-label" for="course">Curso*</label>
         <select id="course" name="course" class="form-control" [(ngModel)]="class.curso.id" (change)="onChangeCourse();" required>
           <option *ngFor='let course of courseList' [value]="course.id">{{course.nome}}</option>
         </select>
       </div>
-      <div class="col-sm-3">
+    </div>
+    <!-- row 2 -->
+    <div class="row form-group">
+      <div class="col-sm-4">
         <label class="control-label" for="subject">Disciplina*</label>
         <select id="subject" name="subject" class="form-control" [(ngModel)]="class.disciplina.id" [(disabled)]="!class.curso.id"
           required>
           <option *ngFor='let subject of subjectList' [value]="subject.id">{{subject.nome}}</option>
         </select>
       </div>
+      <div class="col-sm-4">
+        <label class="control-label" for="shift">Turno*</label>
+        <select id="shift" name="shift" class="form-control" [(ngModel)]="class.turno" required>
+          <option *ngFor='let shift of shiftList' [value]="shift.id">{{shift.label}}</option>
+        </select>
+      </div>
     </div>
-    <!-- row 2 -->
+    <div *ngIf="false" class="row form-group">
+      <input auto-complete
+        id="model3"
+        [(ngModel)]="model3"
+        placeholder="Enter Address(min. 2 chars)"
+        [source]="googleGeoCode"
+        no-match-found-text="No Match Found"
+        list-formatter="formatted_address"
+        path-to-data="results"
+        loading-text="Google Is Thinking..."
+        max-num-list="5"
+        min-chars="2" />
+      <br/>selected model3: {{model3 | json}}<br/><br/>
+    </div>
+    <div *ngIf="false" class="row form-group">
+      <input auto-complete
+        id="model4"
+        [(ngModel)]="model4"
+        placeholder="Enter Address(min. 2 chars)"
+        [source]="studentSource"
+        no-match-found-text="No Match Found"
+        list-formatter="renderStudent"
+        path-to-data="results"
+        loading-text="Google Is Thinking..."
+        max-num-list="5"
+        min-chars="2" />
+      <br/>selected model4: {{model4 | json}}<br/><br/>
+    </div>
+    <!-- row 3 -->
     <div class="row form-group">
       <div class="col-sm-12">
         <h5>Vincular Aluno(s)</h5>
       </div>
       <div class="row form-group col-sm-12">
         <div class="col-sm-4">
-            <input auto-complete id="studentAc" name="studentAc" class="form-control"
-              [(ngModel)]="selectedStudent"
-              placeholder="Comece digitando a matrícula do aluno (min. 3 chars)..."
-              [source]="studentSource"
-              no-match-found-text="A pesquisa não retornou registro(s)." 
-              list-formatter="renderStudent"
-              path-to-data="results.data"
-              loading-text=""
-              min-chars="3" />
+          <input auto-complete id="studentAc" name="studentAc" class="form-control" [(ngModel)]="selectedStudent" placeholder="Digite a matrícula do aluno (min. 3 caracteres)..."
+            [source]="studentSource" no-match-found-text="A pesquisa não retornou registro(s)." list-formatter="renderStudent"
+            path-to-data="results.data" loading-text="" min-chars="3" />
         </div>
         <div class="col-sm-2">
           <button type="button" (click)="linkStudent();" class="btn btn-primary" [(disabled)]="!selectedStudent">Vincular Aluno</button>
@@ -68,11 +99,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor='let student of studentList'>
+            <tr *ngFor='let student of class.alunos'>
               <td>{{student.matricula}}</td>
               <td>{{student.nome}}</td>
               <td class="actions">
-                <a class="fas fa-unlink" placement="bottom" ngbTooltip="Desvincular"></a>
+                <a href="javascript:void(0)" class="fas fa-unlink" placement="bottom" ngbTooltip="Desvincular" (click)="unlinkStudent(student.id);"></a>
               </td>
             </tr>
           </tbody>
