@@ -9,7 +9,7 @@ export class Class {
     ano: number;
     curso: Course;
     disciplina: Subject;
-    turno: string;
+    turnoLetivo: string;
     alunos: Student[];
 
     constructor() {

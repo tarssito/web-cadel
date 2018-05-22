@@ -54,7 +54,7 @@ export class KeepClassComponent {
     private studentService: StudentService
   ) {
     //init
-    this.studentSource = SERVER_URL + 'alunos?matricula=:keyword';
+    this.studentSource = SERVER_URL + 'turmas/alunos?matricula=:keyword';
     this.currentYear = new Date().getFullYear();
     this.class = new Class();
     this.courseList = [];
@@ -79,7 +79,7 @@ export class KeepClassComponent {
 
   private valid() {
     if (!this.class.sigla || !this.class.semestre || !this.class.ano
-      || !this.class.curso.id || !this.class.disciplina.id || !this.class.turno) {
+      || !this.class.curso.id || !this.class.disciplina.id || !this.class.turnoLetivo) {
       this.alertService.error(SysMessages.get(4));
       return false;
     }
@@ -155,6 +155,16 @@ export class KeepClassComponent {
     }
   }
 
+  linkStudent() {
+    let exists = this.class.alunos.find((_student) => { return _student.id === this.selectedStudent.id });
+    if (exists) {
+      this.alertService.error(SysMessages.get(13));
+      return;
+    }
+    this.class.alunos.push(this.selectedStudent);
+    this.selectedStudent = null;
+  }
+
   unlinkStudent(id: number): void {
     let _index = this.class.alunos.findIndex(student => { return student.id === id });
     this.class.alunos.splice(_index, 1);
@@ -175,17 +185,6 @@ export class KeepClassComponent {
     this.shiftList.push({ id: 'M', label: 'Matutino' });
     this.shiftList.push({ id: 'V', label: 'Vespertino' });
     this.shiftList.push({ id: 'N', label: 'Noturno' });
-  }
-
-  public formatted_address(data: any): SafeHtml {
-    const html = `<b style='float:left;width:100%'>${data}</b>`;
-    return this._sanitizer.bypassSecurityTrustHtml(html);
-  }
-
-  public renderStudent(data: any): SafeHtml {
-    const html = `<b style='float:left;width:100%'>${data.matricula}</b>
-            <span>${data.nome}</span>`;
-    return this._sanitizer.bypassSecurityTrustHtml(html);
   }
 
 }

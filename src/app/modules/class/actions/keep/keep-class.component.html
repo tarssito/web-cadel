@@ -41,38 +41,10 @@
       </div>
       <div class="col-sm-4">
         <label class="control-label" for="shift">Turno*</label>
-        <select id="shift" name="shift" class="form-control" [(ngModel)]="class.turno" required>
+        <select id="shift" name="shift" class="form-control" [(ngModel)]="class.turnoLetivo" required>
           <option *ngFor='let shift of shiftList' [value]="shift.id">{{shift.label}}</option>
         </select>
       </div>
-    </div>
-    <div *ngIf="false" class="row form-group">
-      <input auto-complete
-        id="model3"
-        [(ngModel)]="model3"
-        placeholder="Enter Address(min. 2 chars)"
-        [source]="googleGeoCode"
-        no-match-found-text="No Match Found"
-        list-formatter="formatted_address"
-        path-to-data="results"
-        loading-text="Google Is Thinking..."
-        max-num-list="5"
-        min-chars="2" />
-      <br/>selected model3: {{model3 | json}}<br/><br/>
-    </div>
-    <div *ngIf="false" class="row form-group">
-      <input auto-complete
-        id="model4"
-        [(ngModel)]="model4"
-        placeholder="Enter Address(min. 2 chars)"
-        [source]="studentSource"
-        no-match-found-text="No Match Found"
-        list-formatter="renderStudent"
-        path-to-data="results"
-        loading-text="Google Is Thinking..."
-        max-num-list="5"
-        min-chars="2" />
-      <br/>selected model4: {{model4 | json}}<br/><br/>
     </div>
     <!-- row 3 -->
     <div class="row form-group">
@@ -82,11 +54,11 @@
       <div class="row form-group col-sm-12">
         <div class="col-sm-4">
           <input auto-complete id="studentAc" name="studentAc" class="form-control" [(ngModel)]="selectedStudent" placeholder="Digite a matrícula do aluno (min. 3 caracteres)..."
-            [source]="studentSource" no-match-found-text="A pesquisa não retornou registro(s)." list-formatter="renderStudent"
-            path-to-data="results.data" loading-text="" min-chars="3" />
+            [source]="studentSource" no-match-found-text="A pesquisa não retornou registro(s)." list-formatter="matricula - nome"
+            display-property-name="nome" max-num-list="5" path-to-data="results" loading-text="" min-chars="3" />
         </div>
         <div class="col-sm-2">
-          <button type="button" (click)="linkStudent();" class="btn btn-primary" [(disabled)]="!selectedStudent">Vincular Aluno</button>
+          <button type="button" (click)="linkStudent();" class="btn btn-primary" [(disabled)]="!selectedStudent || !selectedStudent.id">Vincular Aluno</button>
         </div>
       </div>
       <div class="col-sm-12">

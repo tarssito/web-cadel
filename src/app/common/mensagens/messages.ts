@@ -36,7 +36,10 @@ export class SysMessages {
         }, {
             id: 12,
             description: "É necessário incluir no mínimo 1 (um) aluno na turma."
-        } 
+        }, {
+            id: 13,
+            description: "Aluno já vinculado."
+        }
     ];
 
     public static get(id: Number): string {
