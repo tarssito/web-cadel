@@ -71,10 +71,6 @@ export class KeepClassComponent {
     this.loadAge();
     this.loadShift();
     this.detail();
-    //mock
-    this.class.alunos.push(<Student>new Object({ "id": 9, "nome": "Danilo Reis", "cpf": "15035268582", "matricula": "042151021", "email": "danilo@hotmail.com", "sexo": "M" }));
-    this.class.alunos.push(<Student>new Object({ "id": 3, "nome": "Ian Ítalo", "cpf": "03035268582", "matricula": "042151011", "email": "ian@hotmail.com", "sexo": "M" }));
-    this.class.alunos.push(<Student>new Object({ "id": 5, "nome": "Gabriel Rebouças", "cpf": "03035268587", "matricula": "042151016", "email": "gabriel@hotmail.com", "sexo": "M" }));
   }
 
   private valid() {
@@ -84,7 +80,7 @@ export class KeepClassComponent {
       return false;
     }
 
-    if (this.class.alunos.length === 0) {
+    if (this.class.alunosTurma.length === 0) {
       this.alertService.error(SysMessages.get(12));
       return false;
     }
@@ -108,6 +104,7 @@ export class KeepClassComponent {
   private detail() {
     var _id = this.activateRoute.snapshot.params['id'];
     if (_id) {
+      this.loadSubject();
       this.title = "Alterar Curso";
       this.labelBtn = "Alterar";
       this.successCode = 2;
@@ -156,18 +153,18 @@ export class KeepClassComponent {
   }
 
   linkStudent() {
-    let exists = this.class.alunos.find((_student) => { return _student.id === this.selectedStudent.id });
+    let exists = this.class.alunosTurma.find((_student) => { return _student.id === this.selectedStudent.id });
     if (exists) {
       this.alertService.error(SysMessages.get(13));
       return;
     }
-    this.class.alunos.push(this.selectedStudent);
+    this.class.alunosTurma.push(this.selectedStudent);
     this.selectedStudent = null;
   }
 
   unlinkStudent(id: number): void {
-    let _index = this.class.alunos.findIndex(student => { return student.id === id });
-    this.class.alunos.splice(_index, 1);
+    let _index = this.class.alunosTurma.findIndex(student => { return student.id === id });
+    this.class.alunosTurma.splice(_index, 1);
   }
 
   private loadPeriod(): void {

@@ -55,7 +55,8 @@
         <div class="col-sm-4">
           <input auto-complete id="studentAc" name="studentAc" class="form-control" [(ngModel)]="selectedStudent" placeholder="Digite a matrícula do aluno (min. 3 caracteres)..."
             [source]="studentSource" no-match-found-text="A pesquisa não retornou registro(s)." list-formatter="matricula - nome"
-            display-property-name="nome" max-num-list="5" path-to-data="results" loading-text="" min-chars="3" />
+            (blur)="alertService.clear();" display-property-name="nome" max-num-list="5" path-to-data="results" loading-text=""
+            min-chars="3" autocomplete="off" />
         </div>
         <div class="col-sm-2">
           <button type="button" (click)="linkStudent();" class="btn btn-primary" [(disabled)]="!selectedStudent || !selectedStudent.id">Vincular Aluno</button>
@@ -71,7 +72,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor='let student of class.alunos'>
+            <tr *ngFor='let student of class.alunosTurma'>
               <td>{{student.matricula}}</td>
               <td>{{student.nome}}</td>
               <td class="actions">
