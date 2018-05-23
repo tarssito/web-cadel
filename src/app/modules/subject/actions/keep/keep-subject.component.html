@@ -20,7 +20,7 @@
     <div class="row form-group">
       <div class="col-sm-8">
         <label class="control-label" for="course">Curso(s)*</label>
-        <dual-list [source]="courseList" [(destination)]="selectedList" key="id" display="nome"
+        <dual-list [source]="courseList" [(destination)]="subject.cursos" key="id" display="nome"
         [format]="{ add: 'Adicionar', remove: 'Remover', all: 'Marcar Todos', none: 'Desmarcar Todos', direction: 'left-to-right', draggable: true, locale: undefined }"></dual-list>
       </div>
     </div>

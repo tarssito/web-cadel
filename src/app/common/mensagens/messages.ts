@@ -39,6 +39,9 @@ export class SysMessages {
         }, {
             id: 13,
             description: "Aluno já vinculado."
+        }, {
+            id: 14,
+            description: "É necessário incluir no mínimo 1 (um) curso para a disciplina."
         }
     ];
 

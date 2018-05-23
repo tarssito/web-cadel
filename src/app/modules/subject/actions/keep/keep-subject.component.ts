@@ -18,7 +18,6 @@ export class KeepSubjectComponent {
   title: String;
   labelBtn: String;
   courseList: Course[];
-  selectedList: Course[];
   successCode: Number;
 
   constructor(
@@ -33,7 +32,6 @@ export class KeepSubjectComponent {
     //init
     this.subject = new Subject();
     this.courseList = [];
-    this.selectedList = [];
     this.loadCourses();
     this.title = "Incluir Disciplina";
     this.labelBtn = "Incluir";
@@ -50,7 +48,6 @@ export class KeepSubjectComponent {
       this.loadingService.loading(true);
       this.subjectService.detail(_id).subscribe(subject => {
         this.subject = <Subject>subject;
-        this.selectedList = this.subject.cursos;
         this.loadingService.loading(false);
         if (!this.subject) {
           this.router.navigate(['/disciplina']);
@@ -62,8 +59,13 @@ export class KeepSubjectComponent {
   }
 
   private valid() {
-    if (!this.subject.nome || !this.subject.cargaHoraria || this.subject.cursos.length === 0) {
+    if (!this.subject.nome || !this.subject.cargaHoraria) {
       this.alertService.error(SysMessages.get(4));
+      return false;
+    }
+
+    if (this.subject.cursos.length === 0) {
+      this.alertService.error(SysMessages.get(14));      
       return false;
     }
 
@@ -102,23 +104,4 @@ export class KeepSubjectComponent {
   goBack() {
     this.location.back();
   }
-
-  // onItemsMoved(event) {
-  //   this.subject.cursos = [];
-  //   event.selected.forEach(element => {
-  //     let _course = new Course();
-  //     _course.id = element.value;
-  //     _course.nome = element.text;
-  //     this.subject.cursos.push(_course);
-  //   });
-  // }
-
-  // private onLoadItems(event) {
-  //   event.selected = [];
-  //   this.subject.cursos.forEach(element => {
-  //     event.selected.push({
-  //       value: element.id,
-  //       text: element.nome
-  //     });
-  //   });
 }
