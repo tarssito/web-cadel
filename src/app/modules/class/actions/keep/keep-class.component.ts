@@ -37,9 +37,6 @@ export class KeepClassComponent {
   shiftList: any[];
   studentSource: string;
   successCode: Number;
-  googleGeoCode: string = 'https://maps.googleapis.com/maps/api/geocode/json?address=:my_own_keyword';
-  model4: Object = new Object();
-  model3: Object = new Object();
 
   constructor(
     private _sanitizer: DomSanitizer,
@@ -89,6 +86,10 @@ export class KeepClassComponent {
   }
 
   onSubmit() {
+    this.class.alunosTurma = [];
+    this.class.alunosTurma.push(
+      <Student>{ "id": 9, "nome": "Danilo Reis", "cpf": 15035268582, "matricula": "042151021", "email": "danilo@hotmail.com", "sexo": "M" }
+    );
     if (this.valid()) {
       this.classService.keep(this.class)
         .subscribe(

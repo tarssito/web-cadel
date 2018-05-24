@@ -16,7 +16,7 @@ export class ClassService {
     constructor(private http: HttpClient) {
         this.url = SERVER_URL + 'turmas/';
         this.requestOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8'})
+            headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8' })
         };
     }
 

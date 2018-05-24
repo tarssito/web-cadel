@@ -50,6 +50,7 @@ import { ClassService } from './modules/class/shared/class.service';
 //Classroom
 import { ClassroomComponent } from './modules/classroom/classroom.component';
 import { KeepClassroomComponent } from './modules/classroom/actions/keep/keep-classroom.component';
+import { ClassroomService } from './modules/classroom/shared/classroom.service';
 //Course
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
@@ -121,6 +122,7 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     LoadingService,
     LoginService,
     ClassService,
+    ClassroomService,
     CourseService,
     StudentService,
     TeacherService,
