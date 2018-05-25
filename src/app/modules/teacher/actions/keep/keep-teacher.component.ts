@@ -5,8 +5,12 @@ import { SysMessages } from './../../../../common/mensagens/messages';
 import { Utils } from './../../../../helpers/utils/utils';
 import { LoadingService } from './../../../../directives/loading/shared/loading.service';
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
+import { Course } from './../../../course/shared/course.model';
+import { CourseService } from './../../../course/shared/course.service';
 import { TeacherService } from './../../shared/teacher.service';
 import { Teacher } from './../../shared/teacher.model';
+import { Subject } from './../../../subject/shared/subject.model';
+import { SubjectService } from './../../../subject/shared/subject.service';
 
 @Component({
   selector: 'app-keep-teacher',
@@ -15,6 +19,8 @@ import { Teacher } from './../../shared/teacher.model';
 export class KeepTeacherComponent {
   teacher: Teacher;
   genderList: any[];
+  courseList: Course[];
+  subjectList: Subject[];
   title: String;
   labelBtn: String;
   successCode: Number;
@@ -26,34 +32,68 @@ export class KeepTeacherComponent {
     private activateRoute: ActivatedRoute,
     private teacherService: TeacherService,
     private alertService: AlertService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private courseService: CourseService,
+    private subjectService: SubjectService
   ) {
     //init
     this.teacher = new Teacher();
     this.title = "Incluir Professor";
     this.labelBtn = "Incluir";
     this.successCode = 1;
-    this.detail();
+    this.courseList = [];
+    this.subjectList = [];
+    this.loadCourses();
     this.loadGenderList();
+    this.detail();
+  }
+
+  private loadCourses(): void {
+    this.loadingService.loading(true);
+    this.courseService.list(new Course())
+      .subscribe(data => {
+        this.courseList = <Course[]>data;
+        this.loadingService.loading(false);
+      }, error => {
+        this.alertService.error(error);
+      });
+  }
+
+  private loadSubject(): void {
+    this.loadingService.loading(true);
+    this.subjectService.list(new Subject())
+      .subscribe(data => {
+        this.subjectList = <Subject[]>data;
+        this.loadingService.loading(false);
+      }, error => {
+        this.alertService.error(error);
+      });
+  }
+
+  onChangeCourse() {
+    this.teacher.disciplinas = [];
+    if (this.teacher.curso.id) {
+      this.loadSubject();
+    }
   }
 
   private detail() {
     var _id = this.activateRoute.snapshot.params['id'];
     if (_id) {
-        this.title = "Alterar Professor";
-        this.labelBtn = "Alterar";
-        this.successCode = 2;
+      this.title = "Alterar Professor";
+      this.labelBtn = "Alterar";
+      this.successCode = 2;
 
-        this.loadingService.loading(true);
-        this.teacherService.detail(_id).subscribe(teacher => {
-            this.teacher = <Teacher>teacher;
-            this.loadingService.loading(false);
-            if (!this.teacher) {
-                this.router.navigate(['/professor']);
-            }
-        }, error => {
-            this.alertService.error(error);
-        });
+      this.loadingService.loading(true);
+      this.teacherService.detail(_id).subscribe(teacher => {
+        this.teacher = <Teacher>teacher;
+        this.loadingService.loading(false);
+        if (!this.teacher) {
+          this.router.navigate(['/professor']);
+        }
+      }, error => {
+        this.alertService.error(error);
+      });
     }
   }
 
