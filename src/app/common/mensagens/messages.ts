@@ -48,6 +48,9 @@ export class SysMessages {
         }, {
             id: 15,
             description: "É necessário incluir no mínimo 1 (uma) turma para a classe."
+        }, {
+            id: 16,
+            description: "O campo sigla deve conter no mínimo 5 caracteres."
         }
     ];
 

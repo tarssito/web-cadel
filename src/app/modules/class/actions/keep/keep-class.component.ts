@@ -77,6 +77,11 @@ export class KeepClassComponent {
       return false;
     }
 
+    if (this.class.sigla.length < 5) {
+      this.alertService.error(SysMessages.get(16));
+      return false;
+    }
+
     if (this.class.alunos.length === 0) {
       this.alertService.error(SysMessages.get(12));
       return false;
@@ -86,10 +91,6 @@ export class KeepClassComponent {
   }
 
   onSubmit() {
-    this.class.alunos = [];
-    this.class.alunos.push(
-      <Student>{ "id": 9, "nome": "Danilo Reis", "cpf": 15035268582, "matricula": "042151021", "email": "danilo@hotmail.com", "sexo": "M" }
-    );
     if (this.valid()) {
       this.classService.keep(this.class)
         .subscribe(
@@ -106,7 +107,7 @@ export class KeepClassComponent {
     var _id = this.activateRoute.snapshot.params['id'];
     if (_id) {
       this.loadSubject();
-      this.title = "Alterar Curso";
+      this.title = "Alterar Turma";
       this.labelBtn = "Alterar";
       this.successCode = 2;
 
