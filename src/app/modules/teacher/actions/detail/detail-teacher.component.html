@@ -30,6 +30,30 @@
         <label class="control-label bold">E-mail: </label>
         <span>{{teacher.email}}</span>
       </div>
+      <div class="col-sm-5">
+        <label class="control-label bold">Curso: </label>
+        <span>{{teacher.curso.nome}}</span>
+      </div>
+    </div>
+    <!-- row 3 -->
+    <div class="row form-group">
+      <div class="col-sm-12">
+        <label class="control-label bold">Disciplina(s): </label>
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th class="w-20" scope="col">Carga Horária</th>
+              <th class="w-80" scope="col">Nome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let disciplina of teacher.disciplinas'>
+              <td>{{disciplina.cargaHoraria}}h</td>
+              <td>{{disciplina.nome}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <div class="row form-group">
