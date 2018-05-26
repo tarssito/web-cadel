@@ -13,6 +13,9 @@ import { CourseService } from './../../../course/shared/course.service';
 import { Subject } from './../../../subject/shared/subject.model';
 import { SubjectService } from './../../../subject/shared/subject.service';
 
+import { Teacher } from './../../../teacher/shared/teacher.model';
+import { TeacherService } from './../../../teacher/shared/teacher.service';
+
 import { Class } from './../../../class/shared/class.model';
 import { ClassService } from './../../../class/shared/class.service';
 
@@ -32,6 +35,7 @@ export class KeepClassroomComponent {
   classroom: Classroom;
   courseList: Course[];
   subjectList: Subject[];
+  teacherList: Teacher[];
   classList: Class[];
   periodList: any[];
   ageList: any[];
@@ -49,6 +53,7 @@ export class KeepClassroomComponent {
     private loadingService: LoadingService,
     private courseService: CourseService,
     private classService: ClassService,
+    private teacherService: TeacherService,
     private classroomService: ClassroomService
   ) {
     //init
@@ -61,6 +66,7 @@ export class KeepClassroomComponent {
     this.ageList = [];
     this.shiftList = [];
     this.weekdaysList = [];
+    this.teacherList = [];
     this.title = "Incluir Classe";
     this.labelBtn = "Incluir";
     this.successCode = 1;
@@ -95,6 +101,17 @@ export class KeepClassroomComponent {
       });
   }
 
+  private loadTeacher(): void {
+    this.loadingService.loading(true);
+    this.teacherService.list(new Teacher())
+      .subscribe(data => {
+        this.teacherList = <Teacher[]>data;
+        this.loadingService.loading(false);
+      }, error => {
+        this.alertService.error(error);
+      });
+  }
+
   private loadClass(): void {
     this.loadingService.loading(true);
     this.classService.list(new Class())
@@ -104,6 +121,21 @@ export class KeepClassroomComponent {
       }, error => {
         this.alertService.error(error);
       });
+  }
+
+  private valid() {
+    if (!this.classroom.diaDaSemana || !this.classroom.horaInicio || !this.classroom.horaFim
+      || !this.classroom.curso.id || !this.classroom.disciplina.id || !this.classroom.professor.id) {
+      this.alertService.error(SysMessages.get(4));
+      return false;
+    }
+
+    if (this.classroom.turmas.length === 0) {
+      this.alertService.error(SysMessages.get(12));
+      return false;
+    }
+
+    return true;
   }
 
   private detail() {
@@ -135,6 +167,14 @@ export class KeepClassroomComponent {
     }
   }
 
+  onChangeSubject() {
+    this.classroom.professor = new Teacher();
+    this.teacherList = [];
+    if (this.classroom.disciplina.id) {
+      this.loadTeacher();
+    }
+  }
+
   private loadPeriod(): void {
     this.periodList.push({ id: 1, label: 1 });
     this.periodList.push({ id: 2, label: 2 });
@@ -159,6 +199,12 @@ export class KeepClassroomComponent {
     this.weekdaysList.push({ id: 4, label: 'Quinta-feira' });
     this.weekdaysList.push({ id: 5, label: 'Sexta-feira' });
     this.weekdaysList.push({ id: 6, label: 'Sábado' });
+  }
+
+  onSubmit() {
+    if (this.valid()) {
+      console.log(this.classroom);
+    }
   }
 
 }

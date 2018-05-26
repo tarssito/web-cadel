@@ -118,6 +118,11 @@ export class KeepTeacherComponent {
       return false;
     }
 
+    if (this.teacher.disciplinas.length === 0) {
+      this.alertService.error(SysMessages.get(15));
+      return false;
+    }
+
     return true;
   }
 

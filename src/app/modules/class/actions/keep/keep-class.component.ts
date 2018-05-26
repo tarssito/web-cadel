@@ -77,7 +77,7 @@ export class KeepClassComponent {
       return false;
     }
 
-    if (this.class.alunosTurma.length === 0) {
+    if (this.class.alunos.length === 0) {
       this.alertService.error(SysMessages.get(12));
       return false;
     }
@@ -86,8 +86,8 @@ export class KeepClassComponent {
   }
 
   onSubmit() {
-    this.class.alunosTurma = [];
-    this.class.alunosTurma.push(
+    this.class.alunos = [];
+    this.class.alunos.push(
       <Student>{ "id": 9, "nome": "Danilo Reis", "cpf": 15035268582, "matricula": "042151021", "email": "danilo@hotmail.com", "sexo": "M" }
     );
     if (this.valid()) {
@@ -154,18 +154,18 @@ export class KeepClassComponent {
   }
 
   linkStudent() {
-    let exists = this.class.alunosTurma.find((_student) => { return _student.id === this.selectedStudent.id });
+    let exists = this.class.alunos.find((_student) => { return _student.id === this.selectedStudent.id });
     if (exists) {
       this.alertService.error(SysMessages.get(13));
       return;
     }
-    this.class.alunosTurma.push(this.selectedStudent);
+    this.class.alunos.push(this.selectedStudent);
     this.selectedStudent = null;
   }
 
   unlinkStudent(id: number): void {
-    let _index = this.class.alunosTurma.findIndex(student => { return student.id === id });
-    this.class.alunosTurma.splice(_index, 1);
+    let _index = this.class.alunos.findIndex(student => { return student.id === id });
+    this.class.alunos.splice(_index, 1);
   }
 
   private loadPeriod(): void {

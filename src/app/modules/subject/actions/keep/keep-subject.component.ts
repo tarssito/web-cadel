@@ -64,13 +64,13 @@ export class KeepSubjectComponent {
       return false;
     }
 
-    if (this.subject.cursos.length === 0) {
-      this.alertService.error(SysMessages.get(14));      
+    if (this.subject.cargaHoraria == 0) {
+      this.alertService.error(SysMessages.get(10));
       return false;
     }
 
-    if (this.subject.cargaHoraria == 0) {
-      this.alertService.error(SysMessages.get(10));
+    if (this.subject.cursos.length === 0) {
+      this.alertService.error(SysMessages.get(14));      
       return false;
     }
 

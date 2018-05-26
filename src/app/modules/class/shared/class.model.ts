@@ -10,11 +10,11 @@ export class Class {
     curso: Course;
     disciplina: Subject;
     turnoLetivo: string;
-    alunosTurma: Student[];
+    alunos: Student[];
 
     constructor() {
         this.curso = new Course();
         this.disciplina = new Subject();
-        this.alunosTurma = [];
+        this.alunos = [];
     }
 } 

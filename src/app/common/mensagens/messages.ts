@@ -42,6 +42,12 @@ export class SysMessages {
         }, {
             id: 14,
             description: "É necessário incluir no mínimo 1 (um) curso para a disciplina."
+        }, {
+            id: 15,
+            description: "É necessário incluir no mínimo 1 (uma) disciplina para o professor."
+        }, {
+            id: 15,
+            description: "É necessário incluir no mínimo 1 (uma) turma para a classe."
         }
     ];
 

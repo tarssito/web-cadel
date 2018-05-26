@@ -14,7 +14,8 @@
       <div class="row form-group">
         <div class="col-sm-2">
           <label class="control-label" for="registration">Matrícula</label>
-          <input type="text" class="form-control" id="registration" name="registration" [(ngModel)]="filter.matricula" maxlength="8">
+          <input mask-number [mask]="'9999999999'" [reqMin]="'1'" type="text" class="form-control" id="registration" name="registration"
+            [(ngModel)]="filter.matricula" maxlength="10">
         </div>
         <div class="col-sm-6">
           <label class="control-label" for="name">Nome</label>
