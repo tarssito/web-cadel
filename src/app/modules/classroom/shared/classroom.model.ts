@@ -5,12 +5,14 @@ import { Teacher } from './../../teacher/shared/teacher.model';
 
 export class Classroom {
     id: number;
-    diaDaSemana: number;
-    horaInicio: String;
-    horaFim: String;
+    dia: number;
+    descricaoDia: String;
+    horaAbertura: String;
+    horaFechamento: String;
     semestre: number;
     ano: number;
     curso: Course;
+    turno: string;
     disciplina: Subject;
     professor: Teacher;
     turmas: Classroom[];

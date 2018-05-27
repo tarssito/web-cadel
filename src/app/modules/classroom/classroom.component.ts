@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { SysMessages } from './../../common/mensagens/messages';
+import { Weekdays } from './../../common/weekdays/weekdays';
 
 import { AlertService } from './../../directives/alert/shared/alert.service';
 import { LoadingService } from './../../directives/loading/shared/loading.service';
@@ -47,7 +48,7 @@ export class ClassroomComponent {
     this.loadPeriod();
     this.loadAge();
     this.loadWeekdays();
-    // this.search();
+    this.search();
   }
 
   search(): void {
@@ -55,10 +56,17 @@ export class ClassroomComponent {
     this.classroomService.list(this.filter)
       .subscribe(data => {
         this.classroomList = <Classroom[]>data;
+        this.formatShiftDescription();
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
       });
+  }
+
+  private formatShiftDescription() {
+    this.classroomList.forEach(item => {
+      item.descricaoDia = Weekdays.get(item.dia).label;
+    });
   }
 
   private loadPeriod(): void {
@@ -84,12 +92,7 @@ export class ClassroomComponent {
   }
 
   private loadWeekdays(): void {
-    this.weekdaysList.push({ id: 1, label: 'Segunda-feira' });
-    this.weekdaysList.push({ id: 2, label: 'Terça-feira' });
-    this.weekdaysList.push({ id: 3, label: 'Quarta-feira' });
-    this.weekdaysList.push({ id: 4, label: 'Quinta-feira' });
-    this.weekdaysList.push({ id: 5, label: 'Sexta-feira' });
-    this.weekdaysList.push({ id: 6, label: 'Sábado' });
+    this.weekdaysList = Weekdays.getAll();
   }
 
   goBack(): void {

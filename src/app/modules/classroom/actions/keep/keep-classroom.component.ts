@@ -3,6 +3,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { SysMessages } from './../../../../common/mensagens/messages';
+import { Weekdays } from './../../../../common/weekdays/weekdays';
+import { Shifts } from './../../../../common/shift/shift';
 
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
 import { LoadingService } from './../../../../directives/loading/shared/loading.service';
@@ -124,7 +126,7 @@ export class KeepClassroomComponent {
   }
 
   private valid() {
-    if (!this.classroom.diaDaSemana || !this.classroom.horaInicio || !this.classroom.horaFim
+    if (!this.classroom.dia || !this.classroom.horaAbertura || !this.classroom.horaFechamento
       || !this.classroom.curso.id || !this.classroom.disciplina.id || !this.classroom.professor.id) {
       this.alertService.error(SysMessages.get(4));
       return false;
@@ -142,6 +144,7 @@ export class KeepClassroomComponent {
     var _id = this.activateRoute.snapshot.params['id'];
     if (_id) {
       this.loadSubject();
+      this.loadTeacher();
       this.title = "Alterar Classe";
       this.labelBtn = "Alterar";
       this.successCode = 2;
@@ -187,24 +190,28 @@ export class KeepClassroomComponent {
   }
 
   private loadShift(): void {
-    this.shiftList.push({ id: 'M', label: 'Matutino' });
-    this.shiftList.push({ id: 'V', label: 'Vespertino' });
-    this.shiftList.push({ id: 'N', label: 'Noturno' });
+    this.shiftList = Shifts.getAll();
   }
 
   private loadWeekdays(): void {
-    this.weekdaysList.push({ id: 1, label: 'Segunda-feira' });
-    this.weekdaysList.push({ id: 2, label: 'Terça-feira' });
-    this.weekdaysList.push({ id: 3, label: 'Quarta-feira' });
-    this.weekdaysList.push({ id: 4, label: 'Quinta-feira' });
-    this.weekdaysList.push({ id: 5, label: 'Sexta-feira' });
-    this.weekdaysList.push({ id: 6, label: 'Sábado' });
+    this.weekdaysList = Weekdays.getAll();
   }
 
   onSubmit() {
     if (this.valid()) {
-      console.log(this.classroom);
+      this.classroomService.keep(this.classroom)
+        .subscribe(
+        data => {
+          this.alertService.success(SysMessages.get(this.successCode), ['/classe']);
+        },
+        error => {
+          console.log(error);
+        });
     }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

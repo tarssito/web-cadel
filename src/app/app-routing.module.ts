@@ -198,7 +198,7 @@ var appRoutes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: _basePathClassroom + '/manter/id',
+        path: _basePathClassroom + '/manter/:id',
         component: KeepClassroomComponent,
         canActivate: [AuthGuard]
     },

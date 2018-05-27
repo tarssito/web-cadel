@@ -80,6 +80,7 @@ export class KeepTeacherComponent {
   private detail() {
     var _id = this.activateRoute.snapshot.params['id'];
     if (_id) {
+      this.loadSubject();
       this.title = "Alterar Professor";
       this.labelBtn = "Alterar";
       this.successCode = 2;

@@ -13,7 +13,7 @@ export class ClassroomService {
   private requestOptions: any;
 
   constructor(private http: HttpClient) {
-    this.url = SERVER_URL + 'classes/';
+    this.url = SERVER_URL + 'aulas/';
     this.requestOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8' })
     };

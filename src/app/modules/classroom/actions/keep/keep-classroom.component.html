@@ -9,18 +9,18 @@
     <div class="row form-group">
       <div class="col-sm-3">
         <label class="control-label" for="day">Dia da Semana*</label>
-        <select id="day" name="day" class="form-control" [(ngModel)]="classroom.diaSemana" required>
+        <select id="day" name="day" class="form-control" [(ngModel)]="classroom.dia" required>
           <option *ngFor='let day of weekdaysList' [value]="day.id">{{day.label}}</option>
         </select>
       </div>
       <div class="col-sm-2">
         <label class="control-label" for="startTime">Hora Inicio*</label>
-        <input mask-number [mask]="'99:99'" type="text" class="form-control" id="startTime" name="startTime" [(ngModel)]="classroom.horaInicio"
-          maxlength="5" required>
+        <input mask-number [mask]="'99:99'" [maskkOutput]="true" type="text" class="form-control" id="startTime" name="startTime"
+          [(ngModel)]="classroom.horaAbertura" maxlength="5" required>
       </div>
       <div class="col-sm-2">
         <label class="control-label" for="endTime">Hora Fim*</label>
-        <input mask-number [mask]="'99:99'" type="text" class="form-control" id="endTime" name="endTime" [(ngModel)]="classroom.horaFim"
+        <input mask-number [mask]="'99:99'" [maskkOutput]="true" type="text" class="form-control" id="endTime" name="endTime" [(ngModel)]="classroom.horaFechamento"
           maxlength="5" required>
       </div>
       <div class="col-sm-2">
@@ -55,6 +55,14 @@
         <select id="teacher" name="teacher" class="form-control" [(ngModel)]="classroom.professor.id" [(disabled)]="!classroom.disciplina.id"
           required>
           <option *ngFor='let teacher of teacherList' [value]="teacher.id">{{teacher.nome}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-4">
+        <label class="control-label" for="shift">Turno*</label>
+        <select id="shift" name="shift" class="form-control" [(ngModel)]="classroom.turno" required>
+          <option *ngFor='let shift of shiftList' [value]="shift.id">{{shift.label}}</option>
         </select>
       </div>
     </div>

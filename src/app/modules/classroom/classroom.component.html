@@ -64,8 +64,8 @@
                 <tr *ngIf="classroomList.length === 0">
                     <td class="text-center" colspan="5">A pesquisa não retornou registro(s).</td>
                 </tr>
-                <tr *ngFor='let class of classroomList'>
-                    <td>{{classroom.diaDaSemana}}</td>
+                <tr *ngFor='let classroom of classroomList'>
+                    <td>{{classroom.descricaoDia}}</td>
                     <td>{{classroom.ano}}.{{classroom.semestre}}</td>
                     <td>{{classroom.curso.nome}}</td>
                     <td>{{classroom.disciplina.nome}}</td>
