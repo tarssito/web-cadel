@@ -3,6 +3,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { SysMessages } from './../../../../common/mensagens/messages';
+import { Shifts } from './../../../../common/shift/shift';
 
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
 import { LoadingService } from './../../../../directives/loading/shared/loading.service';
@@ -181,9 +182,11 @@ export class KeepClassComponent {
   }
 
   private loadShift(): void {
-    this.shiftList.push({ id: 'M', label: 'Matutino' });
-    this.shiftList.push({ id: 'V', label: 'Vespertino' });
-    this.shiftList.push({ id: 'N', label: 'Noturno' });
+    this.shiftList = Shifts.getAll();
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

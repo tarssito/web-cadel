@@ -7,45 +7,55 @@
   <div class="details form-group">
     <!-- row 1 -->
     <div class="row form-group">
+      <div class="col-sm-3">
+        <label class="control-label bold">Dia da Semana: </label>
+        <span>{{classroom.dia}}</span>
+      </div>
       <div class="col-sm-2">
-        <label class="control-label bold">Sigla: </label>
-        <span>{{class.sigla}}</span>
+        <label class="control-label bold">Hora Início: </label>
+        <span>{{classroom.horaAbertura}}</span>
+      </div>
+      <div class="col-sm-2">
+        <label class="control-label bold">Hora Fim: </label>
+        <span>{{classroom.horaFechamento}}</span>
       </div>
       <div class="col-sm-2">
         <label class="control-label bold">Semestre: </label>
-        <span>{{class.ano}}.{{class.semestre}}</span>
+        <span>{{classroom.ano}}.{{classroom.semestre}}</span>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <label class="control-label bold">Curso: </label>
-        <span>{{class.curso.nome}}</span>
-      </div>
-      <div class="col-sm-4">
-        <label class="control-label bold">Disciplina: </label>
-        <span>{{class.disciplina.nome}}</span>
+        <span>{{classroom.curso.nome}}</span>
       </div>
     </div>
     <!-- row 2 -->
     <div class="row form-group">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
+        <label class="control-label bold">Disciplina: </label>
+        <span>{{classroom.disciplina.nome}}</span>
+      </div>
+      <div class="col-sm-3">
+        <label class="control-label bold">Professor: </label>
+        <span>{{classroom.professor.nome}}</span>
+      </div>
+      <div class="col-sm-3">
         <label class="control-label bold">Turno: </label>
-        <span>{{class.turnoLetivo}}</span>
+        <span>{{classroom.turno}}</span>
       </div>
     </div>
     <!-- row 3 -->
     <div class="row form-group">
       <div class="col-sm-12">
-        <label class="control-label bold">Aluno(s): </label>
+        <label class="control-label bold">Turma(s): </label>
         <table class="table table-striped table-bordered">
           <thead>
             <tr>
-              <th style="width: 30%;" scope="col">Matrícula</th>
-              <th style="width: 70%;" scope="col">Nome</th>
+              <th scope="col">Sigla</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor='let student of class.alunos'>
-              <td>{{student.matricula}}</td>
-              <td>{{student.nome}}</td>
+            <tr *ngFor='let turma of classroom.turmas'>
+              <td>{{turma.sigla}}</td>
             </tr>
           </tbody>
         </table>

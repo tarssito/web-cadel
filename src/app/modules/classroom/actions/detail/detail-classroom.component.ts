@@ -5,16 +5,16 @@ import { ActivatedRoute, Router, UrlSegment, UrlSegmentGroup, UrlTree, PRIMARY_O
 import { SysMessages } from './../../../../common/mensagens/messages';
 import { AlertService } from './../../../../directives/alert/shared/alert.service';
 import { LoadingService } from './../../../../directives/loading/shared/loading.service';
-import { Class } from './../../shared/class.model';
-import { ClassService } from './../../shared/class.service';
+import { Classroom } from './../../shared/classroom.model';
+import { ClassroomService } from './../../shared/classroom.service';
 import { Shifts } from '../../../../common/shift/shift';
 
 @Component({
-  selector: 'app-detail-class',
-  templateUrl: './detail-class.component.html'
+  selector: 'app-detail-classroom',
+  templateUrl: './detail-classroom.component.html'
 })
-export class DetailClassComponent {
-  class: Class;
+export class DetailClassroomComponent {
+  classroom: Classroom;
   title: String;
   excluir: Boolean;
 
@@ -23,13 +23,13 @@ export class DetailClassComponent {
     private location: Location,
     private router: Router,
     private activateRoute: ActivatedRoute,
-    private classService: ClassService,
+    private classService: ClassroomService,
     private alertService: AlertService,
     private loadingService: LoadingService
   ) {
     //init
-    this.class = new Class();
-    this.title = "Detalhes da Turma";
+    this.classroom = new Classroom();
+    this.title = "Detalhes da Classe";
     this.excluir = false;
     this.checkAction();
     this.detail();
@@ -42,7 +42,7 @@ export class DetailClassComponent {
     var urlSegment: UrlSegment[] = urlSegmentGroup.segments;
 
     if (urlSegment.find(_urlSegment => _urlSegment.path === 'excluir')) {
-      this.title = "Excluir Turma";
+      this.title = "Excluir Classe";
       this.excluir = true;
     }
   }
@@ -51,8 +51,8 @@ export class DetailClassComponent {
     var _id = this.activateRoute.snapshot.params['id'];
     this.loadingService.loading(true);
     this.classService.detail(_id).subscribe(_class => {
-      this.class = <Class>_class;
-      this.formatShiftDescription(this.class.turnoLetivo);
+      this.classroom = <Classroom>_class;
+      this.formatShiftDescription(this.classroom.turno);
       this.loadingService.loading(false);
     }, err => {
       this.alertService.error(err);
@@ -60,10 +60,10 @@ export class DetailClassComponent {
   }
 
   delete() {
-    this.classService.delete(this.class.id)
+    this.classService.delete(this.classroom.id)
       .subscribe(
       data => {
-        this.alertService.success(SysMessages.get(3), ['/turma']);
+        this.alertService.success(SysMessages.get(3), ['/classe']);
       },
       error => {
         this.alertService.error(error);
@@ -71,7 +71,7 @@ export class DetailClassComponent {
   }
 
   private formatShiftDescription(id: string) {
-    this.class.turnoLetivo = Shifts.get(id).label;
+    this.classroom.turno = Shifts.get(id).label;
   }
 
   goBack() {
