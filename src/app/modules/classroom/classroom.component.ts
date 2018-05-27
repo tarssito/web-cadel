@@ -56,14 +56,14 @@ export class ClassroomComponent {
     this.classroomService.list(this.filter)
       .subscribe(data => {
         this.classroomList = <Classroom[]>data;
-        this.formatShiftDescription();
+        this.formatWeekdayDescription();
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
       });
   }
 
-  private formatShiftDescription() {
+  private formatWeekdayDescription() {
     this.classroomList.forEach(item => {
       item.descricaoDia = Weekdays.get(item.dia).label;
     });

@@ -10,36 +10,17 @@
             <b>Para realizar a chamada, clique na disciplina desejada.</b>
         </div>
     </div>
-    <div class="card-group row col-sm-12 form-group">
-        <div class="card col-sm-4">
+    <div *ngFor="let row of rows" class="card-group row col-sm-12 form-group">
+        <div *ngFor="let classroom of classroomList" class="card col-sm-4">
             <div class="card-body">
-                <h5 class="card-title">Laboratório de Software</h5>
-                <p class="card-text">Segunda-Feira - 19:00h as 20:15h</p>
-                <a href="#" class="btn btn-primary">Efetuar Chamada</a>
-            </div>
-        </div>
-        <div class="card col-sm-4">
-            <div class="card-body">
-                <h5 class="card-title">Laboratório de Software</h5>
-                <p class="card-text">Segunda-Feira - 20:30h as 21:50h</p>
-                <a href="#" class="btn btn-primary">Efetuar Chamada</a>
-            </div>
-        </div>
-        <div class="card col-sm-4">
-            <div class="card-body">
-                <h5 class="card-title">Engenharia de Software</h5>
-                <p class="card-text">Quinta-Feira - 19:00h as 20:15h</p>
+                <h5 class="card-title">{{classroom.disciplina.nome}}</h5>
+                <p class="card-text">{{classroom.descricaoDia}} - {{classroom.horaAbertura}}h as {{classroom.horaFechamento}}h</p>
                 <a href="#" class="btn btn-primary">Efetuar Chamada</a>
             </div>
         </div>
     </div>
-    <div class="card-group row col-sm-12 form-group">
-        <div class="card col-sm-4">
-            <div class="card-body">
-                <h5 class="card-title">Engenharia de Software</h5>
-                <p class="card-text">Quinta-Feira - 20:30h as 21:50h</p>
-                <a href="#" class="btn btn-primary">Efetuar Chamada</a>
-            </div>
-        </div>
+    <div *ngIf="rows.length == 0" class="row form-group col-sm-12">
+        <div class="alert alert-warning w-100" role="alert">
+            <i class="fas fa-exclamation-triangle" style="color: #928443;"></i> {{alertMessage}}</div>
     </div>
 </div>

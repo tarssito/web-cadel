@@ -25,6 +25,7 @@
     "angular-dual-listbox": "^4.7.0",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
+    "lodash": "^4.17.10",
     "ng2-auto-complete": "^0.12.0",
     "ngx-moment": "^2.0.0",
     "ngx-pagination": "^3.1.1",

@@ -51,6 +51,9 @@ export class SysMessages {
         }, {
             id: 17,
             description: "O campo sigla deve conter 5 caracteres."
+        }, {
+            id: 18,
+            description: "Não há aula(s) cadastrada(s) para hoje."
         }
     ];
 
