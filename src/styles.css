@@ -64,13 +64,7 @@ body {
 }
 
 #login button {
-    background-color: #04a2b3;
-    border-color: #04a2b3;
     width: 100%;
-}
-
-#login button:hover {
-    background-color: #026d79;
 }
 
 /* FILTER */
