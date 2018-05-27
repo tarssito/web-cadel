@@ -51,6 +51,7 @@ import { ClassService } from './modules/class/shared/class.service';
 //Classroom
 import { ClassroomComponent } from './modules/classroom/classroom.component';
 import { KeepClassroomComponent } from './modules/classroom/actions/keep/keep-classroom.component';
+import { DetailClassroomComponent } from './modules/classroom/actions/detail/detail-classroom.component';
 import { ClassroomService } from './modules/classroom/shared/classroom.service';
 //Course
 import { CourseComponent } from './modules/course/course.component';
@@ -101,7 +102,8 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     KeepClassComponent,
     ClassroomComponent,
     KeepClassroomComponent,
-    DetailClassComponent
+    DetailClassComponent,
+    DetailClassroomComponent
   ],
   imports: [
     NgbModule.forRoot(),

@@ -17,6 +17,7 @@ import { DetailClassComponent } from './modules/class/actions/detail/detail-clas
 //Classroom
 import { ClassroomComponent } from './modules/classroom/classroom.component';
 import { KeepClassroomComponent } from './modules/classroom/actions/keep/keep-classroom.component';
+import { DetailClassroomComponent } from './modules/classroom/actions/detail/detail-classroom.component';
 //Course
 import { CourseComponent } from './modules/course/course.component';
 import { KeepCourseComponent } from './modules/course/actions/keep/keep-course.component';
@@ -200,6 +201,16 @@ var appRoutes: Routes = [
     {
         path: _basePathClassroom + '/manter/:id',
         component: KeepClassroomComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathClassroom + '/detalhes/:id',
+        component: DetailClassroomComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: _basePathClassroom + '/excluir/:id',
+        component: DetailClassroomComponent,
         canActivate: [AuthGuard]
     },
     {
