@@ -79,7 +79,7 @@ export class KeepClassComponent {
     }
 
     if (this.class.sigla.length < 5) {
-      this.alertService.error(SysMessages.get(16));
+      this.alertService.error(SysMessages.get(17));
       return false;
     }
 

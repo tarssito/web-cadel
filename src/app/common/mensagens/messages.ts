@@ -46,10 +46,10 @@ export class SysMessages {
             id: 15,
             description: "É necessário incluir no mínimo 1 (uma) disciplina para o professor."
         }, {
-            id: 15,
+            id: 16,
             description: "É necessário incluir no mínimo 1 (uma) turma para a classe."
         }, {
-            id: 16,
+            id: 17,
             description: "O campo sigla deve conter 5 caracteres."
         }
     ];

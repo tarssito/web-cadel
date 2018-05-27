@@ -133,7 +133,7 @@ export class KeepClassroomComponent {
     }
 
     if (this.classroom.turmas.length === 0) {
-      this.alertService.error(SysMessages.get(12));
+      this.alertService.error(SysMessages.get(16));
       return false;
     }
 
