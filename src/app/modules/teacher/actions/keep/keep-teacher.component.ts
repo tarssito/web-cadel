@@ -19,8 +19,8 @@ import { SubjectService } from './../../../subject/shared/subject.service';
 export class KeepTeacherComponent {
   teacher: Teacher;
   genderList: any[];
-  courseList: Course[];
-  subjectList: Subject[];
+  courseList: any;
+  subjectList: any;
   title: String;
   labelBtn: String;
   successCode: Number;
@@ -52,7 +52,7 @@ export class KeepTeacherComponent {
     this.loadingService.loading(true);
     this.courseService.list(new Course())
       .subscribe(data => {
-        this.courseList = <Course[]>data;
+        this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
@@ -63,7 +63,7 @@ export class KeepTeacherComponent {
     this.loadingService.loading(true);
     this.subjectService.list(new Subject())
       .subscribe(data => {
-        this.subjectList = <Subject[]>data;
+        this.subjectList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
