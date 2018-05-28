@@ -19,7 +19,7 @@ import * as _ from "lodash";
 export class DashboardComponent {
   currentUser: any;
   classroomList: Classroom[];
-  rows: Classroom[];
+  rows: any;
   alertMessage: string;
 
   //dependency injection
@@ -35,9 +35,8 @@ export class DashboardComponent {
     this.classroomList = [];
     this.rows = [];
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.currentUser.id = 3;
     this.alertMessage = SysMessages.get(18);
-    // this.search();
+    this.search();
   }
 
   search(): void {
@@ -63,7 +62,7 @@ export class DashboardComponent {
 
   private chunkClassroom() {
     let qty = Math.floor(this.classroomList.length / 3) || 1;
-    // this.rows.push(_.chunk(this.classroomList, qty));
+    this.rows.push(_.chunk(this.classroomList, qty));
   }
 
 }

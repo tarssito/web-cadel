@@ -14,12 +14,14 @@ import { Attendance } from './shared/attendance.model';
 export class AttendanceComponent {
   state: any;
   attendance: Attendance;
+  currentUser: any;
 
   constructor(
     private alertService: AlertService
   ) {
     this.state = States.get('P');
     this.attendance = new Attendance();
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   }
 
   open() {

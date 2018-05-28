@@ -10,7 +10,7 @@ export class DashboardService {
   private requestOptions: any;
 
   constructor(private http: HttpClient) {
-    this.url = SERVER_URL + 'aulas/dashboard';
+    this.url = SERVER_URL + 'classes/dashboard';
     this.requestOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8' })
     };
