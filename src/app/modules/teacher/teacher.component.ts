@@ -13,7 +13,7 @@ import { PAGINATION } from './../../common/pagination.config';
 })
 export class TeacherComponent {
   filter: Teacher;
-  teacherList: Teacher[];
+  teacherList: any;
 
   //dependency injection
   constructor(
@@ -33,15 +33,15 @@ export class TeacherComponent {
   search(): void {
     this.loadingService.loading(true);
     this.teacherService.list(this.filter)
-        .subscribe(data => {
-            this.teacherList = <Teacher[]>data;
-            this.loadingService.loading(false);
-        }, error => {
-            this.alertService.error(error);
-        });
+      .subscribe(data => {
+        this.teacherList = data;
+        this.loadingService.loading(false);
+      }, error => {
+        this.alertService.error(error);
+      });
   }
 
   goBack(): void {
-      this.location.back();
+    this.location.back();
   }
 }

@@ -17,8 +17,8 @@ import { SubjectService } from './shared/subject.service';
 })
 export class SubjectComponent {
   filter: Subject;
-  subjectList: Subject[];
-  courseList: Course[];
+  subjectList: any;
+  courseList: any;
 
   //dependency injection
   constructor(
@@ -41,7 +41,7 @@ export class SubjectComponent {
     this.loadingService.loading(true);
     this.subjectService.list(this.filter)
       .subscribe(data => {
-        this.subjectList = <Subject[]>data;
+        this.subjectList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
@@ -52,7 +52,7 @@ export class SubjectComponent {
     this.loadingService.loading(true);
     this.courseService.list(this.filter)
       .subscribe(data => {
-        this.courseList = <Course[]>data;
+        this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);

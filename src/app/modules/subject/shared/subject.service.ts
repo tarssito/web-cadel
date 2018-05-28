@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { SERVER_URL } from './../../../common/api.config';
-
+import * as _ from "lodash";
 import { Subject } from './subject.model';
 
 @Injectable()
@@ -21,7 +21,11 @@ export class SubjectService {
   }
 
   list(filter: Subject) {
-    return this.http.get(this.url);
+    let _params = _.clone(filter);
+    if (!_params.cargaHoraria) delete _params.cargaHoraria;
+    if (!_params.nome) delete _params.nome;
+    this.requestOptions.params = _params;
+    return this.http.get(this.url, this.requestOptions);
   }
 
   detail(id: Number) {

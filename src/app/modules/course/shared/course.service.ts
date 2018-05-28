@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { SERVER_URL } from './../../../common/api.config';
-
+import * as _ from "lodash";
 import { Course } from './course.model';
 
 @Injectable()
@@ -16,12 +16,15 @@ export class CourseService {
     constructor(private http: HttpClient) {
         this.url = SERVER_URL + 'cursos/';
         this.requestOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8'})
+            headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8' })
         };
     }
 
     list(filter: Course) {
-        return this.http.get(this.url);
+        let _params = _.clone(filter);
+        if (!_params.nome) delete _params.nome;
+        this.requestOptions.params = _params;
+        return this.http.get(this.url, this.requestOptions);
     }
 
     detail(id: Number) {

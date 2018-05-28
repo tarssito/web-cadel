@@ -15,7 +15,7 @@ import { StudentService } from './shared/student.service';
 })
 export class StudentComponent {
   filter: Student;
-  studentList: Student[];
+  studentList: any;
 
   //dependency injection
   constructor(
@@ -36,7 +36,7 @@ export class StudentComponent {
     this.loadingService.loading(true);
     this.studentService.list(this.filter)
       .subscribe(data => {
-        this.studentList = <Student[]>data;
+        this.studentList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
