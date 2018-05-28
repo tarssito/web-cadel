@@ -1,10 +1,6 @@
 export class Weekdays {
     public static weekdays = [
         {
-            id: 1,
-            label: 'Domingo'
-        },
-        {
             id: 2,
             label: 'Segunda-feira'
         },

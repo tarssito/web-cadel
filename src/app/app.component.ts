@@ -21,7 +21,7 @@ export class AppComponent {
     private modalService: NgbModal,
     private activeModal: NgbActiveModal
   ) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.modalInstance = new ModalComponent(this.modalService, this.activeModal, this.loginService);
   }
 

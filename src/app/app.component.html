@@ -1,11 +1,14 @@
 <div id="main-title" class="row col-sm-12 text-center" style="padding: 15px 0;">
-    <h1><img src="./assets/images/logo.png" alt="UNIFACS" style="width: 35px;"><b>CADEL - Sistema de Caderneta Eletrônica</b></h1>
+  <h1>
+    <img src="./assets/images/logo.png" alt="UNIFACS" style="width: 35px;">
+    <b>CADEL - Sistema de Caderneta Eletrônica</b>
+  </h1>
 </div>
 
 <div id="menu" *ngIf="currentUser">
   <div class="row container-fluid navbar-collapse">
     <div class="col-sm-11">
-      <ul class="nav">
+      <ul *ngIf="currentUser.perfil == 'ADMIN'" class="nav">
         <li class="nav-item">
           <a class="nav-link" routerLink="/">Página Inicial</a>
         </li>
@@ -31,9 +34,14 @@
           <a class="nav-link" routerLink="/chamada">Efetuar Chamada</a>
         </li>
       </ul>
+      <ul *ngIf="currentUser.perfil == 'PROFESSOR'" class="nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Página Inicial</a>
+        </li>
+      </ul>
     </div>
     <div id="user" class="col-sm-1 text-center clear-padding-left clear-padding-right dropdown">
-      <i class="fas fa-user"></i>
+      <i class="fas fa-user" (click)="logout()"></i>
       <!-- <a id="logout" (click)="logout()">
           <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sair do Sistema
         </a> -->

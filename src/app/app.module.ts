@@ -10,9 +10,6 @@ import { MaskModule } from 'soft-angular-mask';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-// used to create fake backend - [remove]
-import { fakeBackendProvider } from './helpers/fake-backend';
-
 //DualList
 import { AngularDualListBoxModule } from 'angular-dual-listbox'
 
@@ -131,8 +128,7 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     StudentService,
     TeacherService,
     SubjectService,
-    DashboardService,
-    fakeBackendProvider //[remove]
+    DashboardService
   ],
   entryComponents: [
     ModalComponent

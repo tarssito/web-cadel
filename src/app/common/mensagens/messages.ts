@@ -54,6 +54,12 @@ export class SysMessages {
         }, {
             id: 18,
             description: "Não há aula(s) cadastrada(s) para hoje."
+        }, {
+            id: 19,
+            description: "Dados inválidos. Por favor, tente novamente."
+        }, {
+            id: 20,
+            description: "Ocorreu um erro na execução do serviço."
         }
     ];
 

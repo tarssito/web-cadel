@@ -10,14 +10,14 @@ import { LoadingService } from './../../directives/loading/shared/loading.servic
 import { DashboardService } from './shared/dashboard.service';
 import { Teacher } from './../teacher/shared/teacher.model';
 import { Classroom } from './../classroom/shared/classroom.model';
-var _ = require('lodash');
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent {
-  currentUser: Teacher;
+  currentUser: any;
   classroomList: Classroom[];
   rows: Classroom[];
   alertMessage: string;
@@ -34,10 +34,10 @@ export class DashboardComponent {
     //init
     this.classroomList = [];
     this.rows = [];
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.currentUser.id = 3;
     this.alertMessage = SysMessages.get(18);
-    this.search();
+    // this.search();
   }
 
   search(): void {
@@ -63,7 +63,7 @@ export class DashboardComponent {
 
   private chunkClassroom() {
     let qty = Math.floor(this.classroomList.length / 3) || 1;
-    this.rows.push(_.chunk(this.classroomList, qty));
+    // this.rows.push(_.chunk(this.classroomList, qty));
   }
 
 }
