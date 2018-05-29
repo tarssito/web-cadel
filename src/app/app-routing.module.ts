@@ -134,7 +134,7 @@ var appRoutes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: _basePathAttendance,
+        path: _basePathAttendance + '/:id',
         component: AttendanceComponent,
         canActivate: [AuthGuard]
     },

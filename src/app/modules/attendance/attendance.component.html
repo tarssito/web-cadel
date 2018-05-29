@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div *ngIf="classroom" class="container-fluid">
   <div class="row form-group">
     <div id="page-title" class="col-sm-12">
       <h2>Efetuar Chamada</h2>
@@ -30,23 +30,8 @@
           <b>Turma(s)</b>
         </label>
         <ul class="list-group">
-          <li class="list-group-item">
-            <span>[SI026 - Laboratório de Software e Projetos]</span>
-          </li>
-          <li class="list-group-item">
-            <span>[SI027 - Laboratório de Software e Projetos]</span>
-          </li>
-          <li class="list-group-item">
-            <span>[SI026 - Laboratório de Software e Projetos]</span>
-          </li>
-          <li class="list-group-item">
-            <span>[SI027 - Laboratório de Software e Projetos]</span>
-          </li>
-          <li class="list-group-item">
-            <span>[SI026 - Laboratório de Software e Projetos]</span>
-          </li>
-          <li class="list-group-item">
-            <span>[SI027 - Laboratório de Software e Projetos]</span>
+          <li *ngFor="let class of classroom.turmas" class="list-group-item">
+            <span>[{{class.sigla}} - {{classroom.disciplina.nome}}]</span>
           </li>
         </ul>
       </div>
@@ -62,7 +47,7 @@
           </div>
           <div class="form-group">
             <label>Horário: </label>
-            <span>19:00 a 20:15</span>
+            <span>{{classroom.horaAbertura}}h a {{classroom.horaFechamento}}h</span>
           </div>
           <div class="form-group">
             <label>Professor: </label>
@@ -93,38 +78,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr *ngFor='let student of studentList; let i = index'>
               <td>
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1"></label>
+                  <input type="checkbox" id="customCheck{{i}}" name="student{{i}}" class="custom-control-input" [(ngModel)]="student.presenca">
+                  <label class="custom-control-label" for="customCheck{{i}}"></label>
                 </div>
               </td>
-              <td>Zé</td>
-              <td>042123912</td>
-              <td>[NR001]</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck2">
-                  <label class="custom-control-label" for="customCheck2"></label>
-                </div>
-              </td>
-              <td>Bola</td>
-              <td>042123913</td>
-              <td>[NR001]</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck3">
-                  <label class="custom-control-label" for="customCheck3"></label>
-                </div>
-              </td>
-              <td>Waguinho</td>
-              <td>042123914</td>
-              <td>[NR001]</td>
+              <td>{{student.matricula}}</td>
+              <td>{{student.nome}}</td>
+              <td>[{{student.turma.sigla}}]</td>
             </tr>
           </tbody>
         </table>
