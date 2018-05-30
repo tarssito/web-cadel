@@ -5,11 +5,11 @@ export class Attendance {
     data: Date;
     horaAbertura: DateTimeFormat;
     horaFechamento: DateTimeFormat;
-    class: Class;
-    students: any;
+    classe: Class;
+    alunos: any[];
 
     constructor() {
-        this.class = new Class();
-        this.students = [];
+        this.classe = new Class();
+        this.alunos = [];
     }
 }

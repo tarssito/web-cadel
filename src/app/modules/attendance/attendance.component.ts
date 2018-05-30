@@ -8,6 +8,7 @@ import { Classroom } from './../classroom/shared/classroom.model';
 import { ClassroomService } from './../classroom/shared/classroom.service';
 import { AlertService } from './../../directives/alert/shared/alert.service';
 import { Attendance } from './shared/attendance.model';
+import { AttendanceService } from './shared/attendance.service';
 import { Shifts } from '../../common/shift/shift';
 
 @Component({
@@ -27,7 +28,8 @@ export class AttendanceComponent {
     private location: Location,
     private router: Router,
     private activateRoute: ActivatedRoute,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private attendanceService: AttendanceService
   ) {
     this.state = States.get('P');
     this.attendance = new Attendance();
@@ -64,6 +66,17 @@ export class AttendanceComponent {
 
   open() {
     this.state = States.get('A');
+    this.prepareObject();
+    this.loadingService.loading(true);
+    this.attendanceService.open(this.attendance)
+      .subscribe(
+      data => {
+        this.alertService.successNoRedirect(SysMessages.get(21), 2000);
+        this.loadingService.loading(false);
+      },
+      error => {
+        console.log(error);
+      });
   }
 
   close() {
@@ -75,7 +88,28 @@ export class AttendanceComponent {
   }
 
   save() {
+    this.prepareObject();
+    this.loadingService.loading(true);
+    this.attendanceService.close(this.attendance)
+      .subscribe(
+      data => {
+        this.alertService.successNoRedirect(SysMessages.get(22));
+        this.loadingService.loading(false);
+      },
+      error => {
+        console.log(error);
+      });
+  }
 
+  prepareObject() {
+    this.attendance.alunos = [];
+    this.attendance.classe.id = this.classroom.id;
+    this.studentList.forEach(student => {
+      this.attendance.alunos.push({
+        id: student.id,
+        presenca: !student.presenca
+      });
+    });
   }
 
 }

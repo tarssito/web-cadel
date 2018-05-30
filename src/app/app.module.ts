@@ -40,6 +40,7 @@ import { LoginService } from './login/shared/login.service';
 
 //Attendance
 import { AttendanceComponent } from './modules/attendance/attendance.component';
+import { AttendanceService } from './modules/attendance/shared/attendance.service';
 //Class
 import { ClassComponent } from './modules/class/class.component';
 import { KeepClassComponent } from './modules/class/actions/keep/keep-class.component';
@@ -120,6 +121,7 @@ import { TeacherService } from './modules/teacher/shared/teacher.service';
     NgbActiveModal,
     AuthGuard,
     AlertService,
+    AttendanceService,
     LoadingService,
     LoginService,
     ClassService,

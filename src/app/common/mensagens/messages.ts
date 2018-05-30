@@ -60,6 +60,12 @@ export class SysMessages {
         }, {
             id: 20,
             description: "Ocorreu um erro na execução do serviço."
+        }, {
+            id: 21,
+            description: "Aula aberta com sucesso."
+        }, {
+            id: 22,
+            description: "Aula salva com sucesso."
         }
     ];
 

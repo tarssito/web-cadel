@@ -23,6 +23,13 @@ export class AlertService {
         }, timeToRedirect);
     }
 
+    successNoRedirect(message: string, timeToClearMsg: Number = 1000) {
+        this.subject.next({ type: 'success', text: message });
+        setTimeout(() => {
+            this.subject.next();
+        }, timeToClearMsg);
+    }
+
     error(message: string) {
         this.subject.next({ type: 'error', text: message });
     }

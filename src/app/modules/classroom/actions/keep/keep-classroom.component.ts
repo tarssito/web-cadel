@@ -35,9 +35,9 @@ export class KeepClassroomComponent {
   labelBtn: String;
   title: String;
   classroom: Classroom;
-  courseList: Course[];
-  subjectList: Subject[];
-  teacherList: Teacher[];
+  courseList: any;
+  subjectList: any;
+  teacherList: any;
   classList: Class[];
   periodList: any[];
   ageList: any[];
@@ -85,7 +85,7 @@ export class KeepClassroomComponent {
     this.loadingService.loading(true);
     this.courseService.list(new Course())
       .subscribe(data => {
-        this.courseList = <Course[]>data;
+        this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
@@ -96,7 +96,7 @@ export class KeepClassroomComponent {
     this.loadingService.loading(true);
     this.subjectService.list(new Subject())
       .subscribe(data => {
-        this.subjectList = <Subject[]>data;
+        this.subjectList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
@@ -107,7 +107,7 @@ export class KeepClassroomComponent {
     this.loadingService.loading(true);
     this.teacherService.list(new Teacher())
       .subscribe(data => {
-        this.teacherList = <Teacher[]>data;
+        this.teacherList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);

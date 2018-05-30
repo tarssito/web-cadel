@@ -13,13 +13,9 @@
           </li>
           <li>
             <button [disabled]="state.id != 'A'" class="btn btn-secondary" type="button" (click)="register();">Registrar Aula</button>
-
           </li>
           <li>
-            <button [disabled]="state.id != 'R'" class="btn btn-secondary" type="button" (click)="close();">Fechar Aula</button>
-          </li>
-          <li>
-            <button [disabled]="state.id != 'F'" class="btn btn-secondary" type="button" (click)="save();">Salvar</button>
+            <button [disabled]="state.id != 'R'" class="btn btn-secondary" type="button" (click)="save();">Salvar</button>
           </li>
         </ul>
       </div>
@@ -81,7 +77,8 @@
             <tr *ngFor='let student of studentList; let i = index'>
               <td>
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" id="customCheck{{i}}" name="student{{i}}" class="custom-control-input" [(ngModel)]="student.presenca">
+                  <input type="checkbox" id="customCheck{{i}}" name="student{{i}}" class="custom-control-input" [(ngModel)]="student.presenca"
+                    [disabled]="state.id == 'P'">
                   <label class="custom-control-label" for="customCheck{{i}}"></label>
                 </div>
               </td>
