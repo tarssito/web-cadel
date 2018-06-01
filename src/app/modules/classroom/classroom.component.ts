@@ -20,8 +20,8 @@ import { ClassroomService } from './shared/classroom.service';
 export class ClassroomComponent {
   currentYear: number;
   filter: Classroom;
-  classroomList: Classroom[];
-  courseList: Course[];
+  classroomList: any;
+  courseList: any;
   periodList: any[];
   ageList: any[];
   weekdaysList: any[];
@@ -55,7 +55,7 @@ export class ClassroomComponent {
     this.loadingService.loading(true);
     this.classroomService.list(this.filter)
       .subscribe(data => {
-        this.classroomList = <Classroom[]>data;
+        this.classroomList = data;
         this.formatWeekdayDescription();
         this.loadingService.loading(false);
       }, error => {
@@ -84,7 +84,7 @@ export class ClassroomComponent {
     this.loadingService.loading(true);
     this.courseService.list(new Course())
       .subscribe(data => {
-        this.courseList = <Course[]>data;
+        this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);

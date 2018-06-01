@@ -17,7 +17,7 @@ export class KeepSubjectComponent {
   subject: Subject;
   title: String;
   labelBtn: String;
-  courseList: Course[];
+  courseList: any;
   successCode: Number;
 
   constructor(
@@ -81,7 +81,7 @@ export class KeepSubjectComponent {
     this.loadingService.loading(true);
     this.courseService.list(new Course())
       .subscribe(data => {
-        this.courseList = <Course[]>data;
+        this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);

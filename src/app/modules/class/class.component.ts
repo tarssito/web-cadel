@@ -20,8 +20,8 @@ import { ClassService } from './shared/class.service';
 export class ClassComponent {
   currentYear: number;
   filter: Class;
-  classList: Class[];
-  courseList: Course[];
+  classList: any;
+  courseList: any;
   periodList: any[];
   ageList: any[];
 
@@ -51,7 +51,7 @@ export class ClassComponent {
     this.loadingService.loading(true);
     this.classService.list(this.filter)
       .subscribe(data => {
-        this.classList = <Class[]>data;
+        this.classList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
@@ -73,7 +73,7 @@ export class ClassComponent {
     this.loadingService.loading(true);
     this.courseService.list(new Course())
       .subscribe(data => {
-        this.courseList = <Course[]>data;
+        this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);

@@ -31,8 +31,8 @@ export class KeepClassComponent {
   title: String;
   selectedStudent: any;
   class: Class;
-  courseList: Course[];
-  subjectList: Subject[];
+  courseList: any;
+  subjectList: any;
   periodList: any[];
   ageList: any[];
   shiftList: any[];
@@ -129,7 +129,7 @@ export class KeepClassComponent {
     this.loadingService.loading(true);
     this.courseService.list(new Course())
       .subscribe(data => {
-        this.courseList = <Course[]>data;
+        this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
@@ -140,7 +140,7 @@ export class KeepClassComponent {
     this.loadingService.loading(true);
     this.subjectService.list(new Subject())
       .subscribe(data => {
-        this.subjectList = <Subject[]>data;
+        this.subjectList = data;
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(error);
