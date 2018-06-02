@@ -15,7 +15,7 @@
             <button [disabled]="state.id != 'A'" class="btn btn-secondary" type="button" (click)="register();">Registrar Aula</button>
           </li>
           <li>
-            <button [disabled]="state.id != 'R'" class="btn btn-secondary" type="button" (click)="save();">Salvar</button>
+            <button [disabled]="state.id != 'R'" class="btn btn-secondary" type="button" (click)="save();">Fechar</button>
           </li>
         </ul>
       </div>
@@ -90,7 +90,7 @@
         </table>
       </div>
       <div class="col-sm-12 text-right">
-        <em>Total de Alunos: 3</em>
+        <em>Total de Alunos: {{studentList.length}}</em>
       </div>
     </div>
   </form>

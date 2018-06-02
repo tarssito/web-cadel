@@ -71,6 +71,7 @@ export class AttendanceComponent {
     this.attendanceService.open(this.attendance)
       .subscribe(
       data => {
+        this.attendance.id = Number(data);
         this.alertService.successNoRedirect(SysMessages.get(21), 2000);
         this.loadingService.loading(false);
       },
@@ -93,8 +94,8 @@ export class AttendanceComponent {
     this.attendanceService.close(this.attendance)
       .subscribe(
       data => {
-        this.alertService.successNoRedirect(SysMessages.get(22));
         this.loadingService.loading(false);
+        this.alertService.success(SysMessages.get(22), ['']);
       },
       error => {
         this.alertService.error(SysMessages.get(20));
