@@ -38,7 +38,7 @@ export class KeepClassroomComponent {
   courseList: any;
   subjectList: any;
   teacherList: any;
-  classList: Class[];
+  classList: any;
   periodList: any[];
   ageList: any[];
   shiftList: any[];
@@ -120,7 +120,8 @@ export class KeepClassroomComponent {
     this.loadingService.loading(true);
     this.classService.list(new Class())
       .subscribe(data => {
-        this.classList = <Class[]>data;
+        this.classList = data;
+        this.display();
         this.loadingService.loading(false);
       }, error => {
         this.alertService.error(SysMessages.get(20));
@@ -140,6 +141,12 @@ export class KeepClassroomComponent {
     }
 
     return true;
+  }
+
+  private display() {
+    this.classList.forEach((turma) => {
+      turma.display = '[' + turma.sigla + ']';
+    });
   }
 
   private detail() {

@@ -6,6 +6,7 @@ export class Class {
     id: number;
     sigla: String;
     semestre: number;
+    display: string;
     ano: number;
     curso: Course;
     disciplina: Subject;

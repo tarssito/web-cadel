@@ -16,7 +16,7 @@ export class Classroom {
     turno: string;
     disciplina: Subject;
     professor: Teacher;
-    turmas: Classroom[];
+    turmas: Class[];
 
     constructor() {
         this.curso = new Course();

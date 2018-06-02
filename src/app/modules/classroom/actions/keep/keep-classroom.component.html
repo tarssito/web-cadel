@@ -76,7 +76,7 @@
     <div class="row form-group">
       <div class="col-sm-9">
         <label class="control-label" for="turma">Turma(s)*</label>
-        <dual-list [source]="classList" [(destination)]="classroom.turmas" key="id" display="sigla" [format]="{ add: 'Adicionar', remove: 'Remover', all: 'Marcar Todos', none: 'Desmarcar Todos', direction: 'left-to-right', draggable: true, locale: undefined }"></dual-list>
+        <dual-list [source]="classList" [(destination)]="classroom.turmas" key="id" display="display" [format]="{ add: 'Adicionar', remove: 'Remover', all: 'Marcar Todos', none: 'Desmarcar Todos', direction: 'left-to-right', draggable: true, locale: undefined }"></dual-list>
       </div>
     </div>
     <div class="form-group clearfix" class="required-filter row form-group">
