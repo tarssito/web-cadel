@@ -64,7 +64,7 @@
                 <tr *ngIf="classroomList.length === 0">
                     <td class="text-center" colspan="5">A pesquisa não retornou registro(s).</td>
                 </tr>
-                <tr *ngFor='let classroom of classroomList'>
+                <tr *ngFor='let classroom of classroomList | paginate: { itemsPerPage: PAGINATION.itemsPerPage, currentPage: p, totalItems: classroomList.length }'>
                     <td>{{classroom.descricaoDia}}</td>
                     <td>{{classroom.ano}}.{{classroom.semestre}}</td>
                     <td>{{classroom.curso.nome}}</td>
@@ -77,5 +77,6 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls autoHide="true" class="text-center" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Próxima"></pagination-controls>
     </div>
 </div>

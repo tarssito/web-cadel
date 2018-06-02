@@ -15,6 +15,7 @@ import { PAGINATION } from './../../common/pagination.config';
 export class TeacherComponent {
   filter: Teacher;
   teacherList: any;
+  PAGINATION: any;
 
   //dependency injection
   constructor(
@@ -26,6 +27,7 @@ export class TeacherComponent {
     private loadingService: LoadingService
   ) {
     //init;
+    this.PAGINATION = PAGINATION;
     this.filter = new Teacher();
     this.teacherList = [];
     this.search();

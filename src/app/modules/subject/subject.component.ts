@@ -10,6 +10,7 @@ import { CourseService } from './../course/shared/course.service';
 import { Subject } from './shared/subject.model';
 import { Course } from './../course/shared/course.model';
 import { SubjectService } from './shared/subject.service';
+import { PAGINATION } from './../../common/pagination.config';
 
 @Component({
   selector: 'app-subject',
@@ -19,6 +20,7 @@ export class SubjectComponent {
   filter: Subject;
   subjectList: any;
   courseList: any;
+  PAGINATION: any;
 
   //dependency injection
   constructor(
@@ -30,6 +32,7 @@ export class SubjectComponent {
     private loadingService: LoadingService,
     private courseService: CourseService
   ) {
+    this.PAGINATION = PAGINATION;
     this.filter = new Subject();
     this.subjectList = [];
     this.courseList = [];

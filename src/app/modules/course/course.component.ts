@@ -8,6 +8,7 @@ import { LoadingService } from './../../directives/loading/shared/loading.servic
 
 import { Course } from './shared/course.model';
 import { CourseService } from './shared/course.service';
+import { PAGINATION } from './../../common/pagination.config';
 
 @Component({
     selector: 'app-course',
@@ -16,6 +17,7 @@ import { CourseService } from './shared/course.service';
 export class CourseComponent {
     filter: Course;
     courseList: any;
+    PAGINATION: any;
 
     //dependency injection
     constructor(
@@ -26,6 +28,7 @@ export class CourseComponent {
         private alertService: AlertService,
         private loadingService: LoadingService
     ) {
+        this.PAGINATION = PAGINATION;
         this.filter = new Course();
         this.courseList = [];
         this.search();

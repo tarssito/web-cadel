@@ -47,7 +47,7 @@
         <tr *ngIf="subjectList.length === 0">
           <td class="text-center" colspan="4">A pesquisa não retornou registro(s).</td>
         </tr>
-        <tr *ngFor='let subject of subjectList'>
+        <tr *ngFor='let subject of subjectList | paginate: { itemsPerPage: PAGINATION.itemsPerPage, currentPage: p, totalItems: subjectList.length }'>
           <td>{{subject.cargaHoraria + 'h'}}</td>
           <td>{{subject.nome}}</td>
           <td class="actions">
@@ -58,5 +58,6 @@
         </tr>
       </tbody>
     </table>
+    <pagination-controls autoHide="true" class="text-center" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Próxima"></pagination-controls>
   </div>
 </div>

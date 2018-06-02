@@ -8,6 +8,7 @@ import { LoadingService } from './../../directives/loading/shared/loading.servic
 
 import { Student } from './shared/student.model';
 import { StudentService } from './shared/student.service';
+import { PAGINATION } from './../../common/pagination.config';
 
 @Component({
   selector: 'app-student',
@@ -16,6 +17,7 @@ import { StudentService } from './shared/student.service';
 export class StudentComponent {
   filter: Student;
   studentList: any;
+  PAGINATION: any;
 
   //dependency injection
   constructor(
@@ -27,6 +29,7 @@ export class StudentComponent {
     private loadingService: LoadingService
   ) {
     //init;
+    this.PAGINATION = PAGINATION;
     this.filter = new Student();
     this.studentList = [];
     this.search();

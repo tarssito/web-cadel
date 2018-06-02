@@ -60,7 +60,7 @@
         <tr *ngIf="classList.length === 0">
           <td class="text-center" colspan="3">A pesquisa não retornou registro(s).</td>
         </tr>
-        <tr *ngFor='let class of classList'>
+        <tr *ngFor='let class of classList | paginate: { itemsPerPage: PAGINATION.itemsPerPage, currentPage: p, totalItems: classList.length }'>
           <td>{{class.sigla}}</td>
           <td>{{class.ano}}.{{class.semestre}}</td>
           <td class="actions">
@@ -71,5 +71,6 @@
         </tr>
       </tbody>
     </table>
+    <pagination-controls autoHide="true" class="text-center" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Próxima"></pagination-controls>
   </div>
 </div>

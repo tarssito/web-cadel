@@ -41,7 +41,7 @@
                 <tr *ngIf="courseList.length === 0">
                     <td class="text-center" colspan="2">A pesquisa não retornou registro(s).</td>
                 </tr>
-                <tr *ngFor='let course of courseList'>
+                <tr *ngFor='let course of courseList | paginate: { itemsPerPage: PAGINATION.itemsPerPage, currentPage: p, totalItems: courseList.length }'>
                     <td>{{course.nome}}</td>
                     <td class="actions">
                         <a [routerLink]="['detalhes/', course.id]" class="fa fa-info-circle" placement="bottom" ngbTooltip="Detalhes do Curso"></a>
@@ -51,5 +51,6 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls autoHide="true" class="text-center" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Próxima"></pagination-controls>
     </div>
 </div>

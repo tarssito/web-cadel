@@ -11,7 +11,7 @@ import { CourseService } from './../course/shared/course.service';
 
 import { Class } from './shared/class.model';
 import { ClassService } from './shared/class.service';
-
+import { PAGINATION } from './../../common/pagination.config';
 
 @Component({
   selector: 'app-class',
@@ -24,6 +24,7 @@ export class ClassComponent {
   courseList: any;
   periodList: any[];
   ageList: any[];
+  PAGINATION: any;
 
   //dependency injection
   constructor(
@@ -35,6 +36,7 @@ export class ClassComponent {
     private loadingService: LoadingService,
     private courseService: CourseService
   ) {
+    this.PAGINATION = PAGINATION;
     this.currentYear = new Date().getFullYear();
     this.filter = new Class();
     this.classList = [];
