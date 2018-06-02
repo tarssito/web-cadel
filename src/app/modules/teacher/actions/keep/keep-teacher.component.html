@@ -40,6 +40,7 @@
       <div class="col-sm-4">
         <label class="control-label" for="course">Curso*</label>
         <select id="course" name="course" class="form-control" [(ngModel)]="teacher.curso.id" (change)="onChangeCourse();" required>
+          <option value=""></option>
           <option *ngFor='let course of courseList' [value]="course.id">{{course.nome}}</option>
         </select>
       </div>

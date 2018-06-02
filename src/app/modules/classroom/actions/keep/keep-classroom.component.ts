@@ -94,7 +94,9 @@ export class KeepClassroomComponent {
 
   private loadSubject(): void {
     this.loadingService.loading(true);
-    this.subjectService.list(new Subject())
+    let _filter = new Course();
+    _filter.id = this.classroom.curso.id;
+    this.subjectService.findByCourse(_filter)
       .subscribe(data => {
         this.subjectList = data;
         this.loadingService.loading(false);

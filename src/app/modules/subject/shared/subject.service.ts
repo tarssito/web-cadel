@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { SERVER_URL } from './../../../common/api.config';
 import * as _ from "lodash";
+import { Course } from './../../course/shared/course.model';
 import { Subject } from './subject.model';
 
 @Injectable()
@@ -26,6 +27,12 @@ export class SubjectService {
     if (!_params.nome) delete _params.nome;
     this.requestOptions.params = _params;
     return this.http.get(this.url, this.requestOptions);
+  }
+
+  findByCourse(filter: Course) {
+    let _params = _.clone(filter);
+    this.requestOptions.params = _params;
+    return this.http.get(this.url + 'curso', this.requestOptions);
   }
 
   detail(id: Number) {

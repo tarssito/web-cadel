@@ -61,7 +61,9 @@ export class KeepTeacherComponent {
 
   private loadSubject(): void {
     this.loadingService.loading(true);
-    this.subjectService.list(new Subject())
+    let _filter = new Course();
+    _filter.id = this.teacher.curso.id;
+    this.subjectService.findByCourse(_filter)
       .subscribe(data => {
         this.subjectList = data;
         this.loadingService.loading(false);
@@ -71,6 +73,7 @@ export class KeepTeacherComponent {
   }
 
   onChangeCourse() {
+    this.subjectList = [];
     this.teacher.disciplinas = [];
     if (this.teacher.curso.id) {
       this.loadSubject();

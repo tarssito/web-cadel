@@ -14,18 +14,21 @@
       <div class="col-sm-2">
         <label class="control-label" for="period">Semestre*</label>
         <select id="period" name="period" class="form-control" [(ngModel)]="class.semestre" required>
+          <option value=""></option>
           <option *ngFor='let period of periodList' [value]="period.id">{{period.label}}</option>
         </select>
       </div>
       <div class="col-sm-2">
         <label class="control-label" for="age">Ano*</label>
         <select id="age" name="age" class="form-control" [(ngModel)]="class.ano">
+          <option value=""></option>
           <option *ngFor='let age of ageList' [value]="age.id">{{age.label}}</option>
         </select>
       </div>
       <div class="col-sm-4">
         <label class="control-label" for="course">Curso*</label>
         <select id="course" name="course" class="form-control" [(ngModel)]="class.curso.id" (change)="onChangeCourse();" required>
+          <option value=""></option>
           <option *ngFor='let course of courseList' [value]="course.id">{{course.nome}}</option>
         </select>
       </div>
@@ -36,12 +39,14 @@
         <label class="control-label" for="subject">Disciplina*</label>
         <select id="subject" name="subject" class="form-control" [(ngModel)]="class.disciplina.id" [(disabled)]="!class.curso.id"
           required>
+          <option value=""></option>
           <option *ngFor='let subject of subjectList' [value]="subject.id">{{subject.nome}}</option>
         </select>
       </div>
       <div class="col-sm-4">
         <label class="control-label" for="shift">Turno*</label>
         <select id="shift" name="shift" class="form-control" [(ngModel)]="class.turnoLetivo" required>
+          <option value=""></option>
           <option *ngFor='let shift of shiftList' [value]="shift.id">{{shift.label}}</option>
         </select>
       </div>
