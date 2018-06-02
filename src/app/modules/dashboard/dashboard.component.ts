@@ -50,7 +50,7 @@ export class DashboardComponent {
         }
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 

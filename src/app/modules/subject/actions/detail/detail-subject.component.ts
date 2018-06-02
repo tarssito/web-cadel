@@ -53,7 +53,7 @@ export class DetailSubjectComponent {
       this.subject = <Subject>subject;
       this.loadingService.loading(false);
     }, err => {
-      console.log(err);
+      this.alertService.error(err);
     });
   }
 
@@ -64,7 +64,7 @@ export class DetailSubjectComponent {
         this.alertService.success(SysMessages.get(3), ['/disciplina']);
       },
       error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 

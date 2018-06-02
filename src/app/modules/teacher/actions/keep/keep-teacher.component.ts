@@ -55,7 +55,7 @@ export class KeepTeacherComponent {
         this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -66,7 +66,7 @@ export class KeepTeacherComponent {
         this.subjectList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -93,7 +93,7 @@ export class KeepTeacherComponent {
           this.router.navigate(['/professor']);
         }
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
     }
   }
@@ -147,7 +147,7 @@ export class KeepTeacherComponent {
           this.alertService.success(SysMessages.get(this.successCode), ['/professor']);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(SysMessages.get(20));
         });
     }
   }

@@ -88,7 +88,7 @@ export class KeepClassroomComponent {
         this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -99,7 +99,7 @@ export class KeepClassroomComponent {
         this.subjectList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -110,7 +110,7 @@ export class KeepClassroomComponent {
         this.teacherList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -121,7 +121,7 @@ export class KeepClassroomComponent {
         this.classList = <Class[]>data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -157,7 +157,7 @@ export class KeepClassroomComponent {
           this.router.navigate(['/classe']);
         }
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
     }
   }
@@ -205,7 +205,7 @@ export class KeepClassroomComponent {
           this.alertService.success(SysMessages.get(this.successCode), ['/classe']);
         },
         error => {
-          console.log(error);
+          this.alertService.error(SysMessages.get(20));
         });
     }
   }

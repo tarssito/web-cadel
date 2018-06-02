@@ -5,6 +5,7 @@ import { AlertService } from './../../directives/alert/shared/alert.service';
 import { LoadingService } from './../../directives/loading/shared/loading.service';
 import { Teacher } from './shared/teacher.model';
 import { TeacherService } from './shared/teacher.service';
+import { SysMessages } from './../../common/mensagens/messages';
 import { PAGINATION } from './../../common/pagination.config';
 
 @Component({
@@ -37,7 +38,7 @@ export class TeacherComponent {
         this.teacherList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 

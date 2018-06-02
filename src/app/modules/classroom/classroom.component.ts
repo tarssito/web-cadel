@@ -59,7 +59,7 @@ export class ClassroomComponent {
         this.formatWeekdayDescription();
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -87,7 +87,7 @@ export class ClassroomComponent {
         this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 

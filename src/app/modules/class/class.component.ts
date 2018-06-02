@@ -54,7 +54,7 @@ export class ClassComponent {
         this.classList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -76,7 +76,7 @@ export class ClassComponent {
         this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 

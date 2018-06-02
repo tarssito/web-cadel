@@ -99,7 +99,7 @@ export class KeepClassComponent {
           this.alertService.success(SysMessages.get(this.successCode), ['/turma']);
         },
         error => {
-          console.log(error);
+          this.alertService.error(SysMessages.get(20));
         });
     }
   }
@@ -120,7 +120,7 @@ export class KeepClassComponent {
           this.router.navigate(['/turma']);
         }
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
     }
   }
@@ -132,7 +132,7 @@ export class KeepClassComponent {
         this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -143,7 +143,7 @@ export class KeepClassComponent {
         this.subjectList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 

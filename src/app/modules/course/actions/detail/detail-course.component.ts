@@ -64,7 +64,7 @@ export class DetailCourseComponent {
                 this.alertService.success(SysMessages.get(3), ['/curso']);
             },
             error => {
-                this.alertService.error(error);
+                this.alertService.error(SysMessages.get(20));
             });
     }
 

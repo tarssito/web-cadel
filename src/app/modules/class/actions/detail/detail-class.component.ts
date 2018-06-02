@@ -66,7 +66,7 @@ export class DetailClassComponent {
         this.alertService.success(SysMessages.get(3), ['/turma']);
       },
       error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 

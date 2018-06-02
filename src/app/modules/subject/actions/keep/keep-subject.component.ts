@@ -53,7 +53,7 @@ export class KeepSubjectComponent {
           this.router.navigate(['/disciplina']);
         }
       }, error => {
-        console.log(error);
+        this.alertService.error(SysMessages.get(20));
       });
     }
   }
@@ -84,7 +84,7 @@ export class KeepSubjectComponent {
         this.courseList = data;
         this.loadingService.loading(false);
       }, error => {
-        this.alertService.error(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -96,7 +96,7 @@ export class KeepSubjectComponent {
           this.alertService.success(SysMessages.get(this.successCode), ['/disciplina']);
         },
         error => {
-          console.log(error);
+          this.alertService.error(SysMessages.get(20));
         });
     }
   }

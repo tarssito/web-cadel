@@ -48,7 +48,7 @@ export class KeepCourseComponent {
                     this.router.navigate(['/curso']);
                 }
             }, error => {
-                this.alertService.error(error);
+                this.alertService.error(SysMessages.get(20));
             });
         }
     }
@@ -69,7 +69,7 @@ export class KeepCourseComponent {
                     this.alertService.success(SysMessages.get(this.successCode), ['/curso']);
                 },
                 error => {
-                    console.log(error);
+                    this.alertService.error(SysMessages.get(20));
                 });
         } else {
             this.alertService.error(SysMessages.get(4));

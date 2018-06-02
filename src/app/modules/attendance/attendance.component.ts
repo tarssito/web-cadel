@@ -75,7 +75,7 @@ export class AttendanceComponent {
         this.loadingService.loading(false);
       },
       error => {
-        console.log(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 
@@ -97,7 +97,7 @@ export class AttendanceComponent {
         this.loadingService.loading(false);
       },
       error => {
-        console.log(error);
+        this.alertService.error(SysMessages.get(20));
       });
   }
 

@@ -53,7 +53,7 @@ export class KeepStudentComponent {
           this.router.navigate(['/aluno']);
         }
       }, error => {
-        console.log(error);
+        this.alertService.error(SysMessages.get(20));
       });
     }
   }
