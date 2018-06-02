@@ -15,7 +15,7 @@
             <button [disabled]="state.id != 'A'" class="btn btn-secondary" type="button" (click)="register();">Registrar Aula</button>
           </li>
           <li>
-            <button [disabled]="state.id != 'R'" class="btn btn-secondary" type="button" (click)="save();">Fechar</button>
+            <button [disabled]="state.id != 'R'" class="btn btn-secondary" type="button" (click)="close();">Fechar Aula</button>
           </li>
         </ul>
       </div>
@@ -68,8 +68,8 @@
           <thead>
             <tr>
               <th scope="col"></th>
-              <th scope="col">Aluno</th>
               <th scope="col">Matrícula</th>
+              <th scope="col">Aluno</th>
               <th scope="col">Turma</th>
             </tr>
           </thead>

@@ -15,7 +15,7 @@
         <div class="form-group">
             <label for="password">Senha</label>
             <input type="password" [ngClass]="{ 'has-error': f.submitted && !username.valid }" class="form-control" name="password" [(ngModel)]="model.senha"
-                #password="ngModel" maxlength="8" required />
+                #password="ngModel" maxlength="10" required />
             <div *ngIf="f.submitted && !password.valid" class="help-block">O campo Senha é obrigatório</div>
         </div>
         <div class="form-group">

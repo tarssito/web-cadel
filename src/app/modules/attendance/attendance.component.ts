@@ -72,7 +72,7 @@ export class AttendanceComponent {
       .subscribe(
       data => {
         this.attendance.id = Number(data);
-        this.alertService.successNoRedirect(SysMessages.get(21), 2000);
+        this.alertService.successNoRedirect(SysMessages.get(21), 1000);
         this.loadingService.loading(false);
       },
       error => {
@@ -80,15 +80,11 @@ export class AttendanceComponent {
       });
   }
 
-  close() {
-    this.state = States.get('F');
-  }
-
   register() {
     this.state = States.get('R');
   }
 
-  save() {
+  close() {
     this.prepareObject();
     this.loadingService.loading(true);
     this.attendanceService.close(this.attendance)
