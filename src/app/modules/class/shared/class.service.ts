@@ -3,6 +3,7 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
+import * as _ from "lodash";
 import { SERVER_URL } from './../../../common/api.config';
 
 import { Class } from './class.model';
@@ -21,7 +22,18 @@ export class ClassService {
     }
 
     list(filter: Class) {
-        return this.http.get(this.url);
+        let _params = {
+            sigla: filter.sigla,
+            semestre: filter.semestre,
+            ano: filter.ano,
+            idCurso: filter.curso.id
+        };
+        if (!_params.sigla) delete _params.sigla;
+        if (!_params.semestre) delete _params.semestre;
+        if (!_params.ano) delete _params.ano;
+        if (!_params.idCurso) delete _params.idCurso;
+        this.requestOptions.params = _params;
+        return this.http.get(this.url + 'search', this.requestOptions);
     }
 
     detail(id: Number) {

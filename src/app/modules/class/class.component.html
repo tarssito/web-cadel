@@ -14,23 +14,26 @@
       <div class="row form-group">
         <div class="col-sm-2">
           <label class="control-label" for="initials">Sigla</label>
-          <input type="text" class="form-control" id="initials" name="initials" maxlength="5">
+          <input type="text" class="form-control" id="initials" name="initials" maxlength="5" [(ngModel)]="filter.sigla">
         </div>
         <div class="col-sm-2">
           <label class="control-label" for="period">Semestre</label>
           <select id="period" name="period" class="form-control" [(ngModel)]="filter.semestre">
+            <option value=""></option>
             <option *ngFor='let period of periodList' [value]="period.id">{{period.label}}</option>
           </select>
         </div>
         <div class="col-sm-2">
           <label class="control-label" for="age">Ano</label>
           <select id="age" name="age" class="form-control" [(ngModel)]="filter.ano">
+            <option value=""></option>
             <option *ngFor='let age of ageList' [value]="age.id">{{age.label}}</option>
           </select>
         </div>
         <div class="col-sm-3">
           <label class="control-label" for="course">Curso</label>
           <select id="course" name="course" class="form-control" [(ngModel)]="filter.curso.id">
+            <option value=""></option>
             <option *ngFor='let course of courseList' [value]="course.id">{{course.nome}}</option>
           </select>
         </div>

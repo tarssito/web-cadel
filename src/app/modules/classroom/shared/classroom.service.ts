@@ -20,7 +20,18 @@ export class ClassroomService {
   }
 
   list(filter: Classroom) {
-    return this.http.get(this.url);
+    let _params = {
+      dia: filter.diaSemana,
+      semestre: filter.semestre,
+      ano: filter.ano,
+      idCurso: filter.curso.id
+    };
+    if (!_params.dia) delete _params.dia;
+    if (!_params.semestre) delete _params.semestre;
+    if (!_params.ano) delete _params.ano;
+    if (!_params.idCurso) delete _params.idCurso;
+    this.requestOptions.params = _params;
+    return this.http.get(this.url + 'search', this.requestOptions);
   }
 
   detail(id: Number) {

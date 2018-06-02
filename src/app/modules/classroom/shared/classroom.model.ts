@@ -7,6 +7,7 @@ export class Classroom {
     id: number;
     dia: number;
     descricaoDia: String;
+    diaSemana: string;
     horaAbertura: String;
     horaFechamento: String;
     semestre: number;
