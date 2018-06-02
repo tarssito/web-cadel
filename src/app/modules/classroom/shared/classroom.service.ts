@@ -29,7 +29,7 @@ export class ClassroomService {
 
   keep(classroom: Classroom) {
     if (classroom.id) {
-      return this.http.put(this.url + classroom.id, JSON.stringify(classroom), this.requestOptions);
+      return this.http.put(this.url, JSON.stringify(classroom), this.requestOptions);
     }
     return this.http.post(this.url, JSON.stringify(classroom), this.requestOptions);
   }

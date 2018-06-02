@@ -30,7 +30,7 @@ export class ClassService {
 
     keep(turma: Class) {
         if (turma.id) {
-            return this.http.put(this.url + turma.id, JSON.stringify(turma), this.requestOptions);
+            return this.http.put(this.url, JSON.stringify(turma), this.requestOptions);
         }
         return this.http.post(this.url, JSON.stringify(turma), this.requestOptions);
     }

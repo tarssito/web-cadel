@@ -33,7 +33,7 @@ export class CourseService {
 
     keep(course: Course) {
         if (course.id) {
-            return this.http.put(this.url + course.id, JSON.stringify(course), this.requestOptions);
+            return this.http.put(this.url, JSON.stringify(course), this.requestOptions);
         }
         return this.http.post(this.url, JSON.stringify(course), this.requestOptions);
     }

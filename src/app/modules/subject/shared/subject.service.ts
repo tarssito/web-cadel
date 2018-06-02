@@ -41,7 +41,7 @@ export class SubjectService {
 
   keep(subject: Subject) {
     if (subject.id) {
-      return this.http.put(this.url + subject.id, JSON.stringify(subject), this.requestOptions);
+      return this.http.put(this.url, JSON.stringify(subject), this.requestOptions);
     }
     return this.http.post(this.url, JSON.stringify(subject), this.requestOptions);
   }

@@ -107,7 +107,6 @@ export class KeepClassComponent {
   private detail() {
     var _id = this.activateRoute.snapshot.params['id'];
     if (_id) {
-      this.loadSubject();
       this.title = "Alterar Turma";
       this.labelBtn = "Alterar";
       this.successCode = 2;
@@ -115,6 +114,7 @@ export class KeepClassComponent {
       this.loadingService.loading(true);
       this.classService.detail(_id).subscribe(_class => {
         this.class = <Class>_class;
+        this.loadSubject();
         this.loadingService.loading(false);
         if (!this.class) {
           this.router.navigate(['/turma']);

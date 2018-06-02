@@ -83,7 +83,6 @@ export class KeepTeacherComponent {
   private detail() {
     var _id = this.activateRoute.snapshot.params['id'];
     if (_id) {
-      this.loadSubject();
       this.title = "Alterar Professor";
       this.labelBtn = "Alterar";
       this.successCode = 2;
@@ -91,6 +90,7 @@ export class KeepTeacherComponent {
       this.loadingService.loading(true);
       this.teacherService.detail(_id).subscribe(teacher => {
         this.teacher = <Teacher>teacher;
+        this.loadSubject();
         this.loadingService.loading(false);
         if (!this.teacher) {
           this.router.navigate(['/professor']);

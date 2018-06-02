@@ -145,8 +145,6 @@ export class KeepClassroomComponent {
   private detail() {
     var _id = this.activateRoute.snapshot.params['id'];
     if (_id) {
-      this.loadSubject();
-      this.loadTeacher();
       this.title = "Alterar Classe";
       this.labelBtn = "Alterar";
       this.successCode = 2;
@@ -154,6 +152,8 @@ export class KeepClassroomComponent {
       this.loadingService.loading(true);
       this.classroomService.detail(_id).subscribe(_classroom => {
         this.classroom = <Classroom>_classroom;
+        this.loadSubject();
+        this.loadTeacher();
         this.loadingService.loading(false);
         if (!this.classroom) {
           this.router.navigate(['/classe']);

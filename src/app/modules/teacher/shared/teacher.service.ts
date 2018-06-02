@@ -34,7 +34,7 @@ export class TeacherService {
 
   keep(teacher: Teacher) {
     if (teacher.id) {
-      return this.http.put(this.url + teacher.id, JSON.stringify(teacher), this.requestOptions);
+      return this.http.put(this.url, JSON.stringify(teacher), this.requestOptions);
     }
     return this.http.post(this.url, JSON.stringify(teacher), this.requestOptions);
   }

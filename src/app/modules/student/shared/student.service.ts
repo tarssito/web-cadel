@@ -33,11 +33,11 @@ export class StudentService {
     return this.http.get(this.url + id);
   }
 
-  keep(course: Student) {
-    if (course.id) {
-      return this.http.put(this.url + course.id, JSON.stringify(course), this.requestOptions);
+  keep(student: Student) {
+    if (student.id) {
+      return this.http.put(this.url, JSON.stringify(student), this.requestOptions);
     }
-    return this.http.post(this.url, JSON.stringify(course), this.requestOptions);
+    return this.http.post(this.url, JSON.stringify(student), this.requestOptions);
   }
 
   delete(id: Number) {
