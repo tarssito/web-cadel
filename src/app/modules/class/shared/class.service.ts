@@ -26,12 +26,16 @@ export class ClassService {
             sigla: filter.sigla,
             semestre: filter.semestre,
             ano: filter.ano,
-            idCurso: filter.curso.id
+            turno: filter.turnoLetivo,
+            idCurso: filter.curso.id,
+            idDisciplina: filter.disciplina.id
         };
         if (!_params.sigla) delete _params.sigla;
         if (!_params.semestre) delete _params.semestre;
         if (!_params.ano) delete _params.ano;
         if (!_params.idCurso) delete _params.idCurso;
+        if (!_params.turno) delete _params.turno;
+        if (!_params.idDisciplina) delete _params.idDisciplina;
         this.requestOptions.params = _params;
         return this.http.get(this.url + 'search', this.requestOptions);
     }

@@ -77,7 +77,6 @@ export class KeepClassroomComponent {
     this.loadAge();
     this.loadShift();
     this.loadWeekdays();
-    this.loadClass();
     this.detail();
   }
 
@@ -107,7 +106,9 @@ export class KeepClassroomComponent {
 
   private loadTeacher(): void {
     this.loadingService.loading(true);
-    this.teacherService.list(new Teacher())
+    let _filter = new Subject();
+    _filter.id = this.classroom.disciplina.id;
+    this.teacherService.listBySubject(_filter)
       .subscribe(data => {
         this.teacherList = data;
         this.loadingService.loading(false);
@@ -118,7 +119,10 @@ export class KeepClassroomComponent {
 
   private loadClass(): void {
     this.loadingService.loading(true);
-    this.classService.list(new Class())
+    let _filter = new Class();
+    _filter.disciplina.id = this.classroom.disciplina.id;
+    _filter.turnoLetivo = this.classroom.turno;
+    this.classService.list(_filter)
       .subscribe(data => {
         this.classList = data;
         this.display();
@@ -145,7 +149,7 @@ export class KeepClassroomComponent {
 
   private display() {
     this.classList.forEach((turma) => {
-      turma.display = '[' + turma.sigla + ']';
+      turma.display = '[' + turma.sigla + ' - ' + turma.disciplina.nome + ']';
     });
   }
 
@@ -161,6 +165,7 @@ export class KeepClassroomComponent {
         this.classroom = <Classroom>_classroom;
         this.loadSubject();
         this.loadTeacher();
+        this.loadClass();
         this.loadingService.loading(false);
         if (!this.classroom) {
           this.router.navigate(['/classe']);
@@ -184,6 +189,14 @@ export class KeepClassroomComponent {
     this.teacherList = [];
     if (this.classroom.disciplina.id) {
       this.loadTeacher();
+    }
+  }
+
+  onChangeShift() {
+    this.classroom.turmas = [];
+    this.classList = [];
+    if (this.classroom.disciplina.id && this.classroom.turno) {
+      this.loadClass();
     }
   }
 

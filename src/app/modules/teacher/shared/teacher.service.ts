@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map'
 import { SERVER_URL } from './../../../common/api.config';
 import * as _ from "lodash";
 import { Teacher } from './teacher.model';
+import { Subject } from './../../subject/shared/subject.model';
 
 @Injectable()
 export class TeacherService {
@@ -25,7 +26,16 @@ export class TeacherService {
     if (!_params.matricula) delete _params.matricula;
     if (!_params.nome) delete _params.nome;
     this.requestOptions.params = _params;
-    return this.http.get(this.url, this.requestOptions);
+    return this.http.get(this.url + 'search', this.requestOptions);
+  }
+
+  listBySubject(filter: Subject) {
+    let _params = {
+      idDisciplina: filter.id
+    };
+    if (!_params.idDisciplina) delete _params.idDisciplina;
+    this.requestOptions.params = _params;
+    return this.http.get(this.url + 'search', this.requestOptions);
   }
 
   detail(id: Number) {
