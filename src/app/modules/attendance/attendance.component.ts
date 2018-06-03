@@ -16,11 +16,13 @@ import { Shifts } from '../../common/shift/shift';
   templateUrl: './attendance.component.html'
 })
 export class AttendanceComponent {
+  title: string;
   state: any;
   attendance: Attendance;
   currentUser: any;
   classroom: Classroom;
   studentList: any;
+  actRegister: boolean;
 
   constructor(
     private alertService: AlertService,
@@ -32,6 +34,8 @@ export class AttendanceComponent {
     private attendanceService: AttendanceService
   ) {
     this.state = States.get('P');
+    this.title = 'Efetuar Chamada';
+    this.actRegister = false;
     this.attendance = new Attendance();
     this.studentList = [];
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -81,7 +85,28 @@ export class AttendanceComponent {
   }
 
   register() {
-    this.state = States.get('R');
+    this.actRegister = true;
+    this.title = 'Registrar Aula';
+  }
+
+  private validRegister() {
+    if (!this.attendance.registro) {
+      this.alertService.error(SysMessages.get(4));
+      return false;
+    }
+    return true;
+  }
+
+  onSubmitRegister() {
+    this.alertService.clear();
+    if (this.validRegister()) {
+      this.alertService.successNoRedirect(SysMessages.get(23));
+      setTimeout(() => {
+        this.actRegister = false;
+        this.title = 'Efetuar Chamada';
+        this.state = States.get('R');
+      }, 1000);
+    }
   }
 
   close() {

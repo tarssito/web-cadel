@@ -1,10 +1,10 @@
 <div *ngIf="classroom" class="container-fluid">
   <div class="row form-group">
     <div id="page-title" class="col-sm-12">
-      <h2>Efetuar Chamada</h2>
+      <h2>{{title}}</h2>
     </div>
   </div>
-  <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
+  <form #courseForm="ngForm" *ngIf="!actRegister">
     <div class="row form-group">
       <div class="col-sm-12">
         <ul id="attendance-opt">
@@ -91,6 +91,25 @@
       </div>
       <div class="col-sm-12 text-right">
         <em>Total de Alunos: {{studentList.length}}</em>
+      </div>
+    </div>
+  </form>
+  <form (ngSubmit)="onSubmitRegister()" #registerForm="ngForm" *ngIf="actRegister">
+    <div class="row form-group">
+      <div class="col-sm-6">
+        <label class="control-label" for="occurrence">Ocorrências*</label>
+        <textarea class="form-control" id="occurrence" name="occurrence" rows="4" [(ngModel)]="attendance.registro" maxlength="255"
+          required></textarea>
+      </div>
+    </div>
+    <div class="form-group clearfix" class="required-filter row form-group">
+      <div class="col-sm-12 subtitles">
+        <em>* Campo Obrigatório</em>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-6 text-right">
+        <button type="submit" class="btn btn-primary">Registrar</button>
       </div>
     </div>
   </form>

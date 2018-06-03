@@ -66,6 +66,9 @@ export class SysMessages {
         }, {
             id: 22,
             description: "Aula salva com sucesso."
+        }, {
+            id: 23,
+            description: "Aula registrada com sucesso."
         }
     ];
 

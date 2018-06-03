@@ -8,6 +8,7 @@ export class Attendance {
     horaFechamento: DateTimeFormat;
     classe: Class;
     alunos: any[];
+    registro: string;
 
     constructor() {
         this.classe = new Class();
